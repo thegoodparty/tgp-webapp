@@ -66,8 +66,7 @@ Cypress.Commands.add('testSiteHeader', () => {
     // cy.get('[data-cy=header-login]')
     //   .should('have.attr', 'href', "/login")
     //   .contains('Login');
-    cy.get('[data-cy=header-register')
-      .should('have.attr', 'href', "/register")
+    cy.get('[data-cy=header-register]')
       .contains('Join Us');
 });
 Cypress.Commands.add('testSiteFooter', () => {
