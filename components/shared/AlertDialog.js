@@ -39,22 +39,23 @@ function AlertDialog({
   return (
     <Dialog onClose={handleClose} aria-labelledby={ariaLabel} open={open}>
       <AlertWrapper>
-        <Title id="alert-dialog-title">
+        <Title id="alert-dialog-title" data-cy="alert-dialog-title">
           <WarningIcon /> &nbsp; {title}
         </Title>
-        <Summary id="alert-dialog-description">{description}</Summary>
+        <Summary id="alert-dialog-description" data-cy="alert-dialog-description">{description}</Summary>
         <Buttons className="flex-center">
           <BlackButton
             className="outlined"
             onClick={handleClose}
             color="primary"
             style={{ marginRight: '26px' }}
+            dataCy="alert-dialog-cancel"
           >
             <InnerButton style={{ fontSize: '11px', fontWeight: 900 }}>
               Cancel
             </InnerButton>
           </BlackButton>
-          <BlackButton onClick={handleProceed} color="primary" autoFocus>
+          <BlackButton onClick={handleProceed} color="primary" dataCy="alert-dialog-proceed" autoFocus>
             <InnerButton style={{ fontSize: '11px', fontWeight: 900 }}>
               Proceed
             </InnerButton>

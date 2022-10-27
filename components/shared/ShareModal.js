@@ -112,7 +112,7 @@ const CopyIcon = styled.div`
   border: solid 2px #000;
 `;
 
-const ShareModal = ({ shareUrl, closeCallback = () => {}, candidate }) => {
+const ShareModal = ({ shareUrl, closeCallback = () => {}, candidate, isTest = false }) => {
   const user = getUserCookie(true);
   const messageNoUrl = 'Vote different';
 
@@ -189,71 +189,78 @@ const ShareModal = ({ shareUrl, closeCallback = () => {}, candidate }) => {
       link: `mailto:?body=${emailBody}&subject=${emailSubject}`,
     },
   ];
+  const Content = () => (
+    <Wrapper>
+      <Row style={{ justifyContent: 'space-between' }}>
+        <FontH3 data-cy="share-modal-title">Share on</FontH3>
+      </Row>
+      {channels.map((channel, index) => (
+        <React.Fragment key={channel.label}>
+          {channel.link && (
+            <SocialWrapper data-cy="share-item">
+              <div className="flex-center">
+                <SocialLink
+                  className={channel.className}
+                  style={
+                    channel.label === 'Website'
+                      ? { backgroundColor: brightColor }
+                      : {}
+                  }
+                >
+                  {channel.icon}
+                </SocialLink>
+                <Label data-cy="share-label">{channel.label}</Label>
+              </div>
+              <a
+                href={channel.link}
+                onClick={() => {
+                  trackShare(channel.label);
+                }}
+                target="_blank"
+                rel="noopener noreferrer nofollow"
+                id={`${channel.label}-share`}
+                data-cy="share-link"
+              >
+                <BlackButton>
+                  <InnerButton>
+                    <Smaller>Share</Smaller>
+                  </InnerButton>
+                </BlackButton>
+              </a>
+            </SocialWrapper>
+          )}
+        </React.Fragment>
+      ))}
+      <Tooltip
+        triggerEl={
+          <CopyToClipboard text={url}>
+            <CopyWrapper id="share-copy-link">
+              <CopyIcon>
+                <BiLinkAlt />
+              </CopyIcon>
+              <Label>Copy link</Label>
+            </CopyWrapper>
+          </CopyToClipboard>
+        }
+        triggerWrapperStyle={{ display: 'block' }}
+      >
+        <Copied>Link Copied!</Copied>
+      </Tooltip>
 
+      <div
+        className="fb-send-to-messenger"
+        messenger_app_id="1530862867115121"
+        color="blue"
+      />
+    </Wrapper>
+  )
+
+  if(isTest) {
+    return (<Content />);
+  }
   return (
     <QueryModalContainer closeModalCallbackOverride={closeCallback}>
-      <Wrapper>
-        <Row style={{ justifyContent: 'space-between' }}>
-          <FontH3>Share on</FontH3>
-        </Row>
-        {channels.map((channel, index) => (
-          <React.Fragment key={channel.label}>
-            {channel.link && (
-              <SocialWrapper data-cy="share-item">
-                <div className="flex-center">
-                  <SocialLink
-                    className={channel.className}
-                    style={
-                      channel.label === 'Website'
-                        ? { backgroundColor: brightColor }
-                        : {}
-                    }
-                  >
-                    {channel.icon}
-                  </SocialLink>
-                  <Label>{channel.label}</Label>
-                </div>
-                <a
-                  href={channel.link}
-                  onClick={() => {
-                    trackShare(channel.label);
-                  }}
-                  target="_blank"
-                  rel="noopener noreferrer nofollow"
-                  id={`${channel.label}-share`}
-                >
-                  <BlackButton>
-                    <InnerButton>
-                      <Smaller>Share</Smaller>
-                    </InnerButton>
-                  </BlackButton>
-                </a>
-              </SocialWrapper>
-            )}
-          </React.Fragment>
-        ))}
-        <Tooltip
-          triggerEl={
-            <CopyToClipboard text={url}>
-              <CopyWrapper id="share-copy-link">
-                <CopyIcon>
-                  <BiLinkAlt />
-                </CopyIcon>
-                <Label>Copy link</Label>
-              </CopyWrapper>
-            </CopyToClipboard>
-          }
-          triggerWrapperStyle={{ display: 'block' }}
-        >
-          <Copied>Link Copied!</Copied>
-        </Tooltip>
-
-        <div
-          className="fb-send-to-messenger"
-          messenger_app_id="1530862867115121"
-          color="blue"
-        />
-      </Wrapper>
+      <Content />
     </QueryModalContainer>
   );
 };

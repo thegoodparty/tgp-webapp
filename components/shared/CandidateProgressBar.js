@@ -183,18 +183,18 @@ const CandidateProgressBar = ({
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={4} data-cy="peoplesofar-label">
           <Number>{numberFormatter(peopleSoFar)}</Number>
           total followers
         </Grid>
-        <Grid item xs={4} className="text-center">
+        <Grid item xs={4} className="text-center" data-cy="peoplethisweek-label">
           <Number className={peopleThisPeriod > 0 && 'positive'}>
             {peopleThisPeriod > 0 && '+'}
             {numberFormatter(peopleThisWeek)}
           </Number>
           this week
         </Grid>
-        <Grid item xs={4} className="text-right">
+        <Grid item xs={4} className="text-right" data-cy="weekstoelection-label">
           {weeksToElection > 0 ? (
             <>
               <Number>
@@ -219,12 +219,12 @@ const CandidateProgressBar = ({
             <IoIosCheckmark />
           </Dial>
         </BarBg>
-        {neededPerWeek !== 0 && <Total>{numberFormatter(neededPerWeek)}</Total>}
+        {neededPerWeek !== 0 && <Total data-cy="neededperweek-label">{numberFormatter(neededPerWeek)}</Total>}
         {withAchievement && days > 0 && (
           <AchievementWrapper>
-            <Icon src="/images/icons/achievement.svg" alt="achievement" />
+            <Icon src="/images/icons/achievement.svg" alt="achievement" data-cy="achivement-icon" />
             {progress < 100 ? (
-              <div>
+              <div data-cy="neededperweek-label1" >
                 If we can get to{' '}
                 <strong>
                   {numberFormatter(neededPerWeek)} followers this week
@@ -232,7 +232,7 @@ const CandidateProgressBar = ({
                 , we’ll be on track to win on election day!
               </div>
             ) : (
-              <div>
+              <div data-cy="neededperweek-label1">
                 This candidate has a good chance of <strong>winning</strong>.
                 Keep the momentum going!
               </div>

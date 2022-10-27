@@ -16,7 +16,7 @@ import { FontH3 } from '../../shared/typogrophy';
 import StaffCard from './StaffCard';
 
 function CampaignStaff() {
-  const { staff } = useContext(CampaignApplicationsPageContext);
+  const { staff } = useContext(CampaignApplicationsPageContext) || {};
 
   if (!staff || staff.length === 0) {
     return <></>;

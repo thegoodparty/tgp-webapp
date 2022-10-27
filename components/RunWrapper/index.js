@@ -37,28 +37,34 @@ const BadgeWrapper = styled.div`
   margin: 80px 0 20px;
 `;
 
-function RunWrapper() {
+function RunWrapper({ isTest = false }) {
+  const Content = () => (
+    <Wrapper>
+      <FontH1 data-cy="run-title">Run as an Indie or 3rd Party.</FontH1>
+      <Font18 data-cy="run-description">
+        We’ve made it simple and free like democracy{' '}
+        <strong>
+          <i>should be.</i>
+        </strong>
+      </Font18>
+      <Free>we’re always free</Free>
+      <StartCampaignButton />
+      <Link to="questions" duration={500} smooth offset={-90}>
+        <Questions data-cy="run-questions">How does a campaign work?</Questions>
+      </Link>
+      <BadgeWrapper>
+        <CertifiedBadge />
+      </BadgeWrapper>
+      <BecomingSection />
+      <HowWorksSection />
+    </Wrapper>
+  )
+  if(isTest) {
+    return <Content />;
+  }
   return (
     <PageWrapper>
-      <Wrapper>
-        <FontH1 data-cy="run-title">Run as an Indie or 3rd Party.</FontH1>
-        <Font18 data-cy="run-description">
-          We’ve made it simple and free like democracy{' '}
-          <strong>
-            <i>should be.</i>
-          </strong>
-        </Font18>
-        <Free>we’re always free</Free>
-        <StartCampaignButton />
-        <Link to="questions" duration={500} smooth offset={-90}>
-          <Questions data-cy="run-questions">How does a campaign work?</Questions>
-        </Link>
-        <BadgeWrapper>
-          <CertifiedBadge />
-        </BadgeWrapper>
-        <BecomingSection />
-        <HowWorksSection />
-      </Wrapper>
+      <Content />
     </PageWrapper>
   );
 }

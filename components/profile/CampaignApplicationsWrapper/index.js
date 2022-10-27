@@ -12,11 +12,19 @@ import ProfilePageWrapper from '../shared/ProfilePageWrapper';
 import CampaignStaff from './CampaignStaff';
 import ApplicationSection from './ApplicationSection';
 
-function CampaignApplicationsWrapper() {
-  return (
-    <ProfilePageWrapper>
+function CampaignApplicationsWrapper({ isTest = false }) {
+  const Content = () => (
+    <>
       <CampaignStaff />
       <ApplicationSection />
+    </>
+  );
+  if(isTest) {
+    return <Content />;
+  }
+  return (
+    <ProfilePageWrapper>
+      <Content />
     </ProfilePageWrapper>
   );
 }

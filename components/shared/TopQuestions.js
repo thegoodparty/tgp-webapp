@@ -33,7 +33,7 @@ const ArticleTitle = styled(Body)`
 
 const TopQuestions = ({ articles }) => {
   const router = useRouter();
-  const pathWithNoQuery = router.asPath.split('?')[0];
+  const pathWithNoQuery = router?.asPath && router.asPath.split('?')[0];
   return (
     <Wrapper>
       <Row>

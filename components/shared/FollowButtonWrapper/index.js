@@ -89,7 +89,7 @@ const LogoWrapper = styled.div`
   }
 `;
 
-function FollowButtonWrapper() {
+function FollowButtonWrapper({ testCandidate }) {
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [showRegisterModal, setShowRegisterModal] = useState(false);
 
@@ -102,9 +102,8 @@ function FollowButtonWrapper() {
     fullWidth = false,
     afterFollowCallback,
     afterUnfollowCallback,
-  } = useContext(FollowButtonContainerContext);
-
-  if (!candidate) {
+  } = useContext(FollowButtonContainerContext) || { candidate: testCandidate};
+  if (!candidate && !testCandidate) {
     return <></>;
   }
   const isSupported = supports && supports[candidate.id];
@@ -187,23 +186,23 @@ function FollowButtonWrapper() {
         open={showRegisterModal}
       >
         <Wrapper>
-          <Title>Sign Up</Title>
-          <SubTitle>
+          <Title data-cy="follow-modal-title">Sign Up</Title>
+          <SubTitle data-cy="follow-modal-subtitle">
             Get Good Party updates and track indie campaigns near you!
           </SubTitle>
 
-          <RegisterComboContainer
+          {!testCandidate && <RegisterComboContainer
             afterRegisterCallback={() => {
               followCandidateCallback(candidate.id);
               setShowRegisterModal(false);
             }}
             afterLoginRoute={candidateRoute(candidate)}
-          />
+          />}
           <BottomRow>
-            <div>
+            <div data-cy="follow-modal-already-signed-up">
               Already signed up?{' '}
               <Link href="/?login=true" passHref>
-                <a className="underline">
+                <a className="underline" data-cy="follow-modal-login">
                   {/*<a className="underline" onClick={setReturnCookie}>*/}
                   <strong>Login</strong>
                 </a>
@@ -215,6 +214,7 @@ function FollowButtonWrapper() {
                 width={151}
                 height={15}
                 alt="GOOD PARTY"
+                data-cy="follow-gp-logo"
               />
             </LogoWrapper>
           </BottomRow>

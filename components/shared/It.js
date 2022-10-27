@@ -33,14 +33,14 @@ const It = ({ text }) => {
         text ? (
           <>{text}</>
         ) : (
-          <u>
+          <u data-cy="it-title">
             <i className="pointer">It</i>
           </u>
         )
       }
     >
       <InnerTooltip>
-        <Title>
+        <Title  data-cy="it-tooltip-title">
           What is{' '}
           <u>
             <i>It?</i>
@@ -48,8 +48,8 @@ const It = ({ text }) => {
         </Title>
         <Grid container spacing={3}>
           {points.map((point) => (
-            <Grid item xs={12} lg={4} key={point.title}>
-              <strong>
+            <Grid item xs={12} lg={4} key={point.title} data-cy="it-point">
+              <strong data-cy="it-point-title">
                 <u>
                   <i>It</i>
                 </u>{' '}
@@ -62,7 +62,7 @@ const It = ({ text }) => {
         </Grid>
         <div className="text-center" style={{ marginTop: '24px' }}>
           <Link href="/manifesto" passHref>
-            <a id="it-tooltip-manifesto-button">
+            <a id="it-tooltip-manifesto-button" data-cy="mainfesto-link">
               <BlackButton>
                 <InnerButton>
                   <Small>Read our Manifesto</Small>
