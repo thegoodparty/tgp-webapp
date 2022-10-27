@@ -157,12 +157,12 @@ export const partyRace = (candidate, withLineBreak = true) => {
   }
   return (
     <>
+      {partyResolver(party, otherParty)} | {resolvedRace}
       {counties && (
         <div>
           <strong>Counties Served</strong>: {counties}
         </div>
       )}
-      {partyResolver(party, otherParty)} | {resolvedRace}
     </>
   );
 };
