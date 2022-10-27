@@ -38,6 +38,11 @@ const BlackButton = styled(PurpleButton)`
       background: #000;
       color: #fff;
       border-color: #000;
+      &.outlined {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
     }
   }
 `;
