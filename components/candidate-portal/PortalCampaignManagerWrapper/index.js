@@ -67,15 +67,7 @@ export const fields = [
   { label: 'First Name', key: 'firstName', required: true },
   { label: 'Last Name', key: 'lastName', required: true },
   { label: 'Zip Code', key: 'zip' },
-  {
-    label: 'Political party affiliation',
-    key: 'party',
-    type: 'select',
-    options: ['I', 'GP', 'L', 'W', 'F', 'U', 'Other'],
-    required: true,
-  },
 
-  { label: 'Other Party', key: 'otherParty', isHidden: true },
   { label: 'Twitter', key: 'twitter', isUrl: true },
   { label: 'Facebook', key: 'facebook', isUrl: true },
   { label: 'YouTube', key: 'youtube', isUrl: true },
@@ -88,14 +80,17 @@ export const fields = [
 ];
 
 export const fields2 = [
-  { label: 'Office being sought ', key: 'race', required: true },
+  // { label: 'Office being sought ', key: 'race', required: true },
+
   {
-    label: 'Date of election ',
-    key: 'raceDate',
-    isDate: true,
-    columns: 6,
+    label: 'Political party affiliation',
+    key: 'party',
+    type: 'select',
+    options: ['I', 'GP', 'L', 'W', 'F', 'U', 'Other'],
     required: true,
   },
+
+  { label: 'Other Party', key: 'otherParty', isHidden: true },
   {
     label: 'State ',
     key: 'state',
@@ -152,6 +147,18 @@ export const fields2 = [
     label: 'District (if applicable)',
     columns: 6,
     key: 'district',
+    type: 'number',
+  },
+  {
+    label: 'Counties served',
+    key: 'counties',
+    columns: 6,
+  },
+  {
+    label: 'Date of election ',
+    key: 'raceDate',
+    isDate: true,
+    required: true,
   },
   {
     label: 'Ballot filing deadline ',
@@ -409,6 +416,8 @@ function PortalCampaignManagerWrapper() {
                                 ? 'date'
                                 : field.type === 'email'
                                 ? 'email'
+                                : field.type === 'number'
+                                ? 'number'
                                 : 'text'
                             }
                             onChange={(e) =>
