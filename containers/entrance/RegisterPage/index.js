@@ -44,7 +44,7 @@ export function RegisterPage({
       setExperimentVariant(type);
     });
   }, []);
-  console.log('experimentVariant', experimentVariant);
+  console.log('experimentVariant', experimentVariant, typeof experimentVariant);
 
   const { score } = registerPage;
 

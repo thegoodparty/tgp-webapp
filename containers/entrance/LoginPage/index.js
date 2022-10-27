@@ -37,14 +37,6 @@ export function LoginPage({
   useInjectReducer({ key: 'loginPage', reducer });
   useInjectSaga({ key: 'loginPage', saga });
 
-  const [experimentVariant, setExperimentVariant] = useState('0');
-  useEffect(() => {
-    getExperiment('Social login-register', 'hVOoMzyVTb2rqzKmWFwTNw', (type) => {
-      setExperimentVariant(type);
-    });
-  }, []);
-  console.log('experimentVariant', experimentVariant);
-
   useEffect(() => {
     const user = getUserCookie();
     if (user) {
@@ -58,7 +50,6 @@ export function LoginPage({
     socialLoginFailureCallback,
     twitterButtonCallback,
     modalMode,
-    experimentVariant,
   };
 
   return (

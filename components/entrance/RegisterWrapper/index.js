@@ -291,7 +291,7 @@ const RegisterWrapper = ({
             <GoogleReCaptcha onVerify={handleVerify} action="REGISTER" />
           )}
         </form>
-        {experimentVariant === '1' && (
+        {experimentVariant === '0' && (
           <>
             <OrWrapper>
               <Border />
