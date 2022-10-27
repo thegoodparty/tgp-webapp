@@ -1,6 +1,6 @@
 import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
 import { ThemeProvider } from 'styled-components';
-import theme from '../../../theme';
+import theme from '../../theme';
 
 const TestComponent = ({Component, ...props}) => (
     <UiThemeProvider theme={theme}>

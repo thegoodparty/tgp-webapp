@@ -1,39 +1,57 @@
-import { ConnectedRouter } from 'connected-next-router';
-import { mount } from 'cypress/react'
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
-import { ThemeProvider } from 'styled-components';
-import Breadcrumbs from '../../../components/shared/Breadcrumbs';
-import theme from '../../../theme';
+import TestComponent from '../TestComponent';
+import UserAvatar from '../../../components/shared/UserAvatar';
+import { getInitials } from '../../../helpers/userHelper';
 
-const Component = (props) => (
-    <UiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <Breadcrumbs {...props} />
-      </ThemeProvider>
-    </UiThemeProvider>
-)
-describe('Breadcrumbs.cy.js', () => {
-  it('Should render component', () => {
-    const breadcrumbsLinks = [
-      { href: '/', label: 'Good Party' },
-      {
-        href: '/faqs',
-        label: 'Frequently asked questions',
-      },
-    ];
+
+let user = {
+  "id" : 90,
+  "phone" : "",
+  "email" : "blueshark0811@gmail.com",
+  "uuid" : "zpzeclooe0",
+  "name" : "Peter Asaro",
+  "feedback" : "The Good Party",
+  "socialId" : null,
+  "socialProvider" : null, 
+  "displayAddress" : "",
+  "addressComponents": "",
+  "zip" : "95001",
+  "isPhoneVerified" : false,
+  "isEmailVerified" : true,
+  "avatar": "https://assets.goodparty.org/uploads/user-htzxz8.jpeg",
+  "hasPassword" : true,
+  "voteStatus" : "",
+  "guestReferrer" : null,
+  "crewCount" : 1,
+  "isAdmin" : true,
+  "metaData" : null,
+  "address" : "asdf",
+  "city" : "Aptos",
+  "displayName" : "",
+  "pronouns": "",
+  "referrer": null
+}
+describe('UserAvatar.cy.js', () => {
+  it('Should render component with avatar', () => {
+    
     cy.mount(
-      <Component links={breadcrumbsLinks} />
+      <TestComponent Component={UserAvatar} user={user} />
     );
-    cy.get('[data-cy=breadcrumb-link]')
-      .should('have.length', breadcrumbsLinks.length - 1) 
-      .each(($el, index) => {
-        cy.wrap($el)
-          .get('[data-cy=breadcrumb-link]')
-          .should('have.attr', 'href', breadcrumbsLinks[index].href)
-          .contains(breadcrumbsLinks[index].label);
-      });
-    cy.get('[data-cy=breadcrumb-label]')
+    cy.get('[data-cy=avatar-img]')
       .should('exist')
-      .contains(breadcrumbsLinks[breadcrumbsLinks.length - 1].label);
-  })
+      .should('have.css', 'background-image', `url("${user.avatar}")`);
+    cy.get('[data-cy=avatar-initials]')
+      .should('not.exist');
+  });
+
+  it('Should render component without avatar', () => {
+    user.avatar = null;
+    cy.mount(
+      <TestComponent Component={UserAvatar} user={user} />
+    );
+    cy.get('[data-cy=avatar-img]')
+      .should('not.exist');
+    cy.get('[data-cy=avatar-initials]')
+      .should('exist')
+      .contains(getInitials(user.name));
+  });
 })

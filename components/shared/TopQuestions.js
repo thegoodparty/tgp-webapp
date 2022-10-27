@@ -38,7 +38,7 @@ const TopQuestions = ({ articles }) => {
       <Row>
         <H3 data-cy="faqs">Top Questions</H3>
         <Link href="/faqs" data-cy="faqs-link">
-          <a>
+          <a data-cy="faqs-see-link">
             <SeeFaq>See FAQ</SeeFaq>
           </a>
         </Link>
@@ -46,7 +46,7 @@ const TopQuestions = ({ articles }) => {
       {articles &&
         articles.map((article, index) => (
           <Link
-            href={`${router.asPath}?article=${article.id}`}
+            href={`${router?.asPath}?article=${article.id}`}
             key={article.id}
             data-cy="faq"
           >

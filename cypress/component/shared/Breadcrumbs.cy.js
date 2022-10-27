@@ -1,4 +1,5 @@
 import TestComponent from '../TestComponent';
+import BreadCrumbs from '../../../components/shared/Breadcrumbs';
 
 describe('Breadcrumbs.cy.js', () => {
   it('Should render component', () => {

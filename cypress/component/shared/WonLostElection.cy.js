@@ -1,18 +1,9 @@
 import promisify from 'cypress-promise';
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
-import { ThemeProvider } from 'styled-components';
 import WonLostElection from '../../../components/shared/WonLostElection';
-import theme from '../../../theme';
+import TestComponent from '../TestComponent';
 
 const sampleCandidateList = [36, 30, 43];
 
-const Component = (props) => (
-    <UiThemeProvider theme={theme}>
-      <ThemeProvider theme={theme}>
-        <WonLostElection {...props} />
-      </ThemeProvider>
-    </UiThemeProvider>
-)
 context('WonLostElection.cy.js', () => {
   let candidate;
   sampleCandidateList.forEach(candidateId => {
@@ -26,7 +17,8 @@ context('WonLostElection.cy.js', () => {
       it(`should render component`, () => {
         
         cy.mount(
-          <Component 
+          <TestComponent
+            Component={WonLostElection}
             candidate={candidate}
           />
         );

@@ -144,6 +144,7 @@ const Retweet = styled.div`
 const imgLoader = ({ src }) => src;
 
 const SocialPost = ({ post }) => {
+  console.log('SocialPost:', post);
   const [hasImage, setHasImage] = useState(
     post && post.images && post.images.length > 0,
   );
