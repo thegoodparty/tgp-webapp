@@ -67,15 +67,7 @@ export const fields = [
   { label: 'First Name', key: 'firstName', required: true },
   { label: 'Last Name', key: 'lastName', required: true },
   { label: 'Zip Code', key: 'zip' },
-  {
-    label: 'Political party affiliation',
-    key: 'party',
-    type: 'select',
-    options: ['I', 'GP', 'L', 'W', 'F', 'U', 'Other'],
-    required: true,
-  },
 
-  { label: 'Other Party', key: 'otherParty', isHidden: true },
   { label: 'Twitter', key: 'twitter', isUrl: true },
   { label: 'Facebook', key: 'facebook', isUrl: true },
   { label: 'YouTube', key: 'youtube', isUrl: true },
@@ -88,20 +80,84 @@ export const fields = [
 ];
 
 export const fields2 = [
-  { label: 'Office being sought ', key: 'race', required: true },
+  // { label: 'Office being sought ', key: 'race', required: true },
+
   {
-    label: 'Date of election ',
-    key: 'raceDate',
-    isDate: true,
-    columns: 6,
+    label: 'Political party affiliation',
+    key: 'party',
+    type: 'select',
+    options: ['I', 'GP', 'L', 'W', 'F', 'U', 'Other'],
     required: true,
   },
+
+  { label: 'Other Party', key: 'otherParty', isHidden: true },
   {
     label: 'State ',
     key: 'state',
     columns: 6,
     type: 'select',
     options: flatStates,
+    required: true,
+  },
+  {
+    label: 'Office ',
+    key: 'office',
+    columns: 6,
+    type: 'select',
+    withGroups: true,
+    options: [
+      {
+        group: 'Federal',
+        options: ['President', 'US Senate', 'US House of Representatives'],
+      },
+      {
+        group: 'State',
+        options: [
+          'Governor',
+          'Lieutenant Governor',
+          'Attorney General',
+          'Comptroller',
+          'Treasurer',
+          'Secretary of State',
+          'State Supreme Court Justice',
+          'State Senate',
+          'State House of Representatives',
+        ],
+      },
+      {
+        group: 'Local',
+        options: [
+          'County Executive',
+          'Mayor',
+          'District Attorney',
+          'Sheriff',
+          'Clerk',
+          'Auditor',
+          'Public Administrator',
+          'Judge',
+          'County Commissioner',
+          'Council Member',
+          'School Board',
+        ],
+      },
+    ],
+    required: true,
+  },
+  {
+    label: 'District (if applicable)',
+    columns: 6,
+    key: 'district',
+    type: 'number',
+  },
+  {
+    label: 'Counties served',
+    key: 'counties',
+    columns: 6,
+  },
+  {
+    label: 'Date of election ',
+    key: 'raceDate',
+    isDate: true,
     required: true,
   },
   {
@@ -116,7 +172,6 @@ export const fields2 = [
     isDate: true,
     columns: 6,
   },
-  { label: 'District (if applicable)', key: 'district' },
   { label: 'Headline', key: 'headline', required: true },
   { label: 'Summary', key: 'about', isRichText: true, required: true },
   { label: 'Committee name', key: 'committeeName' },
@@ -188,6 +243,20 @@ function PortalCampaignManagerWrapper() {
     }
     if (key === 'party' && value !== 'Other') {
       setShowHidden(false);
+    }
+    if (key === 'office') {
+      if (
+        value === 'US House of Representatives' ||
+        value === 'State Senate' ||
+        value === 'State House of Representatives' ||
+        value === 'County Commissioner ' ||
+        value === 'Council Member' ||
+        value === 'School Board'
+      ) {
+        fields2[4].required = true; // district
+      } else {
+        fields2[4].required = false; // district
+      }
     }
 
     let urlFailed = false;
@@ -295,12 +364,28 @@ function PortalCampaignManagerWrapper() {
                               )
                             }
                           >
-                            <option value="">Select</option>
-                            {field.options.map((op) => (
-                              <option value={op} key={op}>
-                                {partyResolver(op)}
-                              </option>
-                            ))}
+                            <option value="">Select {field.label}</option>
+                            {field.withGroups ? (
+                              <>
+                                {field.options.map((op) => (
+                                  <optgroup label={op.group} key={op}>
+                                    {op.options.map((sub) => (
+                                      <option value={sub} key={sub}>
+                                        {partyResolver(sub)}
+                                      </option>
+                                    ))}
+                                  </optgroup>
+                                ))}
+                              </>
+                            ) : (
+                              <>
+                                {field.options.map((op) => (
+                                  <option value={op} key={op}>
+                                    {partyResolver(op)}
+                                  </option>
+                                ))}
+                              </>
+                            )}
                           </Select>
                           {errors[field.key] && <Err>{errors[field.key]}</Err>}
                         </>
@@ -331,6 +416,8 @@ function PortalCampaignManagerWrapper() {
                                 ? 'date'
                                 : field.type === 'email'
                                 ? 'email'
+                                : field.type === 'number'
+                                ? 'number'
                                 : 'text'
                             }
                             onChange={(e) =>

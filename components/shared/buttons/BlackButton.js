@@ -33,11 +33,21 @@ const BlackButton = styled(PurpleButton)`
     &.pill {
       border-radius: 30px;
       padding: 16px 40px;
+      &:hover {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
     }
     &.black-disabled {
       background: #000;
       color: #fff;
       border-color: #000;
+      &.outlined {
+        background: #fff;
+        color: #000;
+        border-color: #000;
+      }
     }
   }
 `;

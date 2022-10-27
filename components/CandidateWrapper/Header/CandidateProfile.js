@@ -6,7 +6,7 @@
 
 import React, { useContext, useState } from 'react';
 import styled from 'styled-components';
-import Grid from '@material-ui/core/Grid';
+import { MdIosShare } from 'react-icons/md';
 
 import { CandidateContext } from '/containers/CandidatePage';
 import FollowButtonContainer from '/containers/shared/FollowButtonContainer';
@@ -43,7 +43,8 @@ const ButtonWrapper = styled.div`
   display: none;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    display: block;
+    display: flex;
+    align-items: center;
   }
 `;
 
@@ -58,7 +59,7 @@ const ClaimLink = styled.span`
   text-decoration: underline;
 `;
 
-function CandidateProfile() {
+function CandidateProfile({showShareModalCallback}) {
   const { candidate } = useContext(CandidateContext);
 
   const { afterFollowCallback, afterUnfollowCallback } = useContext(
@@ -83,6 +84,11 @@ function CandidateProfile() {
             candidate={candidate}
             afterFollowCallback={afterFollowCallback}
             afterUnfollowCallback={afterUnfollowCallback}
+          />
+          <MdIosShare
+            size={30}
+            style={{ color: '#868686', marginLeft: '18px', cursor: 'pointer' }}
+            onClick={showShareModalCallback}
           />
         </ButtonWrapper>
         {!isClaimed && (

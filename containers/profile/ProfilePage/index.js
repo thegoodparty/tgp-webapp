@@ -25,6 +25,7 @@ import actions from './actions';
 export const ProfilePageContext = createContext();
 
 export function ProfilePage({ dispatch, signoutCallback, profilePage }) {
+  const [userFound, setUserFound] = useState(false);
   const router = useRouter();
   useInjectReducer({ key: 'profilePage', reducer });
   useInjectSaga({ key: 'profilePage', saga });
@@ -33,10 +34,16 @@ export function ProfilePage({ dispatch, signoutCallback, profilePage }) {
 
   useEffect(() => {
     if (typeof window !== 'undefined' && !user) {
-      router.push('login');
+      router.push('/?login=true');
     }
     dispatch(actions.loadCandidatesAction());
   }, []);
+
+  useEffect(() => {
+    if (user) {
+      setUserFound(true);
+    }
+  }, [user]);
 
   const { candidates, loading } = profilePage;
 
@@ -47,15 +54,13 @@ export function ProfilePage({ dispatch, signoutCallback, profilePage }) {
     candidates,
   };
 
-  console.log('candidates', candidates);
-
   return (
     <ProfilePageContext.Provider value={childProps}>
       <TgpHelmet
         title="Profile | GOOD PARTY"
         description="Sign into your profile on GOOD PARTY."
       />
-      {user && <ProfileWrapper />}
+      {userFound && <ProfileWrapper />}
     </ProfilePageContext.Provider>
   );
 }

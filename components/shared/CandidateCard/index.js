@@ -19,6 +19,7 @@ import BlackButton from '../buttons/BlackButton';
 import CandidateRoundAvatar from '../CandidateRoundAvatar';
 import CandidateProgressBar from '../CandidateProgressBar';
 import LoadingAnimation from '../LoadingAnimation';
+import { candidateRoute } from '../../../helpers/electionsHelper';
 const FollowButtonContainer = dynamic(
   () => import('/containers/shared/FollowButtonContainer'),
   {
@@ -86,8 +87,10 @@ const ButtonWrapper = styled.div`
 const MAX_POSITIONS = 6;
 
 function CandidateCard({ candidate, withFollowButton = false }) {
+  if (!candidate) {
+    return <></>;
+  }
   const {
-    id,
     firstName,
     lastName,
     positions,
@@ -127,7 +130,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
     }
     return (
       <Link
-        href={`/candidate/${firstName}-${lastName}/${id}`}
+        href={candidateRoute(candidate)}
         passHref
         style={{ height: '100%' }}
       >
@@ -153,12 +156,21 @@ function CandidateCard({ candidate, withFollowButton = false }) {
             {firstName} {lastName}
           </Name>
           <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+
           <Positions>
-            {(topPositions || []).map((position) => (
-              <Position key={position.id} data-cy="position">
-                {position.name}
-              </Position>
-            ))}
+            {topPositions && topPositions.length > 0 && (
+              <>
+                {topPositions.map((position) => (
+                  <React.Fragment key={position?.id}>
+                    {position && (
+                      <Position key={position.id} data-cy="position">
+                        {position.name}
+                      </Position>
+                    )}
+                  </React.Fragment>
+                ))}
+              </>
+            )}
           </Positions>
 
           <div style={{ margin: '32px 0 4px' }}>
@@ -189,7 +201,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
                     }}
                     dataCy="candidate-view"
                   >
-                    View
+                    VIEW CAMPAIGN
                   </BlackButton>
                 )}
               </Grid>

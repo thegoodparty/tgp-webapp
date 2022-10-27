@@ -1,6 +1,6 @@
 import React from 'react';
 import { toPrecision } from './numberHelper';
-import { partyResolver } from './electionsHelper';
+import { partyResolver, shortToLongState } from './electionsHelper';
 export const getVotesNeededState = (chamberName, district, state) => {
   let votesNeededState;
   if (chamberName === 'presidential') {
@@ -144,12 +144,25 @@ export const getPartyImage = (partyBadge, party, hideBadge) => {
 };
 
 export const partyRace = (candidate, withLineBreak = true) => {
-  const { party, otherParty, race } = candidate;
+  const { party, otherParty, race, office, state, district, counties } =
+    candidate;
+  let resolvedRace = '';
+
+  if (office) {
+    resolvedRace = `${state ? shortToLongState[state] : ''} ${office} ${
+      district ? `| District ${district}` : ''
+    }`;
+  } else {
+    resolvedRace = race;
+  }
   return (
     <>
-      {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-      Candidate {withLineBreak && <br />}
-      for <strong>{race}</strong>
+      {counties && (
+        <div>
+          <strong>Counties Served</strong>: {counties}
+        </div>
+      )}
+      {partyResolver(party, otherParty)} | {resolvedRace}
     </>
   );
 };
@@ -160,4 +173,14 @@ export const candidateColor = (candidate) => {
     return color.color;
   }
   return '#000';
+};
+
+export const candidateHash = (candidate) => {
+  if (!candidate) {
+    return '';
+  }
+  if (candidate.hashtag) {
+    return candidate.hashtag;
+  }
+  return `${candidate.firstName}${candidate.lastName}2022`;
 };

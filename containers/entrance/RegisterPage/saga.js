@@ -18,6 +18,7 @@ import { logEvent } from '/services/AnalyticsService';
 import globalActions from '/containers/App/actions';
 
 import types from './constants';
+import actions from './actions';
 
 function* register({ name, email, phone, zip, callback, source }) {
   try {
@@ -49,13 +50,10 @@ function* register({ name, email, phone, zip, callback, source }) {
       yield put(push(redirectCookie.route));
       deleteSignupRedirectCookie();
     } else {
-      if (source === 'homepageModal' || source === 'voteModal' ) {
-        yield put(
-          snackbarActions.showSnakbarAction('Thank you for signing up!'),
-        );
-      } else {
-        yield put(push('/register/confirm'));
-      }
+      yield put(snackbarActions.showSnakbarAction('Thank you for signing up!'));
+      const pathWithNoQuery = window.location.pathname.split('?')[0];
+      yield put(push(pathWithNoQuery));
+      //   yield put(push('/register/confirm'));
     }
     yield put(globalActions.refreshTokenAction());
   } catch (error) {
@@ -63,7 +61,7 @@ function* register({ name, email, phone, zip, callback, source }) {
       yield put(
         snackbarActions.showSnakbarAction(error.response.message, 'error'),
       );
-      yield put(push('/login'));
+      yield put(push('/?login=true'));
     } else {
       console.log(error);
       yield put(
@@ -147,14 +145,17 @@ function* socialRegister({ socialUser }) {
     setUserCookie(user);
     setCookie('token', token);
     logEvent('Signup', 'Complete Account Signup', provider);
-    yield put(push('/register/password-creation'));
+    // yield put(push('/register/password-creation'));
+    yield put(snackbarActions.showSnakbarAction('Thank you for signing up!'));
+    const pathWithNoQuery = window.location.pathname.split('?')[0];
+    yield put(push(pathWithNoQuery));
     yield call(setupCrew);
   } catch (error) {
     if (error.response?.exists) {
       yield put(
         snackbarActions.showSnakbarAction(error.response.message, 'error'),
       );
-      yield put(push('/login'));
+      yield put(push('/?login=true'));
     } else {
       console.log('error social login', error);
       logEvent('social-register', 'error');
@@ -177,9 +178,25 @@ function* twitterLogin() {
   }
 }
 
+function* verifyRecaptcha({ token }) {
+  try {
+    const api = tgpApi.verifyRecaptcha;
+    const payload = {
+      token,
+    };
+
+    const { score } = yield call(requestHelper, api, payload);
+    yield put(actions.verifyRecaptchaActionSuccess(score));
+  } catch (error) {
+    console.log('verifyRecaptcha error', JSON.stringify(error));
+    yield put(actions.verifyRecaptchaActionError());
+  }
+}
+
 // Individual exports for testing
 export default function* saga() {
   yield takeLatest(types.REGISTER, register);
   yield takeLatest(types.SOCIAL_REGISTER, socialRegister);
   yield takeLatest(types.TWITTER_REGISTER, twitterLogin);
+  yield takeLatest(types.VERIFY_RECAPTCHA, verifyRecaptcha);
 }

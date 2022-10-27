@@ -62,21 +62,6 @@ export default async function sitemap(req, res) {
           <changefreq>daily</changefreq>
         </url>
       `;
-
-      xmlString += `
-        <url>
-          <loc>${base}${candidateRoute(candidate)}/Campaign</loc>
-          <lastmod>${currentDate}</lastmod>
-          <changefreq>daily</changefreq>
-        </url>`;
-
-      xmlString += `
-        <url>
-          <loc>${base}${candidateRoute(candidate)}/Bio</loc>
-          <lastmod>${currentDate}</lastmod>
-          <changefreq>daily</changefreq>
-        </url>
-      `;
     });
     xmlString += '</urlset>';
 

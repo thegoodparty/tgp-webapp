@@ -159,7 +159,7 @@ function SocialRegisterWrapper({
     <QueryModalContainer>
       <Body13 data-cy="login-wrapper">
         Have a profile?{' '}
-        <Link href="/login" data-cy="login">
+        <Link href="/?login=true" data-cy="login">
           Sign In
         </Link>
       </Body13>

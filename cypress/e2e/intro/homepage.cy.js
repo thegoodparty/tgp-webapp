@@ -53,9 +53,7 @@ describe('HomePage', () => {
   });
   it('test Candidates section', () => {
     cy.get('[data-cy=home-candidates-title]')
-      .contains("We meme to beat");
-    cy.get('[data-cy=home-candidates-description]')
-      .contains("Grow the movement to get good indies elected by following");
+      .contains("Find");
     cy.get('[data-cy=good-cert-link]')
       .should('have.attr', 'href', "/candidates")
       .contains("Good Certified candidates");

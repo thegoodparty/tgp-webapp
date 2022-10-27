@@ -1,0 +1,14 @@
+@import '/scss/colors';
+@import '/scss/breakpoints';
+
+.wrapper {
+  max-width: $content-max;
+  margin: 0 auto;
+}
+
+.padder {
+  padding: 0 20px;
+  @include contentMax {
+    padding: 0;
+  }
+}

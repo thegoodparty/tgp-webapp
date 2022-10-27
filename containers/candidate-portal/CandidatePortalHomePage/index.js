@@ -34,6 +34,7 @@ export function CandidatePortalHomePage({
 }) {
   useInjectReducer({ key: 'candidatePortalHomePage', reducer });
   useInjectSaga({ key: 'candidatePortalHomePage', saga });
+
   const { candidate, stats, role } = candidatePortalHomePage;
   let { user } = userState;
   if (!user) {
@@ -52,8 +53,10 @@ export function CandidatePortalHomePage({
   }, [id]);
 
   useEffect(() => {
-    if (!candidate || `${candidate.id}` !== id) {
-      dispatch(actions.findCandidate(id));
+    if (id) {
+      if (!candidate || `${candidate.id}` !== id) {
+        dispatch(actions.findCandidate(id));
+      }
     }
   }, [id, candidate]);
 

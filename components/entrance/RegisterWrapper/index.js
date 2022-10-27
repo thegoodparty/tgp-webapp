@@ -1,17 +1,20 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
 import PhoneInput from 'react-phone-input-2';
 import 'react-phone-input-2/lib/style.css';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from '/globals';
 import TwitterButton from '/components/shared/TwitterButton';
 import BlackButton from '../../shared/buttons/BlackButton';
+import H2 from '../../shared/typogrophy/H2';
 
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
@@ -22,6 +25,9 @@ const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
   margin: 0 auto;
+  &.with-padding {
+    padding: 24px;
+  }
 `;
 
 const OrWrapper = styled.div`
@@ -123,6 +129,10 @@ const RegisterWrapper = ({
   twitterButtonCallback,
   isUpdate = false,
   queryEmail,
+  modalMode,
+  verifyRecaptchaCallback,
+  score,
+  experimentVariant,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -138,6 +148,8 @@ const RegisterWrapper = ({
     phone: user?.phone || '',
     zipcode: user?.zip || '',
   });
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   const enableSubmit = () => {
     return (
@@ -182,9 +194,33 @@ const RegisterWrapper = ({
     });
   };
 
+  const handleVerify = (token) => {
+    if (token) {
+      verifyRecaptchaCallback(token);
+    }
+  };
+  if (score === 'bad') {
+    return (
+      <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+        <Wrapper className={modalMode && 'with-padding'}>
+          <div
+            className="text-center"
+            style={{ marginBottom: '32px', paddingTop: '32px' }}
+          >
+            <H1 data-cy="register-title">Sign up for Good Party</H1>
+
+            <br />
+            <br />
+            <div>Sorry, we can't create an account for you at the moment.</div>
+          </div>
+        </Wrapper>
+      </PageWrapper>
+    );
+  }
+
   return (
-    <PageWrapper>
-      <Wrapper>
+    <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+      <Wrapper className={modalMode && 'with-padding'}>
         <div
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
@@ -192,9 +228,17 @@ const RegisterWrapper = ({
           <H1 data-cy="register-title">Sign up for Good Party</H1>
         </div>
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-          Already have an account? <Link href="/login"><a data-cy="redirect-to-login">login</a></Link>
+          Already have an account?{' '}
+          <Link href={`${pathWithNoQuery}?login=true`}>
+            <a data-cy="redirect-to-login">login</a>
+          </Link>
         </Body13>
-        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form" id="register-page-form">
+        <form
+          noValidate
+          onSubmit={handleSubmitForm}
+          data-cy="email-form"
+          id="register-page-form"
+        >
           {REGISTER_FIELDS.map((field) => (
             <div data-cy="register-field" key={field.key}>
               {field.type === 'tel' ? (
@@ -243,8 +287,11 @@ const RegisterWrapper = ({
               {user ? 'UPDATE' : 'Sign Up'}
             </BlackButton>
           </div>
+          {!score && (
+            <GoogleReCaptcha onVerify={handleVerify} action="REGISTER" />
+          )}
         </form>
-        {!user && (
+        {experimentVariant === '0' && (
           <>
             <OrWrapper>
               <Border />
@@ -265,7 +312,7 @@ const RegisterWrapper = ({
               </SocialButton>
             </div>
             <br />
-            <div  data-cy="twitter-login">
+            <div data-cy="twitter-login">
               <TwitterButton clickCallback={twitterButtonCallback}>
                 Continue with Twitter
               </TwitterButton>

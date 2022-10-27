@@ -39,13 +39,16 @@ module.exports = withPlugins([
       images: {
         domains: ['assets.goodparty.org'],
       },
+      compiler: {
+        styledComponents: true,
+      },
       async rewrites() {
         return [
           {
             source: '/sitemap.xml',
             destination: '/api/sitemap',
           },
-        ]
+        ];
       },
     },
   ],

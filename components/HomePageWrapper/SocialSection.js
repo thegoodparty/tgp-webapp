@@ -1,133 +1,63 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
+import Image from 'next/image';
 
 import Row from '../shared/Row';
-import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
-import Emoji from '../shared/Emoji';
 import Ticker from './Ticker';
 import { HomePageContext } from '../../containers/HomePage';
 
-const Wrapper = styled.section``;
-
-const TopRow = styled.div`
-  margin: 30px 0;
-`;
-
-const Stat = styled.div`
-  display: flex;
-  align-items: flex-start;
-  color: #000;
-  cursor: pointer;
-
-  &.first {
-    margin-right: 16px;
-  }
-
+const Wrapper = styled.section`
+  margin: 0 0 20px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
-    margin-bottom: 24px;
-
-    &.first {
-      margin-right: 70px;
-    }
+      theme.breakpointsPixels.lg}) {
+    margin: 100px 0 20px;
   }
 `;
 
-const Icon = styled.div`
-  font-size: 40px;
-  margin-right: 16px;
-`;
 const Count = styled.div`
   font-size: 30px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
-    font-size: 48px;
+      theme.breakpointsPixels.lg}) {
+    font-size: 42px;
   }
 `;
 const Label = styled.div`
+  margin-left: 28px;
   font-size: 16px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
-    font-size: 19px;
+      theme.breakpointsPixels.lg}) {
+    font-size: 30px;
   }
 `;
 
 const Heart = styled.div`
   margin-right: 12px;
-  padding-top: 12px;
+  padding-top: 6px;
 `;
 
-const InlineBlock = styled.div`
-  display: inline-block;
-`;
-
-const ButtonWrapper = styled.div`
-  margin-top: 24px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.xl}) {
-    margin-top: 0;
-  }
-`;
-
-const SocialSection = ({ openModalCallback, openInvolvedModalCallback }) => {
-  const { totalFollowers, feed } = useContext(HomePageContext);
-  let totalPosts = feed ? feed.total : 0;
-  totalPosts += 89852;
+const SocialSection = () => {
+  const { totalFollowers } = useContext(HomePageContext);
+  //89852 + totalFollowers
   return (
     <Wrapper>
-      <TopRow>
-        <InlineBlock>
-          <Row style={{ alignItems: 'initial' }}>
-            <Stat
-              className="first"
-              onClick={openModalCallback}
-              id="homepage-goodparty-posts"
-            >
-              <Icon>
-                <Emoji symbol="🎉" label="Party Popper" />
-              </Icon>
-              <div>
-                <Count data-cy="post-count">
-                  <Ticker initTotal={totalPosts} cookieName="ticker-posts" />
-                </Count>
-                <Label data-cy="post-count-label">#goodparty posts</Label>
-              </div>
-            </Stat>
-
-            <Stat onClick={openModalCallback} id="homepage-goodparty-people">
-              <Heart>
-                <img
-                  src="/images/heart.svg"
-                  width="42"
-                  height="34"
-                  alt="good party"
-                  data-cy="heart-icon"
-                />
-              </Heart>
-              <div>
-                <Count data-cy="people-count">
-                  <Ticker
-                    initTotal={totalFollowers}
-                    cookieName="ticker-people"
-                  />
-                </Count>
-                <Label data-cy="people-count-label">@goodparty people</Label>
-              </div>
-            </Stat>
-          </Row>
-          <ButtonWrapper>
-            <BlackButton
-              fullWidth
-              onClick={openInvolvedModalCallback}
-              id="get-involved-button-top"
-            >
-              <InnerButton>GET INVOLVED</InnerButton>
-            </BlackButton>
-          </ButtonWrapper>
-        </InlineBlock>
-      </TopRow>
+      <Row>
+        <Heart>
+          <Image
+            src="/images/heart.svg"
+            width="42"
+            height="34"
+            alt="good party"
+            data-cy="heart-icon"
+            priority
+          />
+        </Heart>
+        <Count data-cy="people-count">
+          <Ticker initTotal={totalFollowers} cookieName="ticker-people" />
+        </Count>
+        <Label data-cy="people-count-label">@goodparty people</Label>
+      </Row>
     </Wrapper>
   );
 };

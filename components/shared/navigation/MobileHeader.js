@@ -108,25 +108,13 @@ function MobileHeader({ user }) {
           </a>
         </Link>
         <TopLink className={path === '/' && 'active'}>
-          <Link
-            href="/"
-            passHref
-            onClick={() => {
-              logEvent('Link', 'Home', 'Top Nav');
-            }}
-          >
+          <Link href="/" passHref>
             <a id="mobile-nav-home">Home</a>
           </Link>
         </TopLink>
         {HEADER_LINKS.map((link) => (
           <TopLink key={link.href} className={path === link.href && 'active'}>
-            <Link
-              href={link.href}
-              passHref
-              onClick={() => {
-                logEvent('Link', link.label, 'Top Nav');
-              }}
-            >
+            <Link href={link.href} passHref>
               <a id={`mobile-nav-${link.label.replace(' ', '-')}`}>
                 {link.label}
               </a>

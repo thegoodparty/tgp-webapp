@@ -8,7 +8,7 @@ import types from './constants';
 
 export const initialState = {
   loading: false,
-  candidates: [],
+  candidates: false,
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -22,6 +22,10 @@ const profilePageReducer = (state = initialState, action) =>
       case types.LOAD_CANDIDATES_SUCCESS:
         draft.loading = false;
         draft.candidates = action.candidates;
+        break;
+      case types.LOAD_CANDIDATES_ERROR:
+        draft.loading = false;
+        draft.candidates = [];
         break;
     }
   });

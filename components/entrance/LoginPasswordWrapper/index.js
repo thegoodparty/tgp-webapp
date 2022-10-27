@@ -73,7 +73,7 @@ const LoginPasswordWrapper = ({
               <Body13 data-cy="email-label">
                 {valueType === 'phone' ? formatToPhone(value) : value} &nbsp;
                 &nbsp;{' '}
-                <Link href="/login" passHref>
+                <Link href="/?login=true" passHref>
                   <a data-cy="redirect-to-login">
                     <ForgotLink style={{ display: 'inline' }}>
                       Change {valueType === 'email' ? 'email' : 'phone'}

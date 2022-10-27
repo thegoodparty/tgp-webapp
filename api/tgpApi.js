@@ -118,6 +118,11 @@ export const generateApi = (base) => ({
     method: 'PUT',
   },
 
+  verifyRecaptcha: {
+    url: `${base}entrance/verify-recaptcha`,
+    method: 'GET',
+  },
+
   confirmTwitterCallback: {
     url: `${base}entrance/twitter-confirm`,
     method: 'PUT',

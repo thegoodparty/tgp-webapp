@@ -10,6 +10,7 @@ import Grid from '@material-ui/core/Grid';
 import Hidden from '@material-ui/core/Hidden';
 import Link from 'next/link';
 import BlackButton from '../../shared/buttons/BlackButton';
+import GrayButton from '../../shared/buttons/GrayButton';
 
 const basicFeatures = [
   { title: 'Campaign Page', description: 'Introduce yourself to users' },
@@ -43,16 +44,25 @@ const basicFeatures = [
 const plans = [
   {
     name: 'Starter',
-    price: 'Free',
+    price: 'Free Trial*',
     link: '/run',
-    subtitle: 'Free tools to grow awareness and show viability',
+    subtitle: (
+      <div>
+        <i>*$5.99/mo. starting in 2024</i>
+        <br />
+        <br />
+        Free tools to grow awareness and show viability
+      </div>
+    ),
     features: basicFeatures,
+    buttonLabel: 'GET STARTED',
   },
   {
     name: 'Pro',
-    price: 'Coming Soon',
+    price: '$19.99/mo',
     link: '/run',
     subtitle: 'Helping you stay connected and serve supporters while you serve',
+    buttonLabel: 'COMING SOON',
     features: [
       ...basicFeatures,
       {
@@ -82,6 +92,7 @@ const plans = [
     subtitle:
       'All-inclusive tools and built to scale national, grassroots movements for large organizations doing Good! Includes strategy and consulting services.',
     features: [],
+    buttonLabel: 'CONTACT US',
   },
 ];
 
@@ -119,6 +130,10 @@ const SubTitle = styled.div`
   font-size: 16px;
   line-height: 30px;
   letter-spacing: 0.2px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    min-height: 120px;
+  }
 `;
 
 const Feature = styled.div`
@@ -130,6 +145,9 @@ const Feature = styled.div`
     color: #000;
     margin-bottom: 8px;
     display: block;
+  }
+  &.black {
+    color: #000;
   }
 `;
 
@@ -182,22 +200,37 @@ function Plans() {
               }`}
             >
               <Hidden lgDown>
-                <BlackButton className="pill black-disabled" disabled>
+                <BlackButton
+                  className={`pill black-disabled ${
+                    plan.name !== 'Starter' && 'outlined'
+                  }`}
+                  disabled
+                >
                   {plan.name}
                 </BlackButton>
               </Hidden>
               <H3>{plan.price}</H3>
               <SubTitle>{plan.subtitle}</SubTitle>
               <Link href={plan.link} passHref>
-                <a id={`pricing-get-started-${plan.name}`}>
-                  <BlackButton fullWidth>GET STARTED</BlackButton>
+                <a
+                  id={`pricing-get-started-${plan.name}`}
+                  className="no-underline"
+                >
+                  {plan.name === 'Starter' ? (
+                    <BlackButton fullWidth>{plan.buttonLabel}</BlackButton>
+                  ) : (
+                    <GrayButton fullWidth>{plan.buttonLabel}</GrayButton>
+                  )}
                 </a>
               </Link>
 
               <br />
               <br />
-              {plan.features.map((feature) => (
-                <Feature key={feature.title}>
+              {plan.features.map((feature, index) => (
+                <Feature
+                  key={feature.title}
+                  className={index > basicFeatures.length-1  && 'black'}
+                >
                   <strong>{feature.title}</strong>
                   {feature.description}
                 </Feature>

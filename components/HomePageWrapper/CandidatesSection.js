@@ -3,10 +3,8 @@ import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
 import { HomePageContext } from '/containers/HomePage';
-import It from '../shared/It';
-import CandidateRoundAvatar from '../shared/CandidateRoundAvatar';
-import { candidateRoute } from '../../helpers/electionsHelper';
-import CandidateMiniCard from './CandidatesMiniCard';
+
+import CandidateCard from '../shared/CandidateCard';
 
 const Wrapper = styled.section`
   padding: 20px 0 60px;
@@ -18,21 +16,13 @@ const Wrapper = styled.section`
 
 const H2 = styled.h2`
   font-size: 21px;
-  font-weight: 900;
+  font-weight: 400;
+
   margin: 0 0 18px;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    font-size: 42px;
-    margin: 0 0 30px;
-  }
-`;
-
-const Content = styled.div`
-  margin-bottom: 50px;
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    font-size: 22px;
+    font-size: 24px;
+    margin: 110px 0 30px;
   }
 `;
 
@@ -44,6 +34,7 @@ const More = styled.div`
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
     margin-top: 85px;
+    margin-bottom: 170px;
   }
 `;
 
@@ -51,32 +42,23 @@ const CandidatesSection = () => {
   const { homepageCandidates } = useContext(HomePageContext);
   return (
     <Wrapper>
-      {' '}
       <H2 data-cy="home-candidates-title">
-        We meme to beat <span className="red">Red</span> and{' '}
-        <span className="blue">Blue</span>{' '}
-        <span role="img" aria-label="Money Bag">
-          💰
-        </span>
+        Find <u>Good Party Certified</u> candidates who pledge to be{' '}
+        <strong>Independent, People Powered and Anti-Corruption</strong>
       </H2>
-      <Content data-cy="home-candidates-description">
-        Grow the movement to get good indies elected by following{' '}
-        <Link href="/candidates" passHref>
-          <a id="good-certified" className="underline" data-cy="good-cert-link">
-            Good Certified candidates
-          </a>
-        </Link>
-      </Content>
-      <Grid container spacing={8}  alignItems="stretch">
+
+      <Grid container spacing={8} alignItems="stretch">
         {(homepageCandidates || []).map((candidate) => (
           <Grid item xs={12} md={6} lg={4} key={candidate.id}>
-            <CandidateMiniCard candidate={candidate} />
+            <CandidateCard candidate={candidate} />
           </Grid>
         ))}
       </Grid>
       <More className="text-center">
         <Link href="/candidates" passHref>
-          <a id="see-more-candidates" data-cy="see-more-link">See More Candidates</a>
+          <a id="see-more-candidates" data-cy="see-more-link">
+            See More Candidates
+          </a>
         </Link>
       </More>
     </Wrapper>

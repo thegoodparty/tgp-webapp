@@ -58,8 +58,6 @@ function MyApp({ Component, pageProps }) {
           <GlobalStyles />
           <ThemeProvider theme={theme}>
             <QueryRoutes />
-          </ThemeProvider>
-          <ThemeProvider theme={theme}>
             <Component {...pageProps} />
           </ThemeProvider>
           <SnackbarContainer />

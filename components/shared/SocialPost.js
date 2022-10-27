@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
@@ -12,7 +12,6 @@ import {
   FaCommentAlt,
   FaTiktok,
 } from 'react-icons/fa';
-import { useRouter } from 'next/router';
 
 import { dateUsHelper } from '../../helpers/dateHelper';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
@@ -149,8 +148,26 @@ const SocialPost = ({ post }) => {
     post && post.images && post.images.length > 0,
   );
   const [showShare, setShowShare] = useState(false);
+  const [showContent, setShowContent] = useState(false);
 
   const hasVideo = post.video && post.video.src;
+
+  useEffect(() => {
+    let show = true;
+    if (
+      source === 'FACEBOOK' ||
+      source === 'FACEBOOK_PUBLIC' ||
+      source === 'INSTAGRAM'
+    ) {
+      if (hasImage) {
+        show = false;
+      }
+    }
+    if (source === 'TIKTOK' && hasVideo) {
+      show = false;
+    }
+    setShowContent(show);
+  }, [hasImage]);
 
   if (!post || !post.content) {
     return <></>;
@@ -195,19 +212,6 @@ const SocialPost = ({ post }) => {
     setHasImage(false);
   };
 
-  let showContent = true;
-  if (
-    source === 'FACEBOOK' ||
-    source === 'FACEBOOK_PUBLIC' ||
-    source === 'INSTAGRAM'
-  ) {
-    if (hasImage) {
-      showContent = false;
-    }
-  }
-  if (source === 'TIKTOK' && hasVideo) {
-    showContent = false;
-  }
   const WrapperElement = ({ children }) => {
     if (hasVideo) {
       return <div>{children}</div>;
@@ -266,6 +270,7 @@ const SocialPost = ({ post }) => {
         {showContent && (
           <Content dangerouslySetInnerHTML={{ __html: contentWithLinks }} />
         )}
+
         <Bottom>
           <div>
             {likesCount !== null && (

@@ -33,6 +33,7 @@ const ArticleTitle = styled(Body)`
 
 const TopQuestions = ({ articles }) => {
   const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
   return (
     <Wrapper>
       <Row>
@@ -46,7 +47,7 @@ const TopQuestions = ({ articles }) => {
       {articles &&
         articles.map((article, index) => (
           <Link
-            href={`${router?.asPath}?article=${article.id}`}
+            href={`${pathWithNoQuery}?article=${article.id}`}
             key={article.id}
             data-cy="faq"
           >
