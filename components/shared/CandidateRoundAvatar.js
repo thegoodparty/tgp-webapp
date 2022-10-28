@@ -26,19 +26,11 @@ const ImageWrapper = styled.div`
   border: solid 5px #000;
 
   &.large {
-    height: 130px;
-    width: 130px;
+    height: 230px;
+    width: 230px;
 
     .overlay {
       font-size: 14px;
-    }
-  }
-
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    &.large {
-      height: 230px;
-      width: 230px;
     }
   }
 

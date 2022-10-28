@@ -33,13 +33,12 @@ const FollowButtonContainer = dynamic(
 
 const Wrapper = styled.div`
   border-radius: 16px;
-  padding: 16px 36px;
+  padding: 26px 26px 100px;
   border: 2px solid #ededed;
   color: #000;
   height: 100%;
   position: relative;
   background-color: #fff;
-  margin-bottom: 24px;
 `;
 
 const ImageWrapper = styled.div`
@@ -48,17 +47,13 @@ const ImageWrapper = styled.div`
 `;
 
 const Content = styled.div`
-  margin-top: 16px;
+  margin-top: 24px;
 `;
 
 const Name = styled(FontH3)`
-  font-size: 32px;
-  font-weight: 900;
-  margin: 0 0 6px;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    font-size: 50px;
-  }
+  font-size: 21px;
+  font-weight: 600;
+  margin: 0 0 8px;
 `;
 
 const Gray = styled.div`
@@ -66,27 +61,27 @@ const Gray = styled.div`
 `;
 
 const Positions = styled.div`
+  margin-top: 14px;
   font-weight: 600;
   font-size: 14px;
-  height: 32px;
+  height: 56px;
   overflow: hidden;
 `;
 
 const Position = styled.div`
   display: inline-block;
-  padding: 4px 10px;
+  padding: 4px 8px;
   border-radius: 4px;
   font-size: 11px;
   background-color: #f3f3f3;
-  margin: 5px 5px 0 0;
+  margin: 4px 4px 0 0;
 `;
 
 const ButtonWrapper = styled.div`
-  width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.md}) {
-    width: 50%;
-  }
+  position: absolute;
+  left: 24px;
+  bottom: 24px;
+  width: calc(100% - 48px);
 `;
 
 const MAX_POSITIONS = 6;
@@ -95,7 +90,15 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   if (!candidate) {
     return <></>;
   }
-  const { firstName, lastName, positions } = candidate;
+  const {
+    firstName,
+    lastName,
+    positions,
+    followers,
+    raceDate,
+    votesNeeded,
+    support,
+  } = candidate;
 
   const brightColor = candidateColor(candidate);
   let topPositions = positions;
@@ -103,6 +106,16 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   if (positions && positions.length > MAX_POSITIONS) {
     topPositions = positions.slice(0, MAX_POSITIONS);
   }
+
+  let thisWeek = 0;
+  let lastWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek + (support ? support.thisWeek : 0);
+    lastWeek = followers.lastWeek + (support ? support.lastWeek : 0);
+  }
+
+  const days = daysTill(raceDate);
+  const diff = thisWeek - lastWeek;
 
   const WrapperElement = ({ children }) => {
     if (withFollowButton) {
@@ -135,35 +148,45 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   return (
     <WrapperElement>
       <Wrapper>
-        <Grid container spacing={3}>
-          <Grid item xs={12} md={3}>
-            <ImageWrapper>
-              <CandidateRoundAvatar candidate={candidate} large />
-            </ImageWrapper>
-          </Grid>
-          <Grid item xs={12} md={9}>
-            <Content>
-              <Positions>
-                {topPositions && topPositions.length > 0 && (
-                  <>
-                    {topPositions.map((position) => (
-                      <React.Fragment key={position?.id}>
-                        {position && (
-                          <Position key={position.id} data-cy="position">
-                            {position.name}
-                          </Position>
-                        )}
-                      </React.Fragment>
-                    ))}
-                  </>
-                )}
-              </Positions>
-              <Name data-cy="candidate-name">
-                {firstName} {lastName}
-              </Name>
-              <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+        <ImageWrapper>
+          <CandidateRoundAvatar candidate={candidate} large />
+        </ImageWrapper>
+        <Content>
+          <Name data-cy="candidate-name">
+            {firstName} {lastName}
+          </Name>
+          <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
 
-              <ButtonWrapper>
+          <Positions>
+            {topPositions && topPositions.length > 0 && (
+              <>
+                {topPositions.map((position) => (
+                  <React.Fragment key={position?.id}>
+                    {position && (
+                      <Position key={position.id} data-cy="position">
+                        {position.name}
+                      </Position>
+                    )}
+                  </React.Fragment>
+                ))}
+              </>
+            )}
+          </Positions>
+
+          <div style={{ margin: '32px 0 4px' }}>
+            <CandidateProgressBar
+              votesNeeded={votesNeeded}
+              peopleSoFar={thisWeek}
+              peopleThisPeriod={diff}
+              color={brightColor}
+              days={days}
+              withAnimation={false}
+            />
+          </div>
+
+          <ButtonWrapper>
+            <Grid container spacing={2}>
+              <Grid item xs={12}>
                 {withFollowButton ? (
                   <FollowButtonContainer candidate={candidate} fullWidth />
                 ) : (
@@ -181,10 +204,10 @@ function CandidateCard({ candidate, withFollowButton = false }) {
                     VIEW CAMPAIGN
                   </BlackButton>
                 )}
-              </ButtonWrapper>
-            </Content>
-          </Grid>
-        </Grid>
+              </Grid>
+            </Grid>
+          </ButtonWrapper>
+        </Content>
       </Wrapper>
     </WrapperElement>
   );

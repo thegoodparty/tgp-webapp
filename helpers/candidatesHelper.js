@@ -159,7 +159,7 @@ export const partyRace = (candidate, withLineBreak = true) => {
     <>
       {partyResolver(party, otherParty)} | {resolvedRace}
       {counties && (
-        <div>
+        <div style={{ marginTop: '7px', color: '#868686' }}>
           <strong>Counties Served</strong>: {counties}
         </div>
       )}
