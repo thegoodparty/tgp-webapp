@@ -28,7 +28,8 @@
     "cypress:dev": "cross-env CYPRESS_BASE_URL=https://dev.goodparty.org ./node_modules/.bin/cypress open",
     "cypress:prod": "cross-env CYPRESS_BASE_URL=https://goodparty.org ./node_modules/.bin/cypress open",
     "cypress:run": "cross-env CYPRESS_BASE_URL=http://localhost:3000 ./node_modules/.bin/cypress run",
-    "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run",
+    "cypress:run:local": "cross-env CYPRESS_BASE_URL=http://localhost:4000 ./node_modules/.bin/cypress run --component",
+    "cypress:run:local-dev:component": "cross-env CYPRESS_BASE_URL=http://localhost:4000 CYPRESS_API_BASE=https://api-dev.goodparty.org/api/v1/ ./node_modules/.bin/cypress run --component",
     "cypress:run:dev": "cross-env CYPRESS_BASE_URL=https://dev.goodparty.org ./node_modules/.bin/cypress run",
     "cypress:run:prod": "cross-env CYPRESS_BASE_URL=https://goodparty.org ./node_modules/.bin/cypress run",
     "cypress:run:test": "cross-env CYPRESS_BASE_URL=https://test.goodparty.org ./node_modules/.bin/cypress run"

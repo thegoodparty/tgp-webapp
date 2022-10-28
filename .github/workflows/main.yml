@@ -41,13 +41,26 @@ jobs:
 
       # - name: 'UI Tests - Chrome'
       # run: yarn run dev-test
-      - name: UI Tests - Chrome
+      - name: UI Tests - Chrome - E2E
         uses: cypress-io/github-action@v4
         with:
           # Disable running of tests within install job
           # runTests: false
           install: false
           record: true
+        env:
+          CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          CYPRESS_BASE_URL: http://localhost:4000
+          CYPRESS_API_BASE: https://api-dev.goodparty.org/api/v1/
+      - name: UI Tests - Chrome - E2E
+        uses: cypress-io/github-action@v4
+        with:
+          # Disable running of tests within install job
+          # runTests: false
+          install: false
+          record: true
+          component: true
         env:
           CYPRESS_RECORD_KEY: 'fad4fb6b-1318-4ba0-883b-8606925d150d'
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

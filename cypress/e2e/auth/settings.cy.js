@@ -9,8 +9,8 @@ describe('Settings Page', () => {
         user = parseCookie(USER_COOKIE);
         cy.get('[data-cy=settings-title]')
           .contains('Settings');
-        cy.get('[data-cy=setting-password-title]')
-          .contains(`${user.hasPassword ? 'Change' : 'Create'} your password`);
+        // cy.get('[data-cy=setting-password-title]')
+        //   .contains(`${user.hasPassword ? 'Change' : 'Create'} your password`);
         cy.get('[data-cy=delete-account-title]')
           .contains('Danger Zone - Delete your account');
     });
