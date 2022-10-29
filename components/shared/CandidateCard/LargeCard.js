@@ -1,10 +1,10 @@
 /**
  *
- * CandidateCard
+ * LargeCard
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
@@ -12,12 +12,10 @@ import Grid from '@material-ui/core/Grid';
 import dynamic from 'next/dynamic';
 
 import { candidateColor, partyRace } from '/helpers/candidatesHelper';
-import { daysTill } from '/helpers/dateHelper';
 
 import { FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
 import CandidateRoundAvatar from '../CandidateRoundAvatar';
-import CandidateProgressBar from '../CandidateProgressBar';
 import LoadingAnimation from '../LoadingAnimation';
 import { candidateRoute } from '../../../helpers/electionsHelper';
 const FollowButtonContainer = dynamic(
@@ -33,12 +31,13 @@ const FollowButtonContainer = dynamic(
 
 const Wrapper = styled.div`
   border-radius: 16px;
-  padding: 26px 26px 100px;
+  padding: 16px 36px;
   border: 2px solid #ededed;
   color: #000;
   height: 100%;
   position: relative;
   background-color: #fff;
+  margin-bottom: 24px;
 `;
 
 const ImageWrapper = styled.div`
@@ -47,13 +46,17 @@ const ImageWrapper = styled.div`
 `;
 
 const Content = styled.div`
-  margin-top: 24px;
+  margin-top: 16px;
 `;
 
 const Name = styled(FontH3)`
-  font-size: 21px;
-  font-weight: 600;
-  margin: 0 0 8px;
+  font-size: 32px;
+  font-weight: 900;
+  margin: 0 0 6px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    font-size: 50px;
+  }
 `;
 
 const Gray = styled.div`
@@ -61,44 +64,36 @@ const Gray = styled.div`
 `;
 
 const Positions = styled.div`
-  margin-top: 14px;
   font-weight: 600;
   font-size: 14px;
-  height: 56px;
+  height: 32px;
   overflow: hidden;
 `;
 
 const Position = styled.div`
   display: inline-block;
-  padding: 4px 8px;
+  padding: 4px 10px;
   border-radius: 4px;
   font-size: 11px;
   background-color: #f3f3f3;
-  margin: 4px 4px 0 0;
+  margin: 5px 5px 0 0;
 `;
 
 const ButtonWrapper = styled.div`
-  position: absolute;
-  left: 24px;
-  bottom: 24px;
-  width: calc(100% - 48px);
+  width: 100%;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.md}) {
+    width: 50%;
+  }
 `;
 
 const MAX_POSITIONS = 6;
 
-function CandidateCard({ candidate, withFollowButton = false }) {
+function LargeCard({ candidate, withFollowButton = false }) {
   if (!candidate) {
     return <></>;
   }
-  const {
-    firstName,
-    lastName,
-    positions,
-    followers,
-    raceDate,
-    votesNeeded,
-    support,
-  } = candidate;
+  const { firstName, lastName, positions } = candidate;
 
   const brightColor = candidateColor(candidate);
   let topPositions = positions;
@@ -106,16 +101,6 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   if (positions && positions.length > MAX_POSITIONS) {
     topPositions = positions.slice(0, MAX_POSITIONS);
   }
-
-  let thisWeek = 0;
-  let lastWeek = 0;
-  if (followers) {
-    thisWeek = followers.thisWeek + (support ? support.thisWeek : 0);
-    lastWeek = followers.lastWeek + (support ? support.lastWeek : 0);
-  }
-
-  const days = daysTill(raceDate);
-  const diff = thisWeek - lastWeek;
 
   const WrapperElement = ({ children }) => {
     if (withFollowButton) {
@@ -148,45 +133,35 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   return (
     <WrapperElement>
       <Wrapper>
-        <ImageWrapper>
-          <CandidateRoundAvatar candidate={candidate} large />
-        </ImageWrapper>
-        <Content>
-          <Name data-cy="candidate-name">
-            {firstName} {lastName}
-          </Name>
-          <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+        <Grid container spacing={3}>
+          <Grid item xs={12} md={3}>
+            <ImageWrapper>
+              <CandidateRoundAvatar candidate={candidate} large />
+            </ImageWrapper>
+          </Grid>
+          <Grid item xs={12} md={9}>
+            <Content>
+              <Positions>
+                {topPositions && topPositions.length > 0 && (
+                  <>
+                    {topPositions.map((position) => (
+                      <React.Fragment key={position?.id}>
+                        {position && (
+                          <Position key={position.id} data-cy="position">
+                            {position.name}
+                          </Position>
+                        )}
+                      </React.Fragment>
+                    ))}
+                  </>
+                )}
+              </Positions>
+              <Name data-cy="candidate-name">
+                {firstName} {lastName}
+              </Name>
+              <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
 
-          <Positions>
-            {topPositions && topPositions.length > 0 && (
-              <>
-                {topPositions.map((position) => (
-                  <React.Fragment key={position?.id}>
-                    {position && (
-                      <Position key={position.id} data-cy="position">
-                        {position.name}
-                      </Position>
-                    )}
-                  </React.Fragment>
-                ))}
-              </>
-            )}
-          </Positions>
-
-          <div style={{ margin: '32px 0 4px' }}>
-            <CandidateProgressBar
-              votesNeeded={votesNeeded}
-              peopleSoFar={thisWeek}
-              peopleThisPeriod={diff}
-              color={brightColor}
-              days={days}
-              withAnimation={false}
-            />
-          </div>
-
-          <ButtonWrapper>
-            <Grid container spacing={2}>
-              <Grid item xs={12}>
+              <ButtonWrapper>
                 {withFollowButton ? (
                   <FollowButtonContainer candidate={candidate} fullWidth />
                 ) : (
@@ -204,17 +179,17 @@ function CandidateCard({ candidate, withFollowButton = false }) {
                     VIEW CAMPAIGN
                   </BlackButton>
                 )}
-              </Grid>
-            </Grid>
-          </ButtonWrapper>
-        </Content>
+              </ButtonWrapper>
+            </Content>
+          </Grid>
+        </Grid>
       </Wrapper>
     </WrapperElement>
   );
 }
 
-CandidateCard.propTypes = {
+LargeCard.propTypes = {
   candidate: PropTypes.object,
 };
 
-export default CandidateCard;
+export default LargeCard;

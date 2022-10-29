@@ -10,12 +10,11 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FaFilter } from 'react-icons/fa';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
-import CandidateCard from '../shared/CandidateCard';
 import { FontH3 } from '../shared/typogrophy';
 import Row from '../shared/Row';
+import LargeCard from '../shared/CandidateCard/LargeCard';
 
 const Section = styled.section`
   margin-top: 80px;
@@ -77,7 +76,7 @@ function CandidatesSection() {
       </Grid>
       {(candidates || []).map((candidate) => (
         <React.Fragment key={candidate.id}>
-          <CandidateCard candidate={candidate} />
+          <LargeCard candidate={candidate} />
         </React.Fragment>
       ))}
       {(!candidates || candidates.length === 0) && (

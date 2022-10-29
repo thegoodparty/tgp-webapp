@@ -180,6 +180,15 @@ export const fields2 = [
     key: 'heroVideo',
     type: 'youtubeInput',
   },
+
+  { label: 'Why I am running', key: 'whyRunning', isRichText: true },
+  { label: 'Why I am an independent', key: 'whyIndependent', isRichText: true },
+  { label: 'Prior experience', key: 'experience', isRichText: true },
+
+  { label: 'Home Town & State', key: 'hometown' },
+  { label: 'Current occupation', key: 'occupation' },
+  { label: 'Fun fact', key: 'funFact' },
+
 ];
 
 export const fields3 = [
