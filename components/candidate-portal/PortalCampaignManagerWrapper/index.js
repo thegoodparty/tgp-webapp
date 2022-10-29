@@ -181,9 +181,9 @@ export const fields2 = [
     type: 'youtubeInput',
   },
 
-  { label: 'Why I am running', key: 'whyRunning', isRichText: true },
-  { label: 'Why I am an independent', key: 'whyIndependent', isRichText: true },
-  { label: 'Prior experience', key: 'experience', isRichText: true },
+  { label: 'Why I am running', key: 'whyRunning' },
+  { label: 'Why I am an independent', key: 'whyIndependent' },
+  { label: 'Prior experience', key: 'experience'},
 
   { label: 'Home Town & State', key: 'hometown' },
   { label: 'Current occupation', key: 'occupation' },
