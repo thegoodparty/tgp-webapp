@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-import { Body9, Body11 } from '/components/shared/typogrophy';
+import { Body9 } from '/components/shared/typogrophy';
 import { numberFormatter } from '/helpers/numberHelper';
-import { achievementsHelper } from '/helpers/achievementsHelper';
 
 const ProgressBarWrapper = styled.div`
   display: flex;
@@ -117,7 +116,11 @@ const SupportersProgressBar = ({
     <ProgressBarWrapper data-cy="supporter-progress">
       <BarBg>
         <Bar style={{ width: `${progress}%`, backgroundColor: color }} />
-        {neededPerWeek !== 0 && <Total data-cy="supporter-total">{numberFormatter(neededPerWeek)}</Total>}
+        {neededPerWeek !== 0 && (
+          <Total data-cy="supporter-total">
+            {numberFormatter(neededPerWeek)}
+          </Total>
+        )}
       </BarBg>
       {withAchievement && days > 0 && (
         <AchievementWrapper>

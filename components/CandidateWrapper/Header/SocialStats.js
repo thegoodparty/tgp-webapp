@@ -64,7 +64,7 @@ function SocialStats() {
         <CandidateProgressBar
           votesNeeded={votesNeeded}
           peopleSoFar={thisWeek || 0}
-          peopleThisPeriod={diff}
+          peopleThisPeriod={votesNeeded}
           color={brightColor}
           days={days}
         />

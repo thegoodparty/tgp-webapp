@@ -183,18 +183,12 @@ const CandidateProgressBar = ({
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Number>{numberFormatter(peopleSoFar)}</Number>
-          total followers
+          likely voters
         </Grid>
-        <Grid item xs={4} className="text-center">
-          <Number className={peopleThisPeriod > 0 && 'positive'}>
-            {peopleThisPeriod > 0 && '+'}
-            {numberFormatter(peopleThisWeek)}
-          </Number>
-          this week
-        </Grid>
-        <Grid item xs={4} className="text-right">
+
+        <Grid item xs={6} className="text-right">
           {weeksToElection > 0 ? (
             <>
               <Number>
