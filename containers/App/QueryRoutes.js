@@ -35,6 +35,8 @@ function QueryRoutes({ locationState, dispatch }) {
   const [showRegister, setShowRegister] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const { search } = locationState;
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   useEffect(() => {
     const uuid = queryHelper(search, 'u');
@@ -75,6 +77,10 @@ function QueryRoutes({ locationState, dispatch }) {
     }
   }, [search]);
 
+  const handleCloseModal = () => {
+    router.push(pathWithNoQuery);
+  };
+
   return (
     <>
       <FaqArticleModal />
@@ -83,6 +89,7 @@ function QueryRoutes({ locationState, dispatch }) {
           open
           closeModalCallback={() => {
             setShowRegister(false);
+            handleCloseModal();
           }}
         >
           <RegisterPage modalMode />
@@ -93,6 +100,7 @@ function QueryRoutes({ locationState, dispatch }) {
           open
           closeModalCallback={() => {
             setShowLogin(false);
+            handleCloseModal();
           }}
         >
           <LoginPage modalMode />

@@ -5,8 +5,8 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+// import PhoneInput from 'react-phone-input-2';
+// import 'react-phone-input-2/lib/style.css';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import PageWrapper from '/components/shared/PageWrapper';
@@ -50,29 +50,6 @@ const Or = styled.div`
   background-color: #fff;
 `;
 
-const PhoneWrapper = styled.div`
-  margin-bottom: 24px;
-  .phone-input {
-    width: 100%;
-    height: 60px;
-    line-height: 22px;
-    font-size: 16px;
-    padding-left: 16px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 20px;
-      line-height: 26px;
-      ::placeholder {
-        font-size: 16px;
-      }
-    }
-  }
-
-  .flag-dropdown {
-    display: none;
-  }
-`;
-
 const Input = styled(TextField)`
   && {
     margin-bottom: 18px;
@@ -106,12 +83,10 @@ export const REGISTER_FIELDS = [
     label: 'Email Address',
     key: 'email',
     type: 'email',
-    required: false,
+    required: true,
     isUpdatable: false,
   },
-  {
-    type: 'tel',
-  },
+
   {
     label: 'Zip Code',
     key: 'zipcode',
@@ -145,7 +120,6 @@ const RegisterWrapper = ({
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || queryEmail || '',
-    phone: user?.phone || '',
     zipcode: user?.zip || '',
   });
   const router = useRouter();
@@ -156,7 +130,7 @@ const RegisterWrapper = ({
       formData.name.length >= 2 &&
       formData.name.length <= 100 &&
       validateZip() &&
-      (validatePhone() || validateEmail())
+      validateEmail()
     );
   };
 
@@ -170,20 +144,13 @@ const RegisterWrapper = ({
     return validZip.test(formData.zipcode);
   };
 
-  const validatePhone = () => formData.phone.length === 10;
-
   const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      registerCallback(
-        formData.name,
-        formData.email,
-        formData.phone,
-        formData.zipcode,
-      );
+      registerCallback(formData.name, formData.email, formData.zipcode);
     }
   };
 
@@ -241,39 +208,19 @@ const RegisterWrapper = ({
         >
           {REGISTER_FIELDS.map((field) => (
             <div data-cy="register-field" key={field.key}>
-              {field.type === 'tel' ? (
-                <PhoneWrapper>
-                  <PhoneInput
-                    disableCountryCode
-                    country="us"
-                    disableDropdown
-                    inputClass="phone-input"
-                    placeholder="Phone Number"
-                    onlyCountries={['us']}
-                    value={formData.phone}
-                    onChange={(phone) =>
-                      onChangeField({ target: { value: phone } }, 'phone')
-                    }
-                  />
-                  <Body11 style={{ marginTop: '8px' }}>
-                    Either email or phone number are required
-                  </Body11>
-                </PhoneWrapper>
-              ) : (
-                <Input
-                  value={formData[field.key]}
-                  label={field.label}
-                  required={field.required}
-                  size="medium"
-                  fullWidth
-                  type={field.type}
-                  name={field.key}
-                  variant="outlined"
-                  disabled={isUpdate && !field.isUpdatable}
-                  onChange={(e) => onChangeField(e, field.key)}
-                  helperText={field.helperText}
-                />
-              )}
+              <Input
+                value={formData[field.key]}
+                label={field.label}
+                required={field.required}
+                size="medium"
+                fullWidth
+                type={field.type}
+                name={field.key}
+                variant="outlined"
+                disabled={isUpdate && !field.isUpdatable}
+                onChange={(e) => onChangeField(e, field.key)}
+                helperText={field.helperText}
+              />
             </div>
           ))}
 
