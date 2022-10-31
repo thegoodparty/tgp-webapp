@@ -9,7 +9,7 @@ import { HomePageContext } from '../../containers/HomePage';
 const Wrapper = styled.section`
   margin: 0 0 20px;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  theme.breakpointsPixels.lg}) {
     margin: 100px 0 20px;
   }
 `;
@@ -18,7 +18,7 @@ const Count = styled.div`
   font-size: 30px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  theme.breakpointsPixels.lg}) {
     font-size: 42px;
   }
 `;
@@ -27,7 +27,7 @@ const Label = styled.div`
   font-size: 16px;
   font-weight: 900;
   @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
+  theme.breakpointsPixels.lg}) {
     font-size: 30px;
   }
 `;
@@ -38,8 +38,8 @@ const Heart = styled.div`
 `;
 
 const SocialSection = () => {
-  const { totalFollowers } = useContext(HomePageContext);
-  //89852 + totalFollowers
+  let { totalFollowers } = useContext(HomePageContext);
+  totalFollowers = 89852 + totalFollowers
   return (
     <Wrapper>
       <Row>
