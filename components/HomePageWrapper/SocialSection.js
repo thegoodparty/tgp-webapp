@@ -38,8 +38,8 @@ const Heart = styled.div`
 `;
 
 const SocialSection = () => {
-  const { totalFollowers } = useContext(HomePageContext);
-  //89852 + totalFollowers
+  let { totalFollowers } = useContext(HomePageContext);
+  totalFollowers = 89852 + totalFollowers
   return (
     <Wrapper>
       <Row>
