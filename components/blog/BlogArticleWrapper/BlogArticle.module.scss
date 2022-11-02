@@ -19,7 +19,7 @@
   display: none;
   @include lg {
     display: block;
-    margin-top: 48px;
+    //margin-top: 48px;
     font-size: 15px;
     font-weight: 600;
   }
@@ -40,6 +40,7 @@
   font-size: 15px;
   font-weight: 500;
   color: $gray2;
+  margin-bottom: 60px;
 }
 
 .copy {
@@ -50,6 +51,20 @@
 
   @include lg {
     flex-direction: row-reverse;
+  }
+}
+
+.authorNameTop {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: $gray2;
+}
+
+.topAuthorWrapper {
+  display: flex;
+  @include lg {
+    display: block;
   }
 }
 
