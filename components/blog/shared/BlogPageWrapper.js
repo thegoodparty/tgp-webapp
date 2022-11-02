@@ -10,12 +10,16 @@ import PageWrapper from '../../shared/PageWrapper';
 import styles from './BlogPageWrapper.module.scss';
 import { AiOutlineHome } from 'react-icons/ai';
 
-function BlogPageWrapper({ children, sections }) {
+function BlogPageWrapper({ children, sections, useH1 }) {
   console.log('se', sections);
   return (
     <PageWrapper>
       <div>
-        <h2 className={styles.blogTitle}>Blog</h2>
+        {useH1 ? (
+          <h1 className={styles.blogTitle}>Blog</h1>
+        ) : (
+          <h2 className={styles.blogTitle}>Blog</h2>
+        )}
       </div>
       <div className={styles.sectionsWrapper}>
         <div className={styles.sections}>

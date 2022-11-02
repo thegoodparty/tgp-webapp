@@ -25,9 +25,10 @@ export function BlogHomePage({ ssrState }) {
   useInjectReducer({ key: 'blogHomePage', reducer });
   useInjectSaga({ key: 'blogHomePage', saga });
 
-  const { sections } = ssrState;
+  const { sections, articles } = ssrState;
+  console.log('articles', articles);
 
-  const childProps = { sections };
+  const childProps = { sections, articles };
 
   return (
     <BlogHomePageContext.Provider value={childProps}>

@@ -5,19 +5,31 @@
  */
 
 import React, { useContext } from 'react';
+import Grid from '@material-ui/core/Grid';
+
 import BlogPageWrapper from '../shared/BlogPageWrapper';
 import { BlogHomePageContext } from '/containers/blog/BlogHomePage';
+import ArticleSnippet from '../shared/ArticleSnippet';
 
 function BlogHomeWrapper() {
-  const { sections } = useContext(BlogHomePageContext);
+  const { sections, articles } = useContext(BlogHomePageContext);
+  const hero = articles && articles.length > 0 ? articles[0] : false;
   return (
-    <BlogPageWrapper sections={sections}>
-      <h1>Blog Homepage</h1>
-      This is the blog home page. Should we show all articles here? this will
-      cause duplicate content with the sections.
-      <br />
-      <br />
-      I think we should only show featured articles here
+    <BlogPageWrapper sections={sections} useH1>
+      <ArticleSnippet article={hero} heroMode />
+      {articles && articles.length > 1 && (
+        <Grid container spacing={3}>
+          {articles.map((article, index) => (
+            <>
+              {index > 0 && (
+                <Grid item xs={12} lg={4}>
+                  <ArticleSnippet article={article} />
+                </Grid>
+              )}
+            </>
+          ))}
+        </Grid>
+      )}
     </BlogPageWrapper>
   );
 }
