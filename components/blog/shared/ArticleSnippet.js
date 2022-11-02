@@ -19,43 +19,46 @@ function ArticleSnippet({ article, heroMode }) {
   const sectionName = section?.fields?.title;
 
   return (
-    <article className={`${styles.wrapper} ${heroMode && styles.hero}`}>
-      <Grid container spacing={2}>
-        <Grid item xs={12} lg={heroMode ? 4 : 12}>
-          <div className={`${styles.image} ${heroMode && styles.heroImage}`}>
-            <Image
-              src={`https:${mainImage.url}`}
-              alt={mainImage.alt}
-              layout="fill"
-            />
-          </div>
-        </Grid>
-        <Grid item xs={12} lg={heroMode ? 8 : 12}>
-          <div className={styles.content}>
-            <div>
-              <div className={styles.topSection}>
-                <strong>{sectionName}</strong> &middot;{' '}
-                <TimeAgo date={publishDate} />
+    <Link href={`/blog/article/${slug}`} passHref>
+      <a className="no-underline">
+        <article className={`${styles.wrapper} ${heroMode && styles.hero}`}>
+          <Grid container spacing={2}>
+            <Grid item xs={12} lg={heroMode ? 4 : 12}>
+              <div
+                className={`${styles.image} ${heroMode && styles.heroImage}`}
+              >
+                <Image
+                  src={`https:${mainImage.url}`}
+                  alt={mainImage.alt}
+                  layout="fill"
+                />
               </div>
-              <h2 className={styles.title}>{title}</h2>
-              <p className={styles.summary}>{summary}</p>
-            </div>
-            <div className={styles.bottom}>
-              <div className={styles.time}>
-                {readingTime && readingTime.text}
-              </div>
-              <Link href={`/blog/article/${slug}`} passHref>
-                <a>
+            </Grid>
+            <Grid item xs={12} lg={heroMode ? 8 : 12}>
+              <div className={styles.content}>
+                <div>
+                  <div className={styles.topSection}>
+                    <strong>{sectionName}</strong> &middot;{' '}
+                    <TimeAgo date={publishDate} />
+                  </div>
+                  <h2 className={styles.title}>{title}</h2>
+                  <p className={styles.summary}>{summary}</p>
+                </div>
+                <div className={styles.bottom}>
+                  <div className={styles.time}>
+                    {readingTime && readingTime.text}
+                  </div>
+
                   <div className={styles.full}>
                     <div>Read Full &nbsp;</div> <HiArrowNarrowRight />
                   </div>
-                </a>
-              </Link>
-            </div>
-          </div>
-        </Grid>
-      </Grid>
-    </article>
+                </div>
+              </div>
+            </Grid>
+          </Grid>
+        </article>
+      </a>
+    </Link>
   );
 }
 

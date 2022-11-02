@@ -1,4 +1,4 @@
-import Page from '/containers/blog/BlogHomePage';
+import Page from '/containers/blog/BlogArticlePage';
 import tgpApi from '/api/tgpApi';
 export default function FaqList({ ssrState }) {
   return <Page ssrState={ssrState} />;
