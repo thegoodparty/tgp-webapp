@@ -36,6 +36,7 @@ export function BlogArticlePage({ ssrState }) {
       <TgpHelmet
         title={`${article.title} | Good Party`}
         description={article.summary}
+        image={article.mainImage && `https:${article.mainImage.url}`}
       />
       <BlogArticleWrapper />
     </BlogArticlePageContext.Provider>

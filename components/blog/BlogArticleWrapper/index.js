@@ -18,7 +18,6 @@ function BlogArticleWrapper() {
   if (!article) {
     return <></>;
   }
-  console.log('a', article);
 
   const { section, author, body, mainImage, publishDate, readingTime, title } =
     article;
