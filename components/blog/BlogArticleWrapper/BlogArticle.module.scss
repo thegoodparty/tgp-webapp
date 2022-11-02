@@ -46,12 +46,10 @@
 .copy {
 }
 
-.reverseGrid {
-  flex-direction: row;
-
-  @include lg {
-    flex-direction: row-reverse;
-  }
+.maxWidth {
+  width: 100%;
+  max-width: 730px;
+  margin: 0 auto;
 }
 
 .authorNameTop {

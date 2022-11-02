@@ -5,6 +5,7 @@
  */
 
 import React, { memo, createContext } from 'react';
+import Error from 'next/error';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import TgpHelmet from '/components/shared/TgpHelmet';
@@ -18,6 +19,7 @@ import { useInjectReducer } from '/utils/injectReducer';
 import makeSelectBlogArticlePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
+import ArticleSchema from './ArticleSchema';
 
 export const BlogArticlePageContext = createContext();
 
@@ -25,6 +27,10 @@ export function BlogArticlePage({ ssrState }) {
   useInjectReducer({ key: 'blogArticlePage', reducer });
   useInjectSaga({ key: 'blogArticlePage', saga });
   const { sections, article } = ssrState;
+
+  if (!article) {
+    return <Error statusCode={404} />;
+  }
 
   const childProps = {
     sections,
@@ -39,6 +45,7 @@ export function BlogArticlePage({ ssrState }) {
         image={article.mainImage && `https:${article.mainImage.url}`}
       />
       <BlogArticleWrapper />
+      <ArticleSchema />
     </BlogArticlePageContext.Provider>
   );
 }

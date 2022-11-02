@@ -16,9 +16,7 @@ import { dateUsHelper } from '../../../helpers/dateHelper';
 
 function BlogArticleWrapper() {
   const { sections, article } = useContext(BlogArticlePageContext);
-  if (!article) {
-    return <></>;
-  }
+  console.log('article', article);
 
   const { section, author, body, mainImage, publishDate, readingTime, title } =
     article;
@@ -56,31 +54,27 @@ function BlogArticleWrapper() {
           </div>
         </Grid>
       </Grid>
-      <Grid container spacing={3} className={styles.reverseGrid}>
-        <Grid item xs={12} lg={10}>
-          <div className={styles.copy}>{contentfulHelper(body)}</div>
-        </Grid>
-        <Grid item xs={12} lg={2}>
-          <div className="text-center">Share</div>
-        </Grid>
-      </Grid>
-      <div className={styles.authorWrapper}>
-        <div className={styles.authorInner}>
-          <div className={styles.author}>
-            <div>
-              <div className={styles.authorImage}>
-                <Image
-                  src={`https:${author.fields.image.url}`}
-                  alt={mainImage.alt}
-                  width={60}
-                  height={60}
-                />
+      <div className={styles.maxWidth}>
+        <div className={styles.copy}>{contentfulHelper(body)}</div>
+
+        <div className={styles.authorWrapper}>
+          <div className={styles.authorInner}>
+            <div className={styles.author}>
+              <div>
+                <div className={styles.authorImage}>
+                  <Image
+                    src={`https:${author.fields.image.url}`}
+                    alt={mainImage.alt}
+                    width={60}
+                    height={60}
+                  />
+                </div>
               </div>
-            </div>
-            <div>
-              <div className={styles.authorName}>By {author.fields.name}</div>
-              <div className={styles.authorSummary}>
-                {author.fields.summary}
+              <div>
+                <div className={styles.authorName}>By {author.fields.name}</div>
+                <div className={styles.authorSummary}>
+                  {author.fields.summary}
+                </div>
               </div>
             </div>
           </div>

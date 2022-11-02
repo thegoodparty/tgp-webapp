@@ -51,7 +51,6 @@ function BlogPageWrapper({
             </>
           ))}
         </div>
-        <div>Share</div>
       </div>
       {sectionTitle && (
         <div className={styles.titleWrapper}>
