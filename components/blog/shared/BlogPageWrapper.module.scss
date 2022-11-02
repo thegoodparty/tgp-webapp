@@ -45,3 +45,44 @@
     margin-left: 36px;
   }
 }
+
+.active {
+  color: $gray1;
+}
+.titleWrapper {
+  text-align: center;
+  @include lg {
+    text-align: left;
+  }
+}
+
+.sectionTitle {
+  position: relative;
+  display: inline-block;
+  font-size: 40px;
+  margin: 24px 0 42px;
+
+  @include lg {
+    font-size: 44px;
+    text-align: left;
+    margin: 105px 0 94px;
+  }
+}
+
+.up {
+  z-index: 10;
+  position: relative;
+}
+
+.yellow {
+  position: absolute;
+  height: 24px;
+  width: calc(100% + 10px);
+  bottom: 0;
+  left: -5px;
+  background-color: $yellow;
+  @include lg {
+    bottom: 0;
+    height: 24px;
+  }
+}

@@ -12,10 +12,16 @@ import { BlogHomePageContext } from '/containers/blog/BlogHomePage';
 import ArticleSnippet from '../shared/ArticleSnippet';
 
 function BlogHomeWrapper() {
-  const { sections, articles } = useContext(BlogHomePageContext);
+  const { sections, articles, sectionSlug, sectionTitle } =
+    useContext(BlogHomePageContext);
   const hero = articles && articles.length > 0 ? articles[0] : false;
   return (
-    <BlogPageWrapper sections={sections} useH1>
+    <BlogPageWrapper
+      sections={sections}
+      sectionSlug={sectionSlug}
+      useH1
+      sectionTitle={sectionTitle}
+    >
       <ArticleSnippet article={hero} heroMode />
       {articles && articles.length > 1 && (
         <Grid container spacing={3}>

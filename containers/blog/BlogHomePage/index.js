@@ -25,14 +25,18 @@ export function BlogHomePage({ ssrState }) {
   useInjectReducer({ key: 'blogHomePage', reducer });
   useInjectSaga({ key: 'blogHomePage', saga });
 
-  const { sections, articles } = ssrState;
-  console.log('articles', articles);
+  const { sections, articles, sectionSlug, sectionTitle } = ssrState;
 
-  const childProps = { sections, articles };
+  const childProps = { sections, articles, sectionSlug, sectionTitle };
 
   return (
     <BlogHomePageContext.Provider value={childProps}>
-      <TgpHelmet title="Blog | Good Party" description="Good Party Blog" />
+      <TgpHelmet
+        title={`${sectionTitle ? `${sectionTitle} | ` : ''}Blog | Good Party`}
+        description={`Good Party Blog${
+          sectionTitle ? ` ${sectionTitle} section` : ''
+        }`}
+      />
       <BlogHomeWrapper />
     </BlogHomePageContext.Provider>
   );
