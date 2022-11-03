@@ -51,7 +51,7 @@ export function CampaignApplicationsPage({
       dispatch(actions.loadStaffAction());
     }
     if (typeof window !== 'undefined' && !user) {
-      router.push('/login');
+      router.push('/?login=true');
     }
   }, []);
 

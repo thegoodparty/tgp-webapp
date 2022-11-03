@@ -18,6 +18,7 @@ import Row from './Row';
 import BlackButton, { InnerButton } from './buttons/BlackButton';
 import Tooltip from './Tooltip';
 import { FontH3 } from './typogrophy';
+import { candidateHash } from '../../helpers/candidatesHelper';
 
 const Wrapper = styled.div`
   padding: 24px;
@@ -111,7 +112,7 @@ const CopyIcon = styled.div`
   border: solid 2px #000;
 `;
 
-const ShareModal = ({ shareUrl, closeCallback = () => {} }) => {
+const ShareModal = ({ shareUrl, closeCallback = () => {}, candidate }) => {
   const user = getUserCookie(true);
   const messageNoUrl = 'Vote different';
 
@@ -143,25 +144,31 @@ const ShareModal = ({ shareUrl, closeCallback = () => {} }) => {
     logEvent('Sharing', 'Click Share Method', shareType);
     // trackShareCallback(candidate);
   };
+  let hash;
+  if (candidate) {
+    hash = candidateHash(candidate);
+  }
+  const hashQueryTwitter = hash ? `&hashtags=${hash}` : '';
+  const hashQueryFacebook = hash ? `&hashtag=${hash}` : '';
 
   const channels = [
     {
       label: 'Twitter',
       icon: <FaTwitter />,
       className: 'twitter',
-      link: `https://twitter.com/share?url=${encodedUrl}&text=${messageNoUrl}`,
+      link: `https://twitter.com/share?url=${encodedUrl}&text=${messageNoUrl}${hashQueryTwitter}`,
     },
     {
       label: 'Facebook',
       icon: <FaFacebookF />,
       className: 'facebook',
-      link: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}`,
+      link: `https://www.facebook.com/sharer/sharer.php?u=${encodedUrl}${hashQueryFacebook}`,
     },
     {
       label: 'Messenger',
       icon: <FaFacebookMessenger />,
       className: 'messenger',
-      link: `fb-messenger://share/?app_id=241239336921963&link=${encodedUrl}`,
+      link: `fb-messenger://share/?app_id=241239336921963&link=${encodedUrl}${hashQueryFacebook}`,
     },
     {
       label: 'Text message',

@@ -19,7 +19,14 @@ function loadCandidatesActionSuccess(candidates) {
   };
 }
 
+function loadCandidatesActionError() {
+  return {
+    type: types.LOAD_CANDIDATES_ERROR,
+  };
+}
+
 export default {
   loadCandidatesAction,
   loadCandidatesActionSuccess,
+  loadCandidatesActionError,
 };

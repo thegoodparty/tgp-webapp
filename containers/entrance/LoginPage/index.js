@@ -4,14 +4,14 @@
  *
  */
 
-import React, { memo, useEffect } from 'react';
+import React, { memo, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Head from 'next/head';
 import { compose } from 'redux';
 import { push } from 'connected-next-router';
 import { createStructuredSelector } from 'reselect';
 
+import { getExperiment } from '/helpers/optimizeHelper';
 import userActions from '/containers/you/YouPage/actions';
 import { useInjectSaga } from '/utils/injectSaga';
 import { useInjectReducer } from '/utils/injectReducer';
@@ -32,6 +32,7 @@ export function LoginPage({
   socialLoginCallback,
   socialLoginFailureCallback,
   twitterButtonCallback,
+  modalMode,
 }) {
   useInjectReducer({ key: 'loginPage', reducer });
   useInjectSaga({ key: 'loginPage', saga });
@@ -48,14 +49,17 @@ export function LoginPage({
     socialLoginCallback,
     socialLoginFailureCallback,
     twitterButtonCallback,
+    modalMode,
   };
 
   return (
     <div>
-      <TgpHelmet
-        title="Sign into your account | Good Party"
-        description="Login to your Good Party account"
-      />
+      {!modalMode && (
+        <TgpHelmet
+          title="Sign into your account | Good Party"
+          description="Login to your Good Party account"
+        />
+      )}
       <LoginWrapper {...childProps} />
     </div>
   );
@@ -69,6 +73,7 @@ LoginPage.propTypes = {
   socialLoginFailureCallback: PropTypes.func,
   forgotPasswordCallback: PropTypes.func,
   twitterButtonCallback: PropTypes.func,
+  modalMode: PropTypes.bool,
 };
 
 function mapDispatchToProps(dispatch) {
@@ -77,7 +82,7 @@ function mapDispatchToProps(dispatch) {
     loginCallback: (value, valueType) => {
       dispatch(actions.loginAction(value, valueType));
     },
-    socialLoginCallback: user => {
+    socialLoginCallback: (user) => {
       dispatch(actions.socialLoginAction(user));
     },
     socialLoginFailureCallback: () => {
@@ -93,12 +98,6 @@ const mapStateToProps = createStructuredSelector({
   loginPage: makeSelectLoginPage(),
 });
 
-const withConnect = connect(
-  mapStateToProps,
-  mapDispatchToProps,
-);
+const withConnect = connect(mapStateToProps, mapDispatchToProps);
 
-export default compose(
-  withConnect,
-  memo,
-)(LoginPage);
+export default compose(withConnect, memo)(LoginPage);

@@ -15,16 +15,17 @@ const { base } = apiHelper;
 
 function TgpHelmet({ title, ogTitle, description, image }) {
   const router = useRouter();
-  const { query } = router;
+  const { query, pathname } = router;
   const url = `${base}${router.asPath}`;
   let canonical = url;
   if (query) {
-    let queryString = '?';
+    // let queryString = '?';
     const keys = Object.keys(query);
     keys.forEach((key) => {
-      queryString += `${key}=${query[key]}`;
+      const queryString = `${key}=${query[key]}`;
+      canonical = canonical.replace(queryString, '');
     });
-    canonical = url.replace(queryString, '');
+    canonical = canonical.replace('?', '');
   }
   return (
     <Head>

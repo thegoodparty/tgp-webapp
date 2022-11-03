@@ -32,7 +32,7 @@ export function PledgePage({ dispatch, pledgeCallback }) {
 
   useEffect(() => {
     if (!user) {
-      dispatch(push('/login'));
+      dispatch(push('/?login=true'));
     }
   }, [user]);
 

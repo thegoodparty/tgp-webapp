@@ -84,26 +84,14 @@ function ShareImage({
   withRender = true,
   followers,
 }) {
-  const {
-    firstName,
-    lastName,
-    race,
-    party,
-    otherParty,
-    raceDate,
-    votesNeeded,
-  } = candidate;
+  const { firstName, lastName, race, party, otherParty, votesNeeded } =
+    candidate;
 
   let thisWeek = 0;
-  let lastWeek = 0;
   if (followers) {
     thisWeek = followers.thisWeek;
-    lastWeek = followers.lastWeek;
   }
   const brightColor = candidateColor(candidate);
-  const days = daysTill(raceDate);
-
-  const diff = thisWeek - lastWeek;
 
   const afterLoad = async (suffix) => {
     if (!withRender) {
@@ -167,11 +155,9 @@ function ShareImage({
           </AvatarWrapper>
 
           <CandidateProgressBar
+            candidate={candidate}
             votesNeeded={votesNeeded}
             peopleSoFar={thisWeek}
-            peopleThisPeriod={diff}
-            color={brightColor}
-            days={days}
             withAnimation={false}
           />
 

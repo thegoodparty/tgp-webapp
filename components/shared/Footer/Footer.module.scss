@@ -1,0 +1,62 @@
+@import '/scss/colors';
+@import '/scss/breakpoints';
+
+.wrapper {
+  padding: 40px 32px;
+  border-top: solid 1px #e1e2e9;
+  background-color: #fff;
+  position: relative;
+  margin-top: 24px;
+
+  @include sm {
+    padding: 40px 18px;
+  }
+  @include lg {
+    padding: 40px 24px;
+  }
+
+  &:global(.no-margin) {
+    margin-top: 0;
+  }
+}
+
+.aligner {
+  text-align: center;
+  @include lg {
+    text-align: left;
+  }
+}
+
+.title {
+  color: #888;
+  font-weight: 900;
+  margin-bottom: 20px;
+}
+
+.footerLink {
+  font-weight: 600;
+  margin-bottom: 20px;
+  a {
+    color: #000;
+  }
+}
+
+.italic {
+  font-style: italic;
+  line-height: 27px;
+  font-size: 17px;
+  padding: 20px;
+}
+
+.footerRow {
+  margin-top: 48px;
+  color: #777;
+  @include lg {
+    margin-top: 120px;
+  }
+
+  a {
+    color: #000;
+    font-weight: 600;
+  }
+}

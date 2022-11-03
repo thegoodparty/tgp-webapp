@@ -24,6 +24,22 @@ export const MdUpOnly = styled.div`
   }
 `;
 
+export const MdDownOnly = styled.div`
+  display: block;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: none;
+  }
+`;
+
+export const LgUpOnly = styled.div`
+  display: none;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    display: block;
+  }
+`;
+
 const NavWrapper = ({ pathname, user, trackShareCallback, purpleNav }) => (
   <>
     <MdUpOnly>

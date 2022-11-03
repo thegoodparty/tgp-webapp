@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
+
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1 } from '/components/shared/typogrophy';
 import globals from '/globals';
+
 import TwitterButton from '../../shared/TwitterButton';
 import PhoneOrEmailInput from '../../shared/PhoneOrEmailInput';
 import BlackButton from '../../shared/buttons/BlackButton';
@@ -18,6 +21,9 @@ const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
   margin: 0 auto;
+  &.with-padding {
+    padding: 8px 24px 24px;
+  }
 `;
 
 const OrWrapper = styled.div`
@@ -49,12 +55,13 @@ const LoginWrapper = ({
   socialLoginCallback,
   socialLoginFailureCallback,
   twitterButtonCallback,
+  modalMode,
 }) => {
   const [value, setValue] = useState('');
   const [isValid, setIsValid] = useState(false);
   const [valueType, setValueType] = useState(false);
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
@@ -71,21 +78,31 @@ const LoginWrapper = ({
   };
 
   return (
-    <PageWrapper>
-      <Wrapper>
+    <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+      <Wrapper className={modalMode && 'with-padding'}>
+        <div className="text-center" style={{ marginBottom: '24px' }}>
+          <Image
+            src="/images/black-logo.svg"
+            data-cy="logo"
+            width={174}
+            height={20}
+            alt="GOOD PARTY"
+          />
+        </div>
         <H1 data-cy="login-title" style={{ marginBottom: '24px' }}>
           Log into your account
         </H1>
         <Body13 style={{ margin: '48px 0' }} data-cy="register-label">
           Don&apos;t have an account?{' '}
-          <Link href="/register" >
-            <a data-cy="register">
-              Create one
-            </a>
+          <Link href="/?register=true">
+            <a data-cy="register">Create one</a>
           </Link>
         </Body13>
         <form noValidate onSubmit={handleSubmitForm} data-cy="email-form">
-          <PhoneOrEmailInput onChangeCallback={onChangeValue} data-cy="email-input" />
+          <PhoneOrEmailInput
+            onChangeCallback={onChangeValue}
+            data-cy="email-input"
+          />
           <div data-cy="login">
             <BlackButton
               fullWidth
@@ -98,6 +115,7 @@ const LoginWrapper = ({
             </BlackButton>
           </div>
         </form>
+
         <OrWrapper>
           <Border />
           <Or>

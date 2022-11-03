@@ -10,12 +10,12 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FaFilter } from 'react-icons/fa';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
-import CandidateCard from '../shared/CandidateCard';
 import { FontH3 } from '../shared/typogrophy';
 import Row from '../shared/Row';
+import LargeCard from '../shared/CandidateCard/LargeCard';
+import { CandidatesWrapperContext } from './index';
 
 const Section = styled.section`
   margin-top: 80px;
@@ -45,45 +45,28 @@ const Icon = styled(Image)`
   display: inline-block;
 `;
 
-const Filters = styled.div`
-  display: inline-block;
-  background-color: #f3f3f3;
-  padding: 12px 12px 6px;
-  border-radius: 8px;
-  margin-bottom: 16px;
-  margin-left: 20px;
-  cursor: pointer;
-
-  &.active {
-    background-color: #000;
-    color: #fff;
-  }
-`;
-
-function CandidatesSection({ toggleFiltersCallback, showFilters }) {
+function CandidatesSection() {
   const { candidates } = useContext(CandidatesContext);
+  const { showOnlyGood, setShowOnlyGood } = useContext(
+    CandidatesWrapperContext,
+  );
   const router = useRouter();
   const { query } = router;
   const { pinned } = query || {};
   const pinnedQuery = pinned ? `?pinned=${pinned}` : '';
+  const pathWithNoQuery = router.asPath.split('?')[0];
   return (
     <Section>
       <Grid container spacing={1}>
         <Grid item xs={12} md={6}>
           <Row>
             <H2 data-cy="candidates-section-title">Top Trending Candidates </H2>
-            <Filters
-              onClick={toggleFiltersCallback}
-              className={showFilters && 'active'}
-            >
-              <FaFilter />
-            </Filters>
           </Row>
         </Grid>
         <Grid item xs={12} md={6}>
           <What>
             <Link
-              href={`${router.asPath}?article=5zIbKVU0wCIAszTOyogGAB`}
+              href={`${pathWithNoQuery}?article=5zIbKVU0wCIAszTOyogGAB`}
               passHref
             >
               <a data-cy="good-certified-link">
@@ -95,20 +78,13 @@ function CandidatesSection({ toggleFiltersCallback, showFilters }) {
           </What>
         </Grid>
       </Grid>
-      <Grid container spacing={3} alignItems="stretch">
-        {(candidates || []).map((candidate) => (
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={4}
-            key={candidate.id}
-            data-cy="candidate-card"
-          >
-            <CandidateCard candidate={candidate} />
-          </Grid>
-        ))}
-      </Grid>
+      {(candidates || []).map((candidate) => (
+        <React.Fragment key={candidate.id}>
+          {((showOnlyGood && candidate.isClaimed) || !showOnlyGood) && (
+            <LargeCard candidate={candidate} />
+          )}
+        </React.Fragment>
+      ))}
       {(!candidates || candidates.length === 0) && (
         <div className="text-center">
           <FontH3>No Results match your filters</FontH3>

@@ -8,15 +8,15 @@ import ProfileLeftMenu from './ProfileLeftMenu';
 import MaxWidth from '../../shared/MaxWidth';
 import Footer from '../../shared/Footer';
 
-const Wrapper = styled(MaxWidth)`
+const Wrapper = styled.div`
+  margin: 0 auto;
   min-height: calc(100vh - 80px);
 
   max-width: ${({ theme }) => theme.breakpointsPixels.contentMax};
-  margin: 0 auto;
   padding: 60px 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    display: flex;
+    display: flex !important;
     flex-direction: row;
   }
 `;

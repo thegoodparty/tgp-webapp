@@ -1,17 +1,21 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
-import PhoneInput from 'react-phone-input-2';
-import 'react-phone-input-2/lib/style.css';
+import Image from 'next/image';
+// import PhoneInput from 'react-phone-input-2';
+// import 'react-phone-input-2/lib/style.css';
+import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
 
 import PageWrapper from '/components/shared/PageWrapper';
 import { Body13, H1, Body11 } from '/components/shared/typogrophy/index';
 import globals from '/globals';
 import TwitterButton from '/components/shared/TwitterButton';
 import BlackButton from '../../shared/buttons/BlackButton';
+import H2 from '../../shared/typogrophy/H2';
 
 const SocialButton = dynamic(
   () => import('/components/you/SocialRegisterWrapper/SocialButton'),
@@ -22,6 +26,9 @@ const Wrapper = styled.div`
   padding: 24px 0;
   max-width: 600px;
   margin: 0 auto;
+  &.with-padding {
+    padding: 8px 24px 24px;
+  }
 `;
 
 const OrWrapper = styled.div`
@@ -44,29 +51,6 @@ const Or = styled.div`
   background-color: #fff;
 `;
 
-const PhoneWrapper = styled.div`
-  margin-bottom: 24px;
-  .phone-input {
-    width: 100%;
-    height: 60px;
-    line-height: 22px;
-    font-size: 16px;
-    padding-left: 16px;
-    @media only screen and (min-width: ${({ theme }) =>
-        theme.breakpointsPixels.md}) {
-      font-size: 20px;
-      line-height: 26px;
-      ::placeholder {
-        font-size: 16px;
-      }
-    }
-  }
-
-  .flag-dropdown {
-    display: none;
-  }
-`;
-
 const Input = styled(TextField)`
   && {
     margin-bottom: 18px;
@@ -75,7 +59,7 @@ const Input = styled(TextField)`
       line-height: 22px;
       font-size: 16px;
       letter-spacing: 0.1px;
-      background-color: #fff;
+      background-color: #F7F7FE;
       border-radius: 4px;
 
       @media only screen and (min-width: ${({ theme }) =>
@@ -100,12 +84,10 @@ export const REGISTER_FIELDS = [
     label: 'Email Address',
     key: 'email',
     type: 'email',
-    required: false,
+    required: true,
     isUpdatable: false,
   },
-  {
-    type: 'tel',
-  },
+
   {
     label: 'Zip Code',
     key: 'zipcode',
@@ -123,6 +105,10 @@ const RegisterWrapper = ({
   twitterButtonCallback,
   isUpdate = false,
   queryEmail,
+  modalMode,
+  verifyRecaptchaCallback,
+  score,
+  experimentVariant,
 }) => {
   useEffect(() => {
     if (queryEmail) {
@@ -135,16 +121,17 @@ const RegisterWrapper = ({
   const [formData, setFormData] = useState({
     name: user?.name || '',
     email: user?.email || queryEmail || '',
-    phone: user?.phone || '',
     zipcode: user?.zip || '',
   });
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   const enableSubmit = () => {
     return (
       formData.name.length >= 2 &&
       formData.name.length <= 100 &&
       validateZip() &&
-      (validatePhone() || validateEmail())
+      validateEmail()
     );
   };
 
@@ -158,20 +145,13 @@ const RegisterWrapper = ({
     return validZip.test(formData.zipcode);
   };
 
-  const validatePhone = () => formData.phone.length === 10;
-
   const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
   const handleSubmit = () => {
     if (enableSubmit()) {
-      registerCallback(
-        formData.name,
-        formData.email,
-        formData.phone,
-        formData.zipcode,
-      );
+      registerCallback(formData.name, formData.email, formData.zipcode);
     }
   };
 
@@ -182,9 +162,42 @@ const RegisterWrapper = ({
     });
   };
 
+  const handleVerify = (token) => {
+    if (token) {
+      verifyRecaptchaCallback(token);
+    }
+  };
+  if (score === 'bad') {
+    return (
+      <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+        <Wrapper className={modalMode && 'with-padding'}>
+          <div
+            className="text-center"
+            style={{ marginBottom: '32px', paddingTop: '32px' }}
+          >
+            <H1 data-cy="register-title">Sign up for Good Party</H1>
+
+            <br />
+            <br />
+            <div>Sorry, we can't create an account for you at the moment.</div>
+          </div>
+        </Wrapper>
+      </PageWrapper>
+    );
+  }
+
   return (
-    <PageWrapper>
-      <Wrapper>
+    <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
+      <Wrapper className={modalMode && 'with-padding'}>
+        <div className="text-center" style={{ marginBottom: '24px' }}>
+          <Image
+            src="/images/black-logo.svg"
+            data-cy="logo"
+            width={174}
+            height={20}
+            alt="GOOD PARTY"
+          />
+        </div>
         <div
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
@@ -192,44 +205,35 @@ const RegisterWrapper = ({
           <H1 data-cy="register-title">Sign up for Good Party</H1>
         </div>
         <Body13 style={{ margin: '24px 0' }} data-cy="register-label">
-          Already have an account? <Link href="/login"><a data-cy="redirect-to-login">login</a></Link>
+          Already have an account?{' '}
+          <Link href={`${pathWithNoQuery}?login=true`}>
+            <a data-cy="redirect-to-login">login</a>
+          </Link>
         </Body13>
-        <form noValidate onSubmit={handleSubmitForm} data-cy="email-form" id="register-page-form">
+        <form
+          noValidate
+          onSubmit={handleSubmitForm}
+          data-cy="email-form"
+          id="register-page-form"
+        >
           {REGISTER_FIELDS.map((field) => (
             <div data-cy="register-field" key={field.key}>
-              {field.type === 'tel' ? (
-                <PhoneWrapper>
-                  <PhoneInput
-                    disableCountryCode
-                    country="us"
-                    disableDropdown
-                    inputClass="phone-input"
-                    placeholder="Phone Number"
-                    onlyCountries={['us']}
-                    value={formData.phone}
-                    onChange={(phone) =>
-                      onChangeField({ target: { value: phone } }, 'phone')
-                    }
-                  />
-                  <Body11 style={{ marginTop: '8px' }}>
-                    Either email or phone number are required
-                  </Body11>
-                </PhoneWrapper>
-              ) : (
-                <Input
-                  value={formData[field.key]}
-                  label={field.label}
-                  required={field.required}
-                  size="medium"
-                  fullWidth
-                  type={field.type}
-                  name={field.key}
-                  variant="outlined"
-                  disabled={isUpdate && !field.isUpdatable}
-                  onChange={(e) => onChangeField(e, field.key)}
-                  helperText={field.helperText}
-                />
-              )}
+              <Input
+                value={formData[field.key]}
+                label={field.label}
+                required={field.required}
+                size="medium"
+                fullWidth
+                type={field.type}
+                name={field.key}
+                variant="outlined"
+                disabled={isUpdate && !field.isUpdatable}
+                onChange={(e) => onChangeField(e, field.key)}
+                helperText={field.helperText}
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
             </div>
           ))}
 
@@ -243,8 +247,11 @@ const RegisterWrapper = ({
               {user ? 'UPDATE' : 'Sign Up'}
             </BlackButton>
           </div>
+          {!score && (
+            <GoogleReCaptcha onVerify={handleVerify} action="REGISTER" />
+          )}
         </form>
-        {!user && (
+        {experimentVariant === '0' && (
           <>
             <OrWrapper>
               <Border />
@@ -265,7 +272,7 @@ const RegisterWrapper = ({
               </SocialButton>
             </div>
             <br />
-            <div  data-cy="twitter-login">
+            <div data-cy="twitter-login">
               <TwitterButton clickCallback={twitterButtonCallback}>
                 Continue with Twitter
               </TwitterButton>

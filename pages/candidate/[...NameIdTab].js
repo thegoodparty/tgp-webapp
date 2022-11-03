@@ -12,7 +12,17 @@ export async function getServerSideProps(context) {
   const { NameIdTab } = context.params;
   const name = NameIdTab?.length > 0 ? NameIdTab[0] : false;
   const id = NameIdTab?.length > 1 ? NameIdTab[1] : false;
-  const tab = NameIdTab?.length > 2 ? NameIdTab[2] : 'Feed';
+  const tab = NameIdTab?.length > 2 ? NameIdTab[2] : false;
+  if (tab) {
+    const { res } = context;
+    res.setHeader('Location', `/candidate/${name}/${id}`);
+    res.statusCode = 301;
+    res.end();
+    return {
+      props: {},
+    };
+  }
+
   if (id && id !== 'undefined' && typeof id !== 'undefined') {
     const api = tgpApi.newCandidate.find;
     const url = `${api.url}?id=${id}&allFields=true`;
@@ -48,7 +58,6 @@ export async function getServerSideProps(context) {
           similarCampaigns: candidate.similarCampaigns || [],
           id,
           userAgent: context.req.headers['user-agent'],
-          tab,
           followers: candidate.followers,
           feed: candidate.feed || {},
         },

@@ -25,11 +25,18 @@ import reducer from './reducer';
 import saga from './saga';
 import globalActions from './actions';
 import { makeSelectLocation } from './selectors';
+import RegisterPage from '../entrance/RegisterPage';
+import LoginPage from '../entrance/LoginPage';
+import Modal from '../../components/shared/Modal';
 
 function QueryRoutes({ locationState, dispatch }) {
   useInjectReducer({ key: 'global', reducer });
   useInjectSaga({ key: 'global', saga });
+  const [showRegister, setShowRegister] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
   const { search } = locationState;
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
 
   useEffect(() => {
     const uuid = queryHelper(search, 'u');
@@ -45,11 +52,60 @@ function QueryRoutes({ locationState, dispatch }) {
     } else {
       dispatch(globalActions.clearArticleModalAction());
     }
+
+    const register = queryHelper(search, 'register');
+
+    if (register === 'true') {
+      if (!showRegister) {
+        setShowRegister(true);
+      }
+    } else {
+      if (showRegister) {
+        setShowRegister(false);
+      }
+    }
+    const login = queryHelper(search, 'login');
+
+    if (login === 'true') {
+      if (!showLogin) {
+        setShowLogin(true);
+      }
+    } else {
+      if (showLogin) {
+        setShowLogin(false);
+      }
+    }
   }, [search]);
+
+  const handleCloseModal = () => {
+    router.push(pathWithNoQuery);
+  };
 
   return (
     <>
       <FaqArticleModal />
+      {showRegister && (
+        <Modal
+          open
+          closeModalCallback={() => {
+            setShowRegister(false);
+            handleCloseModal();
+          }}
+        >
+          <RegisterPage modalMode />
+        </Modal>
+      )}
+      {showLogin && (
+        <Modal
+          open
+          closeModalCallback={() => {
+            setShowLogin(false);
+            handleCloseModal();
+          }}
+        >
+          <LoginPage modalMode />
+        </Modal>
+      )}
     </>
   );
 }

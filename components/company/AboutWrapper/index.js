@@ -40,9 +40,11 @@ function AboutWrapper() {
         <br />
         <br />
         Our work has two parts: One is building free, open-source tools to{' '}
-        <strong>connect voters looking for an alternative</strong> to the
+        <strong>connect voters looking for a better alternative</strong> to the
         two-party system{' '}
-        <strong>with honest, independent, and people-powered candidates</strong>
+        <strong>
+          with Independent, People-powered, Anti-corruption candidates
+        </strong>
         . The other is mobilizing a movement of digital natives – who will be
         the majority of voters by 2024 – to believe they can seize the memes of
         production and <strong>change politics for good!</strong>

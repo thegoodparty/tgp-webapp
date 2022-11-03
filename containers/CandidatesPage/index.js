@@ -12,7 +12,7 @@ import { compose } from 'redux';
 import { push } from 'connected-next-router';
 import { useRouter } from 'next/router';
 import { sanitizeUrl } from '@braintree/sanitize-url';
-import { getExperiment } from '/helpers/optimizeHelper';
+// import { getExperiment } from '/helpers/optimizeHelper';
 
 import CandidatesWrapper from '/components/CandidatesWrapper';
 import TgpHelmet from '/components/shared/TgpHelmet';
@@ -37,15 +37,7 @@ export function CandidatesPage({
   twitterFollowCallback,
 }) {
   const [candidatesByChannel, setCandidatesByChannel] = useState(channels);
-  const {
-    candidates,
-    positions,
-    states,
-    routePosition,
-    routeState,
-    totalFollowers,
-    totalFromLastWeek,
-  } = ssrState;
+  const { candidates, positions, states, routePosition, routeState } = ssrState;
   const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
   const router = useRouter();
 
@@ -131,8 +123,6 @@ export function CandidatesPage({
     allCandidates: candidates,
     routePosition,
     routeState,
-    totalFollowers,
-    totalFromLastWeek,
     candidatesByChannel,
     twitterFollowCallback,
   };

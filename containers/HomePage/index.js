@@ -38,11 +38,10 @@ export function HomePage({
   userState,
   ssrState,
   homeState,
-  loadFeedCallback,
   subscribeEmailCallback,
 }) {
   const { totalFollowers, feed, homepageCandidates } = ssrState;
-  const { fullFeed, loading } = homeState;
+  const {  loading } = homeState;
   const router = useRouter();
 
   useInjectReducer({ key: 'homePage', reducer });
@@ -73,10 +72,7 @@ export function HomePage({
     // experimentVariant,
     showInitModal,
     totalFollowers,
-    feed,
-    fullFeed,
     loading,
-    loadFeedCallback,
     subscribeEmailCallback,
     homepageCandidates,
   };
@@ -124,9 +120,6 @@ function mapDispatchToProps(dispatch) {
           'homepageModal',
         ),
       );
-    },
-    loadFeedCallback: () => {
-      dispatch(actions.loadFeedAction());
     },
     subscribeEmailCallback: (email, name) => {
       dispatch(actions.subscribeEmailAction(email, name));

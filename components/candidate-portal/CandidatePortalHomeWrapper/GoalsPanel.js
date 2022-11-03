@@ -55,6 +55,8 @@ function GoalsPanel() {
   const { candidate } = useContext(CandidatePortalHomePageContext);
   const { votesNeeded, likelyVoters, unrepVoters } = candidate;
 
+  const pathWithNoQuery = router.asPath.split('?')[0];
+
   const votersX =
     unrepVoters && votesNeeded && votesNeeded !== 0
       ? Math.round((unrepVoters * 100) / votesNeeded) / 100 // to add decimal if needed
@@ -97,7 +99,7 @@ function GoalsPanel() {
           &nbsp;
         </Grid>
         <Grid item xs={12} lg={6}>
-          <Link href={`${router.asPath}?article=4KOzae6PB45c9GQY9Xi9UX`}>
+          <Link href={`${pathWithNoQuery}?article=4KOzae6PB45c9GQY9Xi9UX`}>
             <GrayLink data-cy="methodology-link">Methodology</GrayLink>
           </Link>
         </Grid>

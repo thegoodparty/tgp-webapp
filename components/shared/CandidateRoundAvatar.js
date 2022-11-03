@@ -32,6 +32,11 @@ const ImageWrapper = styled.div`
     .overlay {
       font-size: 14px;
     }
+
+    &.large-all {
+      height: 230px;
+      width: 230px;
+    }
   }
 
   @media only screen and (min-width: ${({ theme }) =>
@@ -84,7 +89,12 @@ const Overlay = styled.div`
     font-size: 12px;
   }
 `;
-function CandidateRoundAvatar({ candidate, large = false, priority = false }) {
+function CandidateRoundAvatar({
+  candidate,
+  large = false,
+  priority = false,
+  largeAll,
+}) {
   const { firstName, lastName, image, isClaimed } = candidate;
   const brightColor = candidateColor(candidate);
 
@@ -92,7 +102,7 @@ function CandidateRoundAvatar({ candidate, large = false, priority = false }) {
     <Wrapper>
       <ImageWrapper
         style={{ borderColor: brightColor }}
-        className={large && 'large'}
+        className={`${large ? 'large' : ''} ${largeAll ? 'large-all' : ''}`}
       >
         {image && (
           <Image
