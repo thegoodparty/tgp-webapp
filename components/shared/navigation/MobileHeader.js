@@ -98,53 +98,54 @@ function MobileHeader({ user }) {
         />
       </Wrapper>
       <MenuWrapper className={open && 'open'}>
-        <Link href="/" className="text-center" passHref>
-          <a id="mobile-nav-logo">
-            <Logo
-              src="/images/black-logo.svg"
-              alt="The Good Party"
-              data-cy="logo"
-            />
-          </a>
+        <Link href="/" className="text-center" id="mobile-nav-logo">
+          <Logo
+            src="/images/black-logo.svg"
+            alt="The Good Party"
+            data-cy="logo"
+          />
         </Link>
         <TopLink className={path === '/' && 'active'}>
-          <Link href="/" passHref>
-            <a id="mobile-nav-home">Home</a>
+          <Link href="/" id="mobile-nav-home">
+            Home
           </Link>
         </TopLink>
         {HEADER_LINKS.map((link) => (
           <TopLink key={link.href} className={path === link.href && 'active'}>
-            <Link href={link.href} passHref>
-              <a id={`mobile-nav-${link.label.replace(' ', '-')}`}>
-                {link.label}
-              </a>
+            <Link
+              href={link.href}
+              id={`mobile-nav-${link.label.replace(' ', '-')}`}
+            >
+              {link.label}
             </Link>
           </TopLink>
         ))}
         {user?.name ? (
-          <Link href="/profile" passHref>
-            <a style={{ width: '100%' }} id="mobile-nav-profile">
-              <PushAvatarWrapper className={path === '/profile' && 'active'}>
-                <UserAvatar user={user} />
-                <div style={{ marginLeft: 6 }}>{user.name}</div>
-              </PushAvatarWrapper>
-            </a>
+          <Link
+            href="/profile"
+            style={{ width: '100%' }}
+            id="mobile-nav-profile"
+          >
+            <PushAvatarWrapper className={path === '/profile' && 'active'}>
+              <UserAvatar user={user} />
+              <div style={{ marginLeft: 6 }}>{user.name}</div>
+            </PushAvatarWrapper>
           </Link>
         ) : (
           <TopLink>
             <Link
               href="/register"
-              passHref
               className={path === '/register' && 'active'}
+              id="mobile-nav-register"
             >
-              <a id="mobile-nav-register">Sign Up</a>
+              Sign Up
             </Link>
           </TopLink>
         )}
         {user?.isAdmin && (
           <div style={{ marginTop: '12px' }}>
-            <Link href="/admin" className="text-center" passHref>
-              <a>Admin</a>
+            <Link href="/admin" className="text-center">
+              Admin
             </Link>
           </div>
         )}

@@ -61,14 +61,12 @@ const It = ({ text }) => {
           ))}
         </Grid>
         <div className="text-center" style={{ marginTop: '24px' }}>
-          <Link href="/manifesto" passHref>
-            <a id="it-tooltip-manifesto-button">
-              <BlackButton>
-                <InnerButton>
-                  <Small>Read our Manifesto</Small>
-                </InnerButton>
-              </BlackButton>
-            </a>
+          <Link href="/manifesto" id="it-tooltip-manifesto-button">
+            <BlackButton>
+              <InnerButton>
+                <Small>Read our Manifesto</Small>
+              </InnerButton>
+            </BlackButton>
           </Link>
         </div>
       </InnerTooltip>

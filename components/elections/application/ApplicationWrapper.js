@@ -164,14 +164,11 @@ function ApplicationWrapper({
             {leftLinks.map((link) => (
               <Link
                 href={`/campaign-application/${id}/${link.step}`}
-                passHref
                 key={link.step}
               >
-                <a>
-                  <TopLink className={step === link.step && 'active'}>
-                    {link.step}
-                  </TopLink>
-                </a>
+                <TopLink className={step === link.step && 'active'}>
+                  {link.step}
+                </TopLink>
               </Link>
             ))}
           </TopLinks>
@@ -186,29 +183,24 @@ function ApplicationWrapper({
               {leftLinks.map((link) => (
                 <Link
                   href={`/campaign-application/${id}/${link.step}`}
-                  passHref
                   key={link.step}
                   data-cy="sidebar-link-wrapper"
                 >
-                  <a data-cy="sidebar-link">
-                    <LeftLink className={step === link.step && 'active'}>
-                      {link.label}
-                    </LeftLink>
-                  </a>
+                  <LeftLink className={step === link.step && 'active'}>
+                    {link.label}
+                  </LeftLink>
                 </Link>
               ))}
               <br />
               {!reviewMode && (
-                <Link href="/profile/campaigns" passHref>
-                  <a>
-                    <BlackButton
-                      className="outline"
-                      fullWidth
-                      style={{ padding: '4px' }}
-                    >
-                      <RiPencilFill /> &nbsp; Finish Later
-                    </BlackButton>
-                  </a>
+                <Link href="/profile/campaigns">
+                  <BlackButton
+                    className="outline"
+                    fullWidth
+                    style={{ padding: '4px' }}
+                  >
+                    <RiPencilFill /> &nbsp; Finish Later
+                  </BlackButton>
                 </Link>
               )}
             </LeftNav>
@@ -224,17 +216,14 @@ function ApplicationWrapper({
                 href={
                   canContinue ? `/campaign-application/${id}/2` : router.asPath
                 }
-                passHref
               >
-                <a>
-                  {reviewMode ? (
-                    <BlackButton fullWidth>Continue</BlackButton>
-                  ) : (
-                    <BlackButton fullWidth disabled={!canContinue}>
-                      Continue
-                    </BlackButton>
-                  )}
-                </a>
+                {reviewMode ? (
+                  <BlackButton fullWidth>Continue</BlackButton>
+                ) : (
+                  <BlackButton fullWidth disabled={!canContinue}>
+                    Continue
+                  </BlackButton>
+                )}
               </Link>
             </ButtonWrapper>
           )}
@@ -242,40 +231,26 @@ function ApplicationWrapper({
             <ButtonWrapper>
               <Grid container spacing={2}>
                 <Grid item xs={6}>
-                  <Link
-                    href={`/campaign-application/${id}/${step - 1}`}
-                    passHref
-                  >
-                    <a>
-                      <BlackButton className="outline" fullWidth>
-                        Back
-                      </BlackButton>
-                    </a>
+                  <Link href={`/campaign-application/${id}/${step - 1}`}>
+                    <BlackButton className="outline" fullWidth>
+                      Back
+                    </BlackButton>
                   </Link>
                 </Grid>
                 <Grid item xs={6}>
                   {step === 7 ? (
                     <>
                       {reviewMode ? (
-                        <Link href={`/campaign-application/${id}/8`} passHref>
-                          <a>
-                            <BlackButton fullWidth>
-                              Approve/Reject
-                            </BlackButton>
-                          </a>
+                        <Link href={`/campaign-application/${id}/8`}>
+                          <BlackButton fullWidth>Approve/Reject</BlackButton>
                         </Link>
                       ) : (
                         <>
                           {id === 'guest' ? (
-                            <Link
-                              href={canContinue ? '/register' : '#'}
-                              passHref
-                            >
-                              <a>
-                                <BlackButton fullWidth disabled={!canContinue}>
-                                  Register &amp; Submit for Review
-                                </BlackButton>
-                              </a>
+                            <Link href={canContinue ? '/register' : '#'}>
+                              <BlackButton fullWidth disabled={!canContinue}>
+                                Register &amp; Submit for Review
+                              </BlackButton>
                             </Link>
                           ) : (
                             <BlackButton
@@ -296,13 +271,10 @@ function ApplicationWrapper({
                           ? `/campaign-application/${id}/${step + 1}`
                           : router.asPath
                       }
-                      passHref
                     >
-                      <a>
-                        <BlackButton fullWidth disabled={!canContinue}>
-                          Continue
-                        </BlackButton>
-                      </a>
+                      <BlackButton fullWidth disabled={!canContinue}>
+                        Continue
+                      </BlackButton>
                     </Link>
                   )}
                 </Grid>

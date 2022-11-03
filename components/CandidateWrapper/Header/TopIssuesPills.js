@@ -52,12 +52,11 @@ function TopIssuesPills() {
           href={`${candidateRoute(candidate)}/Bio#${removeWhiteSpaces(
             candPosition.position?.name,
           )}`}
+          data-cy="top-issue"
         >
-          <a data-cy="top-issue">
-            <Pill className="issue" data-cy="top-issue-position">
-              {candPosition.position?.name}
-            </Pill>
-          </a>
+          <Pill className="issue" data-cy="top-issue-position">
+            {candPosition.position?.name}
+          </Pill>
         </Link>
       ))}
     </Wrapper>

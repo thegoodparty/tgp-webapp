@@ -44,13 +44,11 @@ const AdminWrapper = () => (
       <Grid container spacing={3} alignItems="center" justify="center">
         {leftMenuItems.map((item) => (
           <Grid item xs={12} md={6} lg={4} key={item.label}>
-            <Link href={item.link} passHref>
-              <a>
-                <NavItem>
-                  <div>{item.icon}</div>
-                  <IconLabel>{item.label}</IconLabel>
-                </NavItem>
-              </a>
+            <Link href={item.link}>
+              <NavItem>
+                <div>{item.icon}</div>
+                <IconLabel>{item.label}</IconLabel>
+              </NavItem>
             </Link>
           </Grid>
         ))}

@@ -129,14 +129,10 @@ function PortalLeftMenu({ id, role }) {
       {leftMenuItems.map((item) => (
         <React.Fragment key={item.label}>
           {access >= item.minAccessLevel && (
-            <Link href={link(item.link)} passHref>
-              <a data-cy="portal-left-menu-item">
-                <Label
-                  className={pathname === link(item.link) ? 'selected' : ''}
-                >
-                  {item.label}
-                </Label>
-              </a>
+            <Link href={link(item.link)} data-cy="portal-left-menu-item">
+              <Label className={pathname === link(item.link) ? 'selected' : ''}>
+                {item.label}
+              </Label>
             </Link>
           )}
         </React.Fragment>
@@ -144,25 +140,25 @@ function PortalLeftMenu({ id, role }) {
       <Secondary>
         <div style={{ height: '90px' }}>&nbsp;</div>
         {leftMenuItemsBottom.map((item) => (
-          <Link href={item.link} passHref key={item.label}>
-            <a  data-cy="portal-left-bottom-item">
-              <Label className={pathname === link(item.link) ? 'selected' : ''}>
-                {item.label}
-              </Label>
-            </a>
+          <Link
+            href={item.link}
+            key={item.label}
+            data-cy="portal-left-bottom-item"
+          >
+            <Label className={pathname === link(item.link) ? 'selected' : ''}>
+              {item.label}
+            </Label>
           </Link>
         ))}
         {user?.isAdmin && (
-          <Link href={link('/candidate-portal/admin')} passHref>
-            <a>
-              <Label
-                className={
-                  pathname === link('/candidate-portal/admin') ? 'selected' : ''
-                }
-              >
-                Admin
-              </Label>
-            </a>
+          <Link href={link('/candidate-portal/admin')}>
+            <Label
+              className={
+                pathname === link('/candidate-portal/admin') ? 'selected' : ''
+              }
+            >
+              Admin
+            </Label>
           </Link>
         )}
       </Secondary>

@@ -77,12 +77,10 @@ function AdminLeftMenu() {
     <LeftPanel>
       {leftMenuItems.map((item) => (
         <React.Fragment key={item.label}>
-          <Link href={item.link} passHref>
-            <a>
-              <Label className={pathname === item.link ? 'selected' : ''}>
-                {item.label}
-              </Label>
-            </a>
+          <Link href={item.link}>
+            <Label className={pathname === item.link ? 'selected' : ''}>
+              {item.label}
+            </Label>
           </Link>
         </React.Fragment>
       ))}

@@ -39,10 +39,8 @@ function HeroSection() {
           If you agree that a functioning democracy that serves people, not
           money, is the problem that must be solved, in order to solve our other
           problems, please consider{' '}
-          <Link href="/work-with-us" passHref>
-            <a data-cy="team-hero-section-join-link">
-              <u>joining us!</u>
-            </a>
+          <Link href="/work-with-us" data-cy="team-hero-section-join-link">
+            <u>joining us!</u>
           </Link>
         </Content>
       </Grid>

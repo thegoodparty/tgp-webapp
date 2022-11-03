@@ -28,10 +28,8 @@ function BlogPageWrapper({
       </div>
       <div className={styles.sectionsWrapper}>
         <div className={styles.sections}>
-          <Link href="/blog" passHref>
-            <a style={{ display: 'inline-flex' }}>
-              <AiOutlineHome size={18} />
-            </a>
+          <Link href="/blog" style={{ display: 'inline-flex' }}>
+            <AiOutlineHome size={18} />
           </Link>
           {sections.map((section) => (
             <>
@@ -42,10 +40,10 @@ function BlogPageWrapper({
               ) : (
                 <Link
                   href={`/blog/section/${section.fields.slug}`}
-                  passHref
                   key={section.id}
+                  className={styles.section}
                 >
-                  <a className={styles.section}>{section.fields.title}</a>
+                  {section.fields.title}
                 </Link>
               )}
             </>

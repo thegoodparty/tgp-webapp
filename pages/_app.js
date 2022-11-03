@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import Script from 'next/script';
 
 import { ThemeProvider } from 'styled-components';
-import { ThemeProvider as UiThemeProvider } from '@material-ui/styles';
+import { ThemeProvider as UiThemeProvider } from '@material-ui/core/styles';
 import { ConnectedRouter } from 'connected-next-router';
 import SnackbarContainer from '/containers/shared/SnackbarContainer';
 

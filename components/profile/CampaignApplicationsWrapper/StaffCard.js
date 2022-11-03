@@ -16,7 +16,7 @@ import BlackButton from '/components/shared/buttons/BlackButton';
 const Wrapper = styled.div`
   border-bottom-left-radius: 16px;
   border-bottom-right-radius: 16px;
-  
+
   padding: 16px 16px 100px;
   border: 2px solid #ededed;
   color: #000;
@@ -74,43 +74,42 @@ function StaffCard({ candidate, role }) {
   }
   const { id, firstName, lastName, image, race, party, otherParty } = candidate;
   return (
-    <Link href={`/candidate-portal/${id}`} passHref style={{ height: '100%' }}>
-      <a style={{ height: '100%' }} className="no-underline" data-cy="staff-link">
-        <Role data-cy="staff-role">
-          <strong>Your Role: </strong>Campaign {role}
-        </Role>
-        <Wrapper>
-          <ImageWrapper>
-            {image && (
-              <Image
-                src={image}
-                layout="fill"
-                alt={`${firstName} ${lastName}`}
-              />
-            )}
-          </ImageWrapper>
-          <Content>
-            <Name data-cy="staff-name">
-              {firstName} {lastName}
-            </Name>
-            <Gray data-cy="staff-race">
-              {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
-              Candidate <br />
-              for <strong>{race}</strong>
-            </Gray>
-            <br />
-            <br />
-            <ButtonWrapper>
-              <BlackButton
-                fullWidth
-                style={{ textTransform: 'none', marginTop: '32px' }}
-              >
-                Manage Campaign
-              </BlackButton>
-            </ButtonWrapper>
-          </Content>
-        </Wrapper>
-      </a>
+    <Link
+      href={`/candidate-portal/${id}`}
+      style={{ height: '100%' }}
+      className="no-underline"
+      data-cy="staff-link"
+    >
+      <Role data-cy="staff-role">
+        <strong>Your Role: </strong>Campaign {role}
+      </Role>
+      <Wrapper>
+        <ImageWrapper>
+          {image && (
+            <Image src={image} layout="fill" alt={`${firstName} ${lastName}`} />
+          )}
+        </ImageWrapper>
+        <Content>
+          <Name data-cy="staff-name">
+            {firstName} {lastName}
+          </Name>
+          <Gray data-cy="staff-race">
+            {partyResolver(party, otherParty)} {party !== 'I' ? 'Party' : ''}{' '}
+            Candidate <br />
+            for <strong>{race}</strong>
+          </Gray>
+          <br />
+          <br />
+          <ButtonWrapper>
+            <BlackButton
+              fullWidth
+              style={{ textTransform: 'none', marginTop: '32px' }}
+            >
+              Manage Campaign
+            </BlackButton>
+          </ButtonWrapper>
+        </Content>
+      </Wrapper>
     </Link>
   );
 }

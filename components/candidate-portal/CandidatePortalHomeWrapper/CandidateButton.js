@@ -53,17 +53,15 @@ function CandidateButton({ candidate }) {
   }, [preferences]);
 
   return (
-    <Link href={`/embed/redirect/${id}`} passHref>
-      <a>
-        <ResultButton
-          style={{
-            backgroundColor: state.backgroundColor,
-            color: state.textColor,
-          }}
-        >
-          <InnerResultButton>{state.label}</InnerResultButton>
-        </ResultButton>
-      </a>
+    <Link href={`/embed/redirect/${id}`}>
+      <ResultButton
+        style={{
+          backgroundColor: state.backgroundColor,
+          color: state.textColor,
+        }}
+      >
+        <InnerResultButton>{state.label}</InnerResultButton>
+      </ResultButton>
     </Link>
   );
 }

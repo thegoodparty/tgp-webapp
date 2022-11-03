@@ -202,11 +202,8 @@ function FollowButtonWrapper() {
           <BottomRow>
             <div>
               Already signed up?{' '}
-              <Link href="/?login=true" passHref>
-                <a className="underline">
-                  {/*<a className="underline" onClick={setReturnCookie}>*/}
-                  <strong>Login</strong>
-                </a>
+              <Link href="/?login=true" className="underline">
+                <strong>Login</strong>
               </Link>
             </div>
             <LogoWrapper>

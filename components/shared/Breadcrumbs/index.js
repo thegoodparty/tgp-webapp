@@ -62,10 +62,8 @@ function Breadcrumbs({ links }) {
         {links.map((link, index) => (
           <span key={link.label}>
             {index < links.length - 1 && (
-              <Link href={link.href} key={link.href} passHref>
-                <a>
-                  <Body11>{link.label}</Body11>
-                </a>
+              <Link href={link.href} key={link.href}>
+                <Body11>{link.label}</Body11>
               </Link>
             )}
           </span>

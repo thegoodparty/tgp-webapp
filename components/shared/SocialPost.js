@@ -104,9 +104,7 @@ const ImgWrapper = styled.div`
     min-height: 250px;
   }
   img {
-    width: 100%;
     height: 250px !important;
-    position: static !important;
   }
 `;
 
@@ -318,7 +316,6 @@ const SocialPost = ({ post }) => {
               layout="fill"
               loader={imgLoader}
               objectFit="contain"
-              height={250}
             />
           </ImgWrapper>
         )}

@@ -74,10 +74,8 @@ const LoginConfirmWrapper = ({ confirmLoginCallback, email }) => {
           type="tel"
           onChange={onChangeCode}
         />
-        <Link href="/?login=true" data-cy="return-link" passHref>
-          <a>
-            <StyledBody13>Didn’t receive the code?</StyledBody13>
-          </a>
+        <Link href="/?login=true" data-cy="return-link">
+          <StyledBody13>Didn’t receive the code?</StyledBody13>
         </Link>
         <SubmitWrapper onClick={handleSubmit} data-cy="submit">
           <NextButton active={validateCode()}>Confirm</NextButton>

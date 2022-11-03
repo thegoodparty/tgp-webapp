@@ -43,17 +43,15 @@ function RegisterBannerWrapper({ user }) {
   }
   return (
     <Wrapper>
-      <Link href={`/register/confirm?returnUrl=${returnUrl}`} passHref>
-        <a>
-          <ContentWrapper>
-            <AiFillWarning size={20} /> &nbsp;
-            <Underline>
-              Verify your {hasPhone ? 'phone number' : 'email'}
-            </Underline>
-            , so your actions count! &nbsp;
-            <BiRightArrowCircle size={20} />
-          </ContentWrapper>
-        </a>
+      <Link href={`/register/confirm?returnUrl=${returnUrl}`}>
+        <ContentWrapper>
+          <AiFillWarning size={20} /> &nbsp;
+          <Underline>
+            Verify your {hasPhone ? 'phone number' : 'email'}
+          </Underline>
+          , so your actions count! &nbsp;
+          <BiRightArrowCircle size={20} />
+        </ContentWrapper>
       </Link>
     </Wrapper>
   );

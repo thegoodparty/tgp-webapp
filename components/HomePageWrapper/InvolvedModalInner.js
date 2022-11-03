@@ -91,7 +91,11 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
       </Padder>
       <Line />
       <Padder>
-        <form noValidate onSubmit={(e) => e.preventDefault()} id="homepage-involved-form">
+        <form
+          noValidate
+          onSubmit={(e) => e.preventDefault()}
+          id="homepage-involved-form"
+        >
           <TextField
             fullWidth
             primary
@@ -122,9 +126,7 @@ const InvolvedModalInner = ({ closeModalCallback }) => {
         <br />
         <br />
         <div className="text-center">
-          <Link href="/candidates" passHref>
-            <a>Find Good Candidates</a>
-          </Link>
+          <Link href="/candidates">Find Good Candidates</Link>
         </div>
       </Padder>
     </Wrapper>

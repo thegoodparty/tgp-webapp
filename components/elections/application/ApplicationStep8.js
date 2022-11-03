@@ -41,18 +41,14 @@ function ApplicationStep8() {
     <PageWrapper purple>
       <Wrapper>
         <div>
-          <StyledH1>
-            Thanks for submitting your campaign!
-          </StyledH1>
+          <StyledH1>Thanks for submitting your campaign!</StyledH1>
           <Body style={{ marginBottom: '40px', color: '#1a1a1a' }}>
             We will review your submission and get back to you soon.
           </Body>
-          <Link href="/" passHref>
-            <A>
-              <LightPurpleButton fullWidth>
-                <InnerButton>Back to Homepage</InnerButton>
-              </LightPurpleButton>
-            </A>
+          <Link href="/" style={{ marginBottom: '8px', display: 'block' }}>
+            <LightPurpleButton fullWidth>
+              <InnerButton>Back to Homepage</InnerButton>
+            </LightPurpleButton>
           </Link>
         </div>
       </Wrapper>

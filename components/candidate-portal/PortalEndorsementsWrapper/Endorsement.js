@@ -27,6 +27,7 @@ const ImageWrapper = styled.div`
   img {
     object-fit: cover;
     object-position: center center;
+    height: 200px;
   }
 `;
 
@@ -75,7 +76,7 @@ function Endorsement({ endorsement, last, deleteCallback }) {
         {image && (
           <Grid item xs={12} md={4}>
             <ImageWrapper>
-              <Image src={image} layout="fill" height="200px" alt="" />
+              <Image src={image} layout="fill" alt="" />
             </ImageWrapper>
           </Grid>
         )}

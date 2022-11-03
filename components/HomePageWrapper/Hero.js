@@ -197,15 +197,14 @@ const Hero = () => {
             {showRegister ? (
               <RegisterComboContainer />
             ) : (
-              <Link href="/candidates" passHref>
-                <a
-                  className="no-underline"
-                  style={{ margin: '24px 0', display: 'block' }}
-                >
-                  <YellowButton>
-                    <InnerButton>Follow Candidates</InnerButton>
-                  </YellowButton>
-                </a>
+              <Link
+                href="/candidates"
+                className="no-underline"
+                style={{ margin: '24px 0', display: 'block' }}
+              >
+                <YellowButton>
+                  <InnerButton>Follow Candidates</InnerButton>
+                </YellowButton>
               </Link>
             )}
           </RegisterWrapper>

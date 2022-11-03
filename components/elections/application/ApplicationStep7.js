@@ -180,13 +180,8 @@ function ApplicationStep7({
       <Title data-cy="step-title">Step 7: Review Application Checklist</Title>
       {state.map((section, index) => (
         <SectionWrapper key={index}>
-          <Link
-            href={`/campaign-application/${application.id}/${index + 1}`}
-            passHref
-          >
-            <a>
-              <Title14>{section.title}</Title14>
-            </a>
+          <Link href={`/campaign-application/${application.id}/${index + 1}`}>
+            <Title14>{section.title}</Title14>
           </Link>
           {section.fields.map((field, index) => (
             <Field className={field.completed && 'completed'} key={index}>

@@ -87,24 +87,20 @@ function PortalLeftMenu() {
     <LeftPanel>
       {leftMenuItems.map((item) => (
         <React.Fragment key={item.label}>
-          <Link href={item.link} passHref>
-            <a>
-              <Label className={pathname === item.link ? 'selected' : ''}>
-                {item.label}
-              </Label>
-            </a>
+          <Link href={item.link}>
+            <Label className={pathname === item.link ? 'selected' : ''}>
+              {item.label}
+            </Label>
           </Link>
         </React.Fragment>
       ))}
       <Secondary>
         <div style={{ height: '90px' }}>&nbsp;</div>
         {leftMenuItemsBottom.map((item) => (
-          <Link href={item.link} passHref key={item.label}>
-            <a>
-              <Label className={pathname === item.link ? 'selected' : ''}>
-                {item.label}
-              </Label>
-            </a>
+          <Link href={item.link} key={item.label}>
+            <Label className={pathname === item.link ? 'selected' : ''}>
+              {item.label}
+            </Label>
           </Link>
         ))}
       </Secondary>

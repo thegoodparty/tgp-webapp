@@ -51,44 +51,46 @@ const Photo = styled.div`
 function ApplicationPreview({ app, deleteApplicationCallback }) {
   const photo = candidatePhoto(app);
   return (
-    <Link href={`/campaign-application/${app.id}/1`} passHref>
-      <a className="no-underline" data-cy="application-link">
-        <ApplicationWrapper className="break-word">
-          {app.status === 'incomplete' ? (
-            <div className="text-right trash">
-              <FaTrash
-                onClick={(e) => deleteApplicationCallback(app.id, e)}
-                color="red"
-              />
-            </div>
-          ) : (
-            <div>&nbsp;</div>
-          )}
-          <PhotoWrapper>
-            <Photo
-              style={{
-                backgroundImage: `url(${
-                  photo || '/images/profile/application.png'
-                })`,
-              }}
+    <Link
+      href={`/campaign-application/${app.id}/1`}
+      className="no-underline"
+      data-cy="application-link"
+    >
+      <ApplicationWrapper className="break-word">
+        {app.status === 'incomplete' ? (
+          <div className="text-right trash">
+            <FaTrash
+              onClick={(e) => deleteApplicationCallback(app.id, e)}
+              color="red"
             />
-          </PhotoWrapper>
-          <Body data-cy="application-name">
-            <strong>{candidateName(app)}</strong>
-          </Body>
-          <Body13 data-cy="application-runfor">{runningFor(app)}</Body13>
+          </div>
+        ) : (
+          <div>&nbsp;</div>
+        )}
+        <PhotoWrapper>
+          <Photo
+            style={{
+              backgroundImage: `url(${
+                photo || '/images/profile/application.png'
+              })`,
+            }}
+          />
+        </PhotoWrapper>
+        <Body data-cy="application-name">
+          <strong>{candidateName(app)}</strong>
+        </Body>
+        <Body13 data-cy="application-runfor">{runningFor(app)}</Body13>
+        <br />
+        <Body className="bold500" data-cy="application-status">
+          <i>Status: {app.status}</i>
+        </Body>
+        <br />
+        <Body11 data-cy="application-date">
+          Created At: {dateUsHelper(app.createdAt)}
           <br />
-          <Body className="bold500" data-cy="application-status">
-            <i>Status: {app.status}</i>
-          </Body>
-          <br />
-          <Body11 data-cy="application-date">
-            Created At: {dateUsHelper(app.createdAt)}
-            <br />
-            Last Update: {dateUsHelper(app.updatedAt)}
-          </Body11>
-        </ApplicationWrapper>
-      </a>
+          Last Update: {dateUsHelper(app.updatedAt)}
+        </Body11>
+      </ApplicationWrapper>
     </Link>
   );
 }

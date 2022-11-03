@@ -176,8 +176,8 @@ function Index({ candidates, deleteCandidateCallback }) {
         const route = `/candidate-portal/${row.original.id}`;
         return (
           <div className="text-center">
-            <Link href={route}>
-              <a className="underline">Candidate Portal</a>
+            <Link href={route} className="underline">
+              Candidate Portal
             </Link>
           </div>
         );

@@ -67,13 +67,11 @@ function CandidatesSection() {
           <What>
             <Link
               href={`${pathWithNoQuery}?article=5zIbKVU0wCIAszTOyogGAB`}
-              passHref
+              data-cy="good-certified-link"
             >
-              <a data-cy="good-certified-link">
-                What is{' '}
-                <Icon src="/images/heart.svg" alt="GP" width={14} height={11} />{' '}
-                GOOD CERTIFIED?
-              </a>
+              What is{' '}
+              <Icon src="/images/heart.svg" alt="GP" width={14} height={11} />{' '}
+              GOOD CERTIFIED?
             </Link>
           </What>
         </Grid>

@@ -119,15 +119,11 @@ function CandidateCard({ candidate, withFollowButton = false }) {
         href={candidateRoute(candidate)}
         passHref
         style={{ height: '100%' }}
+        className="no-underline candidate-card"
+        data-cy="candidate-link"
+        id={`candidate-card-${firstName}-${lastName}`}
       >
-        <a
-          style={{ height: '100%' }}
-          className="no-underline candidate-card"
-          data-cy="candidate-link"
-          id={`candidate-card-${firstName}-${lastName}`}
-        >
-          {children}
-        </a>
+        {children}
       </Link>
     );
   };

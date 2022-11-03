@@ -38,7 +38,7 @@ const LoginPasswordWrapper = ({
   const enableSubmit = () =>
     password !== '' && password.match(passwordRegex) && password.length >= 8;
 
-  const handleSubmitForm = e => {
+  const handleSubmitForm = (e) => {
     e.preventDefault();
   };
 
@@ -48,11 +48,11 @@ const LoginPasswordWrapper = ({
     }
   };
 
-  const onChangePassword = pwd => {
+  const onChangePassword = (pwd) => {
     setPassword(pwd);
   };
 
-  const handleForgotPassword = e => {
+  const handleForgotPassword = (e) => {
     e.preventDefault();
     e.stopPropagation();
     forgotPasswordCallback(value, valueType);
@@ -73,12 +73,10 @@ const LoginPasswordWrapper = ({
               <Body13 data-cy="email-label">
                 {valueType === 'phone' ? formatToPhone(value) : value} &nbsp;
                 &nbsp;{' '}
-                <Link href="/?login=true" passHref>
-                  <a data-cy="redirect-to-login">
-                    <ForgotLink style={{ display: 'inline' }}>
-                      Change {valueType === 'email' ? 'email' : 'phone'}
-                    </ForgotLink>
-                  </a>
+                <Link href="/?login=true" data-cy="redirect-to-login">
+                  <ForgotLink style={{ display: 'inline' }}>
+                    Change {valueType === 'email' ? 'email' : 'phone'}
+                  </ForgotLink>
                 </Link>
               </Body13>
               <br />
@@ -88,7 +86,10 @@ const LoginPasswordWrapper = ({
                 helperText="For security, passwords must have at least 1 capital letter, 1 lowercase, 1 special character or number, and 8 characters minimum"
               />
               {sentForgot ? (
-                <Body11 style={{ color: 'red', marginBottom: '24px' }} data-cy="sent-forgot">
+                <Body11
+                  style={{ color: 'red', marginBottom: '24px' }}
+                  data-cy="sent-forgot"
+                >
                   Your password recovery link was sent to{' '}
                   {valueType === 'email' ? value : formatToPhone(value)}
                 </Body11>

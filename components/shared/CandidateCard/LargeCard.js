@@ -149,123 +149,122 @@ function LargeCard({ candidate, withFollowButton = false }) {
   const showCard = hometown || occupation || funFact;
 
   return (
-    <Link href={candidateRoute(candidate)} passHref style={{ height: '100%' }}>
-      <a
-        style={{ height: '100%' }}
-        className="no-underline candidate-card"
-        data-cy="candidate-link"
-        id={`candidate-card-${firstName}-${lastName}`}
-      >
-        <Wrapper>
-          <Grid container spacing={3}>
-            <Grid item xs={12} lg={3}>
-              <ImageWrapper>
-                <CandidateRoundAvatar candidate={candidate} large largeAll />
-              </ImageWrapper>
-            </Grid>
-            <Grid item xs={12} lg={9}>
-              <Grid container spacing={3}>
-                <Grid item xs={12} lg={showCard ? 8 : 12}>
-                  <Content>
-                    <Positions>
-                      {topPositions && topPositions.length > 0 && (
-                        <>
-                          {topPositions.map((position) => (
-                            <React.Fragment key={position?.id}>
-                              {position && (
-                                <Position key={position.id} data-cy="position">
-                                  {position.name}
-                                </Position>
-                              )}
-                            </React.Fragment>
-                          ))}
-                        </>
-                      )}
-                    </Positions>
-                  </Content>
-                  <Name data-cy="candidate-name">
-                    {firstName} {lastName}
-                  </Name>
-                  <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
-                  <LgUpOnly>
-                    <ButtonWrapper>
-                      <BlackButton
-                        fullWidth
-                        className="view-button-card"
-                        style={{
-                          textTransform: 'none',
-                          marginTop: '32px',
-                          backgroundColor: brightColor,
-                          borderColor: brightColor,
-                        }}
-                        data-cy="candidate-view"
-                      >
-                        VIEW CAMPAIGN
-                      </BlackButton>
-                    </ButtonWrapper>
-                  </LgUpOnly>
-                </Grid>
-                {showCard && (
-                  <Grid item xs={12} lg={4}>
-                    <Card>
-                      {hometown && (
-                        <CardIem>
-                          <strong>Home Town &amp; State:</strong> {hometown}
-                        </CardIem>
-                      )}
-                      {occupation && (
-                        <CardIem>
-                          <strong>Current Occupation:</strong> {occupation}
-                        </CardIem>
-                      )}
-                      {funFact && (
-                        <CardIem>
-                          <strong>Fun Fact:</strong> {funFact}
-                        </CardIem>
-                      )}
-                    </Card>
-                  </Grid>
-                )}
-              </Grid>
-
-              {whyRunning && (
-                <ExtraInfo style={{ marginTop: '34px' }}>
-                  <strong>Why I'm running</strong>: {whyRunning}
-                </ExtraInfo>
-              )}
-
-              {whyIndependent && (
-                <ExtraInfo>
-                  <strong>Why I'm Independent</strong>: {whyIndependent}
-                </ExtraInfo>
-              )}
-
-              {experience && (
-                <ExtraInfo>
-                  <strong>Prior Experience</strong>: {experience}
-                </ExtraInfo>
-              )}
-              <SmOnly>
-                <ButtonWrapper>
-                  <BlackButton
-                    fullWidth
-                    className="view-button-card"
-                    style={{
-                      textTransform: 'none',
-                      marginTop: '32px',
-                      backgroundColor: brightColor,
-                      borderColor: brightColor,
-                    }}
-                    data-cy="candidate-view"
-                  >
-                    VIEW CAMPAIGN
-                  </BlackButton>
-                </ButtonWrapper>
-              </SmOnly>
-            </Grid>
+    <Link
+      href={candidateRoute(candidate)}
+      style={{ height: '100%' }}
+      className="no-underline candidate-card"
+      data-cy="candidate-link"
+      id={`candidate-card-${firstName}-${lastName}`}
+    >
+      <Wrapper>
+        <Grid container spacing={3}>
+          <Grid item xs={12} lg={3}>
+            <ImageWrapper>
+              <CandidateRoundAvatar candidate={candidate} large largeAll />
+            </ImageWrapper>
           </Grid>
-        </Wrapper>
-      </a>
+          <Grid item xs={12} lg={9}>
+            <Grid container spacing={3}>
+              <Grid item xs={12} lg={showCard ? 8 : 12}>
+                <Content>
+                  <Positions>
+                    {topPositions && topPositions.length > 0 && (
+                      <>
+                        {topPositions.map((position) => (
+                          <React.Fragment key={position?.id}>
+                            {position && (
+                              <Position key={position.id} data-cy="position">
+                                {position.name}
+                              </Position>
+                            )}
+                          </React.Fragment>
+                        ))}
+                      </>
+                    )}
+                  </Positions>
+                </Content>
+                <Name data-cy="candidate-name">
+                  {firstName} {lastName}
+                </Name>
+                <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
+                <LgUpOnly>
+                  <ButtonWrapper>
+                    <BlackButton
+                      fullWidth
+                      className="view-button-card"
+                      style={{
+                        textTransform: 'none',
+                        marginTop: '32px',
+                        backgroundColor: brightColor,
+                        borderColor: brightColor,
+                      }}
+                      data-cy="candidate-view"
+                    >
+                      VIEW CAMPAIGN
+                    </BlackButton>
+                  </ButtonWrapper>
+                </LgUpOnly>
+              </Grid>
+              {showCard && (
+                <Grid item xs={12} lg={4}>
+                  <Card>
+                    {hometown && (
+                      <CardIem>
+                        <strong>Home Town &amp; State:</strong> {hometown}
+                      </CardIem>
+                    )}
+                    {occupation && (
+                      <CardIem>
+                        <strong>Current Occupation:</strong> {occupation}
+                      </CardIem>
+                    )}
+                    {funFact && (
+                      <CardIem>
+                        <strong>Fun Fact:</strong> {funFact}
+                      </CardIem>
+                    )}
+                  </Card>
+                </Grid>
+              )}
+            </Grid>
+
+            {whyRunning && (
+              <ExtraInfo style={{ marginTop: '34px' }}>
+                <strong>Why I'm running</strong>: {whyRunning}
+              </ExtraInfo>
+            )}
+
+            {whyIndependent && (
+              <ExtraInfo>
+                <strong>Why I'm Independent</strong>: {whyIndependent}
+              </ExtraInfo>
+            )}
+
+            {experience && (
+              <ExtraInfo>
+                <strong>Prior Experience</strong>: {experience}
+              </ExtraInfo>
+            )}
+            <SmOnly>
+              <ButtonWrapper>
+                <BlackButton
+                  fullWidth
+                  className="view-button-card"
+                  style={{
+                    textTransform: 'none',
+                    marginTop: '32px',
+                    backgroundColor: brightColor,
+                    borderColor: brightColor,
+                  }}
+                  data-cy="candidate-view"
+                >
+                  VIEW CAMPAIGN
+                </BlackButton>
+              </ButtonWrapper>
+            </SmOnly>
+          </Grid>
+        </Grid>
+      </Wrapper>
     </Link>
   );
 }

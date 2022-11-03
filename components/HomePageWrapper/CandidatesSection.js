@@ -55,10 +55,12 @@ const CandidatesSection = () => {
         ))}
       </Grid>
       <More className="text-center">
-        <Link href="/candidates" passHref>
-          <a id="see-more-candidates" data-cy="see-more-link">
-            See More Candidates
-          </a>
+        <Link
+          href="/candidates"
+          id="see-more-candidates"
+          data-cy="see-more-link"
+        >
+          See More Candidates
         </Link>
       </More>
     </Wrapper>

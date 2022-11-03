@@ -60,12 +60,14 @@ const FeaturedCampaigns = ({
         </Grid>
         <br />
         <SeeMoreWrapper>
-          <Link href="/candidates" passHref>
-            <a className="no-underline" data-cy="campaigns-more-link">
-              <BlackButton fullWidth className="outlined pill">
-                See More
-              </BlackButton>
-            </a>
+          <Link
+            href="/candidates"
+            className="no-underline"
+            data-cy="campaigns-more-link"
+          >
+            <BlackButton fullWidth className="outlined pill">
+              See More
+            </BlackButton>
           </Link>
         </SeeMoreWrapper>
       </MaxWidth>

@@ -50,8 +50,12 @@ function ProfileWrapper() {
                 >
                   {user.name}
                 </FontH3>
-                <Link href="/profile/settings" passHref>
-                  <A data-cy="profile-edit-link">Edit</A>
+                <Link
+                  href="/profile/settings"
+                  className="underline"
+                  data-cy="profile-edit-link"
+                >
+                  Edit
                 </Link>
               </Name>
             </Row>

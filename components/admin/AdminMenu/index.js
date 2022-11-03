@@ -35,19 +35,14 @@ function AdminMenu({ candidateMode, id }) {
   return (
     <>
       <MenuWrapper>
-        <Link
-          href={candidateMode && id ? `/candidate-portal/${id}` : '/admin'}
-          passHref
-        >
-          <a>
-            <HeartWrapper>
-              {candidateMode && id ? (
-                <FaUserEdit />
-              ) : (
-                <Heart src="/images/heart.svg" alt="admin menu" />
-              )}
-            </HeartWrapper>
-          </a>
+        <Link href={candidateMode && id ? `/candidate-portal/${id}` : '/admin'}>
+          <HeartWrapper>
+            {candidateMode && id ? (
+              <FaUserEdit />
+            ) : (
+              <Heart src="/images/heart.svg" alt="admin menu" />
+            )}
+          </HeartWrapper>
         </Link>
       </MenuWrapper>
     </>

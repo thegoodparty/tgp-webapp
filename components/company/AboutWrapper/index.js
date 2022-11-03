@@ -54,8 +54,8 @@ function AboutWrapper() {
         across the political spectrum have{' '}
         <strong>a real chance of running and winning elections</strong>, for the
         first time in modern history!{' '}
-        <Link href="/register" passHref>
-          <a className="underline">Join Us</a>
+        <Link href="/register" className="underline">
+          Join Us
         </Link>
       </Intro>
       <H2>Who is Good Party?</H2>
@@ -65,8 +65,8 @@ function AboutWrapper() {
         and we need to do all that we can to save it. We are self-funded,
         putting our own time and money to this important cause, and stay
         independent of any political parties or associations. Meet our team{' '}
-        <Link href="/team" passHref>
-          <a className="underline">here</a>
+        <Link href="/team" className="underline">
+          here
         </Link>
         .
       </Intro>

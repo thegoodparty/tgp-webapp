@@ -66,12 +66,12 @@ const YouWrapper = ({ articles }) => {
   return (
     <PageWrapper white>
       <Login>
-        <Link href="/register" data-cy="sign-up" passHref>
-          <a>Sign-Up</a>
+        <Link href="/register" data-cy="sign-up">
+          Sign-Up
         </Link>
         &nbsp;&nbsp;|&nbsp;&nbsp;
-        <Link href="/?login=true" data-cy="log-in" passHref>
-          <a>Login</a>
+        <Link href="/?login=true" data-cy="log-in">
+          Login
         </Link>
       </Login>
       <InnerWrapper>
@@ -82,12 +82,10 @@ const YouWrapper = ({ articles }) => {
           then we all vote to get them in.
         </H3Body>
         <ButtonWrapper>
-          <Link href="/register" data-cy="count-in" passHref>
-            <a>
-              <OutlinedButton active fullWidth>
-                COUNT ME IN!
-              </OutlinedButton>
-            </a>
+          <Link href="/register" data-cy="count-in">
+            <OutlinedButton active fullWidth>
+              COUNT ME IN!
+            </OutlinedButton>
           </Link>
         </ButtonWrapper>
       </InnerWrapper>

@@ -73,8 +73,8 @@ function Footer() {
                         {link.label}
                       </a>
                     ) : (
-                      <Link href={link.link} passHref>
-                        <a data-cy="footer-link">{link.label}</a>
+                      <Link href={link.link} data-cy="footer-link">
+                        {link.label}
                       </Link>
                     )}
                   </div>
@@ -94,8 +94,8 @@ function Footer() {
             <div className={styles.italic} data-cy="footer-join-us">
               Not a political party. We’re building free tools to change the
               rules, so good independent candidates can run and win!{' '}
-              <Link href="/register" passHref>
-                <a data-cy="footer-join-us-link">Join us!</a>
+              <Link href="/register" data-cy="footer-join-us-link">
+                Join us!
               </Link>
             </div>
           </Grid>
@@ -103,8 +103,8 @@ function Footer() {
         <div className={styles.footerRow} data-cy="footer-copyright">
           <div className={styles.aligner}>
             &copy; {year} Good Party. All rights reserved. &nbsp;
-            <Link href="/privacy" passHref>
-              <a data-cy="footer-privacy-link">Privacy Policy</a>
+            <Link href="/privacy" data-cy="footer-privacy-link">
+              Privacy Policy
             </Link>
           </div>
         </div>

@@ -211,17 +211,16 @@ function Plans() {
               </Hidden>
               <H3>{plan.price}</H3>
               <SubTitle>{plan.subtitle}</SubTitle>
-              <Link href={plan.link} passHref>
-                <a
-                  id={`pricing-get-started-${plan.name}`}
-                  className="no-underline"
-                >
-                  {plan.name === 'Starter' ? (
-                    <BlackButton fullWidth>{plan.buttonLabel}</BlackButton>
-                  ) : (
-                    <GrayButton fullWidth>{plan.buttonLabel}</GrayButton>
-                  )}
-                </a>
+              <Link
+                href={plan.link}
+                id={`pricing-get-started-${plan.name}`}
+                className="no-underline"
+              >
+                {plan.name === 'Starter' ? (
+                  <BlackButton fullWidth>{plan.buttonLabel}</BlackButton>
+                ) : (
+                  <GrayButton fullWidth>{plan.buttonLabel}</GrayButton>
+                )}
               </Link>
 
               <br />
@@ -229,7 +228,7 @@ function Plans() {
               {plan.features.map((feature, index) => (
                 <Feature
                   key={feature.title}
-                  className={index > basicFeatures.length-1  && 'black'}
+                  className={index > basicFeatures.length - 1 && 'black'}
                 >
                   <strong>{feature.title}</strong>
                   {feature.description}
