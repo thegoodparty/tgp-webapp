@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import Link from 'next/link';
 import TextField from '@material-ui/core/TextField';
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 // import PhoneInput from 'react-phone-input-2';
 // import 'react-phone-input-2/lib/style.css';
 import { GoogleReCaptcha } from 'react-google-recaptcha-v3';
@@ -26,7 +27,7 @@ const Wrapper = styled.div`
   max-width: 600px;
   margin: 0 auto;
   &.with-padding {
-    padding: 24px;
+    padding: 8px 24px 24px;
   }
 `;
 
@@ -58,7 +59,7 @@ const Input = styled(TextField)`
       line-height: 22px;
       font-size: 16px;
       letter-spacing: 0.1px;
-      background-color: #fff;
+      background-color: #F7F7FE;
       border-radius: 4px;
 
       @media only screen and (min-width: ${({ theme }) =>
@@ -188,6 +189,15 @@ const RegisterWrapper = ({
   return (
     <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
       <Wrapper className={modalMode && 'with-padding'}>
+        <div className="text-center" style={{ marginBottom: '24px' }}>
+          <Image
+            src="/images/black-logo.svg"
+            data-cy="logo"
+            width={174}
+            height={20}
+            alt="GOOD PARTY"
+          />
+        </div>
         <div
           className="text-center"
           style={{ marginBottom: '32px', paddingTop: '32px' }}
@@ -220,6 +230,9 @@ const RegisterWrapper = ({
                 disabled={isUpdate && !field.isUpdatable}
                 onChange={(e) => onChangeField(e, field.key)}
                 helperText={field.helperText}
+                InputLabelProps={{
+                  shrink: true,
+                }}
               />
             </div>
           ))}

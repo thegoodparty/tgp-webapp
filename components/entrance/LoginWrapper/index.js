@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import Link from 'next/link';
+import Image from 'next/image';
 import dynamic from 'next/dynamic';
 
 import PageWrapper from '/components/shared/PageWrapper';
@@ -21,7 +22,7 @@ const Wrapper = styled.div`
   max-width: 600px;
   margin: 0 auto;
   &.with-padding {
-    padding: 24px;
+    padding: 8px 24px 24px;
   }
 `;
 
@@ -79,6 +80,15 @@ const LoginWrapper = ({
   return (
     <PageWrapper hideFooter={modalMode} hideNav={modalMode}>
       <Wrapper className={modalMode && 'with-padding'}>
+        <div className="text-center" style={{ marginBottom: '24px' }}>
+          <Image
+            src="/images/black-logo.svg"
+            data-cy="logo"
+            width={174}
+            height={20}
+            alt="GOOD PARTY"
+          />
+        </div>
         <H1 data-cy="login-title" style={{ marginBottom: '24px' }}>
           Log into your account
         </H1>
