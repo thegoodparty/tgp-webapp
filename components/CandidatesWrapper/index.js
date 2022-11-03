@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, createContext } from 'react';
 import styled from 'styled-components';
 
 import PageWrapper from '../shared/PageWrapper';
@@ -25,27 +25,36 @@ const Line = styled.div`
   }
 `;
 
+export const CandidatesWrapperContext = createContext();
+
 function CandidatesWrapper() {
   const { routePosition, routeState } = useContext(CandidatesContext);
   const [showFilters, setShowFilters] = useState(routePosition || routeState);
+  const [showOnlyGood, setShowOnlyGood] = useState(false);
+  const childProps = {
+    showOnlyGood,
+    setShowOnlyGood,
+  };
   return (
-    <PageWrapper isFullWidth>
-      <MaxWidth>
-        <Padder>
-          <TopSection />
-        </Padder>
-      </MaxWidth>
-      <Line />
-      <MaxWidth>
-        <Padder>
-          <FiltersSection />
-          <CandidatesSection
-            toggleFiltersCallback={() => setShowFilters(!showFilters)}
-            showFilters={showFilters}
-          />
-        </Padder>
-      </MaxWidth>
-    </PageWrapper>
+    <CandidatesWrapperContext.Provider value={childProps}>
+      <PageWrapper isFullWidth>
+        <MaxWidth>
+          <Padder>
+            <TopSection />
+          </Padder>
+        </MaxWidth>
+        <Line />
+        <MaxWidth>
+          <Padder>
+            <FiltersSection />
+            <CandidatesSection
+              toggleFiltersCallback={() => setShowFilters(!showFilters)}
+              showFilters={showFilters}
+            />
+          </Padder>
+        </MaxWidth>
+      </PageWrapper>
+    </CandidatesWrapperContext.Provider>
   );
 }
 

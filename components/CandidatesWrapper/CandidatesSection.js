@@ -15,6 +15,7 @@ import { CandidatesContext } from '/containers/CandidatesPage';
 import { FontH3 } from '../shared/typogrophy';
 import Row from '../shared/Row';
 import LargeCard from '../shared/CandidateCard/LargeCard';
+import { CandidatesWrapperContext } from './index';
 
 const Section = styled.section`
   margin-top: 80px;
@@ -46,6 +47,9 @@ const Icon = styled(Image)`
 
 function CandidatesSection() {
   const { candidates } = useContext(CandidatesContext);
+  const { showOnlyGood, setShowOnlyGood } = useContext(
+    CandidatesWrapperContext,
+  );
   const router = useRouter();
   const { query } = router;
   const { pinned } = query || {};
@@ -76,7 +80,9 @@ function CandidatesSection() {
       </Grid>
       {(candidates || []).map((candidate) => (
         <React.Fragment key={candidate.id}>
-          <LargeCard candidate={candidate} />
+          {((showOnlyGood && candidate.isClaimed) || !showOnlyGood) && (
+            <LargeCard candidate={candidate} />
+          )}
         </React.Fragment>
       ))}
       {(!candidates || candidates.length === 0) && (

@@ -9,24 +9,13 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import dynamic from 'next/dynamic';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Modal from '../shared/Modal';
-import LoadingAnimation from '../shared/LoadingAnimation';
 import CheckVoteRegistration from './CheckVoteRegistration';
-
-const VerifyVotePage = dynamic(
-  () => import('/containers/voterize/VerifyVotePage'),
-  {
-    loading: () => (
-      <div style={{ padding: '60px' }}>
-        <LoadingAnimation fullPage={false} />
-      </div>
-    ),
-  },
-);
+import { CandidatesWrapperContext } from './index';
 
 const Wrapper = styled.section``;
 
@@ -83,6 +72,10 @@ function FiltersSection() {
     routePosition,
     routeState,
   } = useContext(CandidatesContext);
+
+  const { showOnlyGood, setShowOnlyGood } = useContext(
+    CandidatesWrapperContext,
+  );
   const [state, setState] = useState({
     position: '',
     state: routeState || '',
@@ -159,7 +152,7 @@ function FiltersSection() {
           </PositionsWrapper>
         </>
       )}
-      <Grid container spacing={3}>
+      <Grid container spacing={3} alignItems="center">
         <Grid item xs={8} lg={3}>
           <Autocomplete
             options={positions}
@@ -205,6 +198,14 @@ function FiltersSection() {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
+          <Checkbox
+            color="primary"
+            checked={showOnlyGood}
+            onChange={(e) => setShowOnlyGood(e.target.checked)}
+          />
+          Show only Good Party Certified Candidates
+        </Grid>
+        <Grid item xs={12}>
           {routeState === 'ME' && (
             <ButtonWrapper>
               <BlackButton onClick={() => setShowVoteModal(true)}>
