@@ -67,6 +67,7 @@ function FeedbackWrapper({
         onClick={() => toggleModalCallback(true)}
         className={mode}
         id="feedback-side-button"
+        data-cy="feedback-side-button"
       >
         Feedback
       </SideButton>

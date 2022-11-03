@@ -62,8 +62,8 @@ function Breadcrumbs({ links }) {
         {links.map((link, index) => (
           <span key={link.label}>
             {index < links.length - 1 && (
-              <Link href={link.href} key={link.href} passHref>
-                <a>
+              <Link href={link.href} key={link.href} passHref data-cy="breadcrumb-item">
+                <a data-cy="breadcrumb-link">
                   <Body11>{link.label}</Body11>
                 </a>
               </Link>
@@ -71,7 +71,7 @@ function Breadcrumbs({ links }) {
           </span>
         ))}
       </StyledBreadCrumbs>
-      <GrayBody11>{links[links.length - 1].label}</GrayBody11>
+      <GrayBody11 data-cy="breadcrumb-label">{links[links.length - 1].label}</GrayBody11>
     </Wrapper>
   );
 }
