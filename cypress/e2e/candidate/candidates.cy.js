@@ -34,27 +34,24 @@ describe('CandidatesPage', () => {
     cy.get('[data-cy=candidates-top-title]')
       .contains('Claim your')
       .contains('Independents!');
-    cy.get('[data-cy=candidates-top-subtitle]').contains(
-      'Follow Independent, People-powered and',
-    );
-    cy.get('[data-cy=candidates-article-link]').contains(
-      'Why is this important?',
-    );
-    cy.get('[data-cy=candidates-run-link]')
-      .should('have.attr', 'href', '/run')
-      .contains('Want to run for office?');
-    cy.get('[data-cy=following-number]').contains(
-      numberFormatter(totalFollowers),
-    );
-    cy.get('[data-cy=following-label]')
-      .contains('Following')
-      .contains('indie candidates');
-    cy.get('[data-cy=follower-number]').contains(
-      numberFormatter(totalFromLastWeek),
-    );
-    cy.get('[data-cy=follower-label]')
-      .contains('Followers')
-      .contains('from last week');
+    // cy.get('[data-cy=candidates-article-link]').contains(
+    //   'Why is this important?',
+    // );
+    // cy.get('[data-cy=candidates-run-link]')
+    //   .should('have.attr', 'href', '/run')
+    //   .contains('Want to run for office?');
+    // cy.get('[data-cy=following-number]').contains(
+    //   numberFormatter(totalFollowers),
+    // );
+    // cy.get('[data-cy=following-label]')
+    //   .contains('Following')
+    //   .contains('indie candidates');
+    // cy.get('[data-cy=follower-number]').contains(
+    //   numberFormatter(totalFromLastWeek),
+    // );
+    // cy.get('[data-cy=follower-label]')
+    //   .contains('Followers')
+    //   .contains('from last week');
   });
 
   it('test Candidates Section', () => {

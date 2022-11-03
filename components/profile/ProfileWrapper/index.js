@@ -33,11 +33,10 @@ const SmallPadder = styled.div`
   }
 `;
 
-function ProfileWrapper() {
-  const { user, signoutCallback } = useContext(ProfilePageContext);
-
-  return (
-    <ProfilePageWrapper>
+function ProfileWrapper({ testUser }) {
+  const { user, signoutCallback } = useContext(ProfilePageContext) || { user: testUser };
+  const Content = () => (
+    <>
       <SmallPadder>
         <Grid container spacing={3} style={{ marginBottom: '40px' }}>
           <Grid item xs={9}>
@@ -70,6 +69,14 @@ function ProfileWrapper() {
         </Grid>
       </SmallPadder>
       <CandidatesSection />
+    </>
+  )
+  if(testUser) {
+    return <Content />;
+  }
+  return (
+    <ProfilePageWrapper>
+      <Content />
     </ProfilePageWrapper>
   );
 }

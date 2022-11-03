@@ -29,10 +29,10 @@ const Cancel = styled.div`
   cursor: pointer;
 `;
 
-function PasswordSection() {
+function PasswordSection({ testUser }) {
   const { user, changePasswordCallback } = useContext(
     ProfileSettingsPageContext,
-  );
+  ) || { user: testUser };
   const initialState = {
     oldPassword: '',
     password: '',
@@ -109,7 +109,7 @@ function PasswordSection() {
                   onChangeField('password', e.target.value);
                 }}
               />
-              <small>
+              <small data-cy="setting-password-description">
                 For security, passwords must have at least 1 capital letter, 1
                 lowercase, 1 special character or number, and 8 characters
                 minimum
@@ -121,10 +121,11 @@ function PasswordSection() {
                   disabled={!canSave()}
                   onClick={handleSavePassword}
                   type="submit"
+                  dataCy="setting-password-save"
                 >
                   <InnerButton>Save</InnerButton>
                 </BlackButton>
-                <Cancel onClick={reset}>cancel</Cancel>
+                <Cancel onClick={reset} data-cy="setting-password-cancel">cancel</Cancel>
               </Row>
             </Grid>
           </Grid>

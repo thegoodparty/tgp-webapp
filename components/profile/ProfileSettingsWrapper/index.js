@@ -12,13 +12,21 @@ import PersonalSection from './PersonalSection';
 import PasswordSection from './PasswordSection';
 import DeleteSection from './DeleteSection';
 
-function ProfileSettingsWrapper() {
-  return (
-    <ProfilePageWrapper>
+function ProfileSettingsWrapper({ isTest = false }) {
+  const Content = () => (
+    <>
       <ImageSection />
       <PersonalSection />
       <PasswordSection />
       <DeleteSection />
+    </>
+  );
+  if(isTest) {
+    return (<Content />);
+  }
+  return (
+    <ProfilePageWrapper>
+      <Content />
     </ProfilePageWrapper>
   );
 }

@@ -29,26 +29,34 @@ const Divider = styled.span`
   margin: 0 6px;
 `;
 
-const PrivacyWrapper = ({ content }) => {
+const PrivacyWrapper = ({ content, isTest = false }) => {
+  const Content = () => (
+    <>
+    {content && (
+      <>
+        <TitleWrapper>
+          <H1 data-cy="privacy-title">{content.title}</H1>
+        </TitleWrapper>
+        <RevisionWrapper>
+          <Body11 data-cy="last-revisioin-label">Last Revision</Body11>
+          <Divider />
+          <Body11 data-cy="last-revisioin-date">
+            {dateUsHelper(content.lastModified)}
+          </Body11>
+        </RevisionWrapper>
+        <CmsContentWrapper>
+          {contentfulHelper(content.pageContent)}
+        </CmsContentWrapper>
+      </>
+    )}
+    </>
+  );
+  if(isTest) {
+    return <Content />
+  }
   return (
     <PageWrapper white>
-      {content && (
-        <>
-          <TitleWrapper>
-            <H1 data-cy="privacy-title">{content.title}</H1>
-          </TitleWrapper>
-          <RevisionWrapper>
-            <Body11 data-cy="last-revisioin-label">Last Revision</Body11>
-            <Divider />
-            <Body11 data-cy="last-revisioin-date">
-              {dateUsHelper(content.lastModified)}
-            </Body11>
-          </RevisionWrapper>
-          <CmsContentWrapper>
-            {contentfulHelper(content.pageContent)}
-          </CmsContentWrapper>
-        </>
-      )}
+      <Content />
     </PageWrapper>
   );
 };

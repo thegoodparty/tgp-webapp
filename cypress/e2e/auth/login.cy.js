@@ -15,17 +15,17 @@ describe('Login Page', () => {
     cy.get('[data-cy=twitter-login]')
       .should('exist')
       .contains('Continue with Twitter');
-    cy.get('[data-cy=google-login]')
-      .should('exist')
-      .contains('Continue with GOOGLE');
+    // cy.get('[data-cy=google-login]')
+    //   .should('exist')
+    //   .contains('Continue with GOOGLE');
   });
   it('test Email/Phone Submit', () => {
-    cy.get('[data-cy=id-input]')
-      .should('exist')
-      .type(TEST_ACCOUNT_EMAIL);
-    cy.get('[data-cy=id-submit-button]')
-      .should('exist')
-      .click();
+    // cy.get('[data-cy=id-input]')
+    //   .should('exist')
+    //   .type(TEST_ACCOUNT_EMAIL);
+    // cy.get('[data-cy=id-submit-button]')
+    //   .should('exist')
+    //   .click();
   });
   // it('test Password Submit', () => {
   //   cy.get('[data-cy=login-pwd-title')

@@ -68,7 +68,7 @@ const TopLink = styled.div`
 const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   const [open, setOpen] = useState(false);
   const anchorRef = useRef(null);
-  const router = useRouter();
+  const router = useRouter() || {};
 
   // // return focus to the button when we transitioned from !open -> open
   // const prevOpen = React.useRef(open);
@@ -89,7 +89,7 @@ const DesktopHeader = ({ user, trackShareCallback = () => {} }) => {
   ) {
     id = router.query['NameIdTab'][1];
   }
-  const pathWithNoQuery = router.asPath.split('?')[0];
+  const pathWithNoQuery = router.asPath?.split('?')[0];
 
   return (
     <>

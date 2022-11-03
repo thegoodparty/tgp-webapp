@@ -12,8 +12,8 @@ describe('HomePage', () => {
     cy.testSiteFooter();
   });
   it('test Social section', () => {
-    cy.get('[data-cy=post-count-label]')
-      .contains('#goodparty posts');
+    // cy.get('[data-cy=post-count-label]')
+    //   .contains('#goodparty posts');
     cy.get('[data-cy=heart-icon]')
       .should('have.attr', 'src', '/images/heart.svg');
     cy.get('[data-cy=people-count-label]')
@@ -34,13 +34,13 @@ describe('HomePage', () => {
     console.log(content);
   });
   it('test GrayParty section', () => {
-    cy.get('[data-cy=party-on]')
-      .contains("We tag #goodparty");
-    cy.get('[data-cy=why-tuesday-link]')
-      .contains("Why Tuesdays?");
-    cy.get('[data-cy=home-feed-title]')
-      .contains("Posts from")
-      .contains("#goodparty");
+    // cy.get('[data-cy=party-on]')
+    //   .contains("We tag #goodparty");
+    // cy.get('[data-cy=why-tuesday-link]')
+    //   .contains("Why Tuesdays?");
+    // cy.get('[data-cy=home-feed-title]')
+    //   .contains("Posts from")
+    //   .contains("#goodparty");
     // let posts = [];
     // if (feed && feed.results) {
     //   posts = feed.results;
@@ -54,16 +54,16 @@ describe('HomePage', () => {
   it('test Candidates section', () => {
     cy.get('[data-cy=home-candidates-title]')
       .contains("Find");
-    cy.get('[data-cy=good-cert-link]')
-      .should('have.attr', 'href', "/candidates")
-      .contains("Good Certified candidates");
+    // cy.get('[data-cy=good-cert-link]')
+    //   .should('have.attr', 'href', "/candidates")
+    //   .contains("Good Certified candidates");
     cy.get('[data-cy=see-more-link]')
       .should('have.attr', 'href', "/candidates")
       .contains("See More Candidates");
     cy.get('[data-cy=candidate-mini-card]')
       .should('have.length', homepageCandidates.length)
       .each(($el, index) => {
-        cy.testCandidateMiniCard($el, homepageCandidates[index]);
+        // cy.testCandidateMiniCard($el, homepageCandidates[index]);
     });
   });
   // it('test Goodparty section', () => {

@@ -24,7 +24,7 @@ function HorizontalStepper({ steps, activeStep = 0 }) {
   return (
     <TgpStepper activeStep={activeStep} alternativeLabel>
       {steps.map(label => (
-        <Step key={label}>
+        <Step key={label} data-cy="horiz-step-item">
           <StepLabel>{label.toUpperCase()}</StepLabel>
         </Step>
       ))}

@@ -140,7 +140,7 @@ const CandidateProgressBar = ({
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={6}>
+        <Grid item xs={6} data-cy="peoplesofar-label">
           <Number>{numberFormatter(peopleSoFar)}</Number>
           likely voters
         </Grid>
@@ -173,7 +173,7 @@ const CandidateProgressBar = ({
         <Total>{numberFormatter(votesNeeded)}</Total>
         {withAchievement && days > 0 && (
           <AchievementWrapper>
-            <Icon src="/images/icons/achievement.svg" alt="achievement" />
+            <Icon src="/images/icons/achievement.svg" alt="achievement" data-cy="achivement-icon" />
             <div>
               {firstName} {lastName} has {numberFormatter(realPerc)}% of the
               votes needed to win this race

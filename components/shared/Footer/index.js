@@ -34,14 +34,14 @@ const SecondRow = styled.div`
 
 const year = new Date().getFullYear();
 
-function Footer() {
+function Footer({ isTest = false}) {
   const router = useRouter();
-  const isHome = router.pathname === '/';
+  const isHome = router?.pathname === '/';
   return (
     <div className={`${styles.wrapper} ${isHome && 'no-margin'}`}>
       <MaxWidth>
         <div className={styles.aligner}>
-          <FeedbackContainer mode="mobile" />
+          {!isTest && <FeedbackContainer mode="mobile" /> }
         </div>
         <Grid container spacing={2}>
           {FOOTER_COLUMNS.map((column) => (

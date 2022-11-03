@@ -31,7 +31,7 @@ const RedButton = styled(PurpleButton)`
 `;
 
 function DeleteSection() {
-  const { deleteAccountCallback } = useContext(ProfileSettingsPageContext);
+  const { deleteAccountCallback } = useContext(ProfileSettingsPageContext) || {};
   const [showConfirmDelete, setShowConfirmDelete] = useState(false);
 
   return (
@@ -40,7 +40,7 @@ function DeleteSection() {
         <FontH3 style={{ margin: '0 0 70px' }} data-cy="delete-account-title">
           Danger Zone - Delete your account
         </FontH3>
-        <RedButton onClick={() => setShowConfirmDelete(true)}>
+        <RedButton onClick={() => setShowConfirmDelete(true)} dataCy="delete-account-action">
           <InnerButton>Delete Account</InnerButton>
         </RedButton>
       </PortalPanel>

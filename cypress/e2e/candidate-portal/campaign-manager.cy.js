@@ -2,63 +2,121 @@ import promisify from 'cypress-promise';
 
 const id = 37;
 const fields = [
-    { label: 'First Name', key: 'firstName', required: true },
-    { label: 'Last Name', key: 'lastName', required: true },
-    { label: 'Zip Code', key: 'zip' },
-    {
-      label: 'Political party affiliation',
-      key: 'party',
-      type: 'select',
-      options: ['I', 'GP', 'L', 'W', 'F', 'Other'],
-      required: true,
-    },
-  
-    { label: 'Other Party', key: 'otherParty', isHidden: true },
-    { label: 'Twitter', key: 'twitter', isUrl: true },
-    { label: 'Facebook', key: 'facebook', isUrl: true },
-    { label: 'YouTube', key: 'youtube', isUrl: true },
-    { label: 'LinkedIn', key: 'linkedin', isUrl: true },
-    { label: 'Snap', key: 'snap', isUrl: true },
-    { label: 'TikTok', key: 'tiktok', isUrl: true },
-    { label: 'Instagram', key: 'instagram', isUrl: true },
-    { label: 'Twitch', key: 'twitch', isUrl: true },
-    { label: 'Website', key: 'website', isUrl: true },
- ];
-  
+  { label: 'First Name', key: 'firstName', required: true },
+  { label: 'Last Name', key: 'lastName', required: true },
+  { label: 'Zip Code', key: 'zip' },
+
+  { label: 'Twitter', key: 'twitter', isUrl: true },
+  { label: 'Facebook', key: 'facebook', isUrl: true },
+  { label: 'YouTube', key: 'youtube', isUrl: true },
+  { label: 'LinkedIn', key: 'linkedin', isUrl: true },
+  { label: 'Snap', key: 'snap', isUrl: true },
+  { label: 'TikTok', key: 'tiktok', isUrl: true },
+  { label: 'Instagram', key: 'instagram', isUrl: true },
+  { label: 'Twitch', key: 'twitch', isUrl: true },
+  { label: 'Website', key: 'website', isUrl: true },
+];
+
 const fields2 = [
-    { label: 'Office being sought ', key: 'race', required: true },
-    {
-      label: 'Date of election ',
-      key: 'raceDate',
-      isDate: true,
-      columns: 6,
-      required: true,
-    },
-    {
-      label: 'State ',
-      key: 'state',
-      columns: 6,
-      type: 'select',
-    //   options: flatStates,
-      required: true,
-    },
-    {
-      label: 'Ballot filing deadline ',
-      key: 'ballotDate',
-      isDate: true,
-      columns: 6,
-    },
-    {
-      label: 'Early voting date',
-      key: 'earlyVotingDate',
-      isDate: true,
-      columns: 6,
-    },
-    { label: 'District (if applicable)', key: 'district' },
-    { label: 'Headline', key: 'headline', required: true },
-    { label: 'Summary', key: 'about', isRichText: true, required: true },
-    { label: 'Committee name', key: 'committeeName' },
-    { label: 'Campaign Video (YouTube Id)', key: 'heroVideo' },
+  // { label: 'Office being sought ', key: 'race', required: true },
+
+  {
+    label: 'Political party affiliation',
+    key: 'party',
+    type: 'select',
+    options: ['I', 'GP', 'L', 'W', 'F', 'U', 'Other'],
+    required: true,
+  },
+
+  { label: 'Other Party', key: 'otherParty', isHidden: true },
+  {
+    label: 'State ',
+    key: 'state',
+    columns: 6,
+    type: 'select',
+    required: true,
+  },
+  {
+    label: 'Office ',
+    key: 'office',
+    columns: 6,
+    type: 'select',
+    withGroups: true,
+    options: [
+      {
+        group: 'Federal',
+        options: ['President', 'US Senate', 'US House of Representatives'],
+      },
+      {
+        group: 'State',
+        options: [
+          'Governor',
+          'Lieutenant Governor',
+          'Attorney General',
+          'Comptroller',
+          'Treasurer',
+          'Secretary of State',
+          'State Supreme Court Justice',
+          'State Senate',
+          'State House of Representatives',
+        ],
+      },
+      {
+        group: 'Local',
+        options: [
+          'County Executive',
+          'Mayor',
+          'District Attorney',
+          'Sheriff',
+          'Clerk',
+          'Auditor',
+          'Public Administrator',
+          'Judge',
+          'County Commissioner',
+          'Council Member',
+          'School Board',
+        ],
+      },
+    ],
+    required: true,
+  },
+  {
+    label: 'District (if applicable)',
+    columns: 6,
+    key: 'district',
+    type: 'number',
+  },
+  {
+    label: 'Counties served',
+    key: 'counties',
+    columns: 6,
+  },
+  {
+    label: 'Date of election ',
+    key: 'raceDate',
+    isDate: true,
+    required: true,
+  },
+  {
+    label: 'Ballot filing deadline ',
+    key: 'ballotDate',
+    isDate: true,
+    columns: 6,
+  },
+  {
+    label: 'Early voting date',
+    key: 'earlyVotingDate',
+    isDate: true,
+    columns: 6,
+  },
+  { label: 'Headline', key: 'headline', required: true },
+  { label: 'Summary', key: 'about', isRichText: true, required: true },
+  { label: 'Committee name', key: 'committeeName' },
+  {
+    label: 'Campaign Video (YouTube Id)',
+    key: 'heroVideo',
+    type: 'youtubeInput',
+  },
 ];
   
 const fields3 = [

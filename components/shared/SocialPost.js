@@ -297,7 +297,7 @@ const SocialPost = ({ post }) => {
               id={`feed-post-share-${url}`}
               className="feed-post-share"
             >
-              <InnerButton>Share</InnerButton>
+              <InnerButton data-cy="post-share">Share</InnerButton>
             </BlackButton>
           </div>
         </Bottom>

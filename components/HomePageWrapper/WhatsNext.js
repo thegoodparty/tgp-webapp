@@ -39,11 +39,12 @@ const WhatsNext = ({ openModalCallback = () => {} }) => {
         <Banner
           style={{ backgroundImage: 'url(/images/homepage/banner-bg-1.png)' }}
         >
-          <Title>So what’s next?</Title>
+          <Title data-cy="whatsnext-title">So what’s next?</Title>
           <BlackButton
             style={{ marginTop: '40px' }}
             onClick={openModalCallback}
             id="what-do-i-do-button"
+            dataCy="whatsnext-button"
           >
             <InnerButton>Get Involved</InnerButton>
           </BlackButton>

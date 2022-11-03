@@ -44,7 +44,7 @@ function RegisterBannerWrapper({ user }) {
   return (
     <Wrapper>
       <Link href={`/register/confirm?returnUrl=${returnUrl}`} passHref>
-        <a>
+        <a data-cy="register-banner-link">
           <ContentWrapper>
             <AiFillWarning size={20} /> &nbsp;
             <Underline>

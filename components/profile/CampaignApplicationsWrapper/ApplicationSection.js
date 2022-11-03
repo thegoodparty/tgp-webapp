@@ -25,7 +25,7 @@ function ApplicationSection() {
     applications,
     loading,
     deleteApplicationCallback,
-  } = useContext(CampaignApplicationsPageContext);
+  } = useContext(CampaignApplicationsPageContext) || {};
   const [showDeleteAlert, setShowDeleteAlert] = useState(false);
   const [deleteApplicationId, setDeleteApplicationId] = useState(false);
 

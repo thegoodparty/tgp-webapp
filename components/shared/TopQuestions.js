@@ -33,13 +33,13 @@ const ArticleTitle = styled(Body)`
 
 const TopQuestions = ({ articles }) => {
   const router = useRouter();
-  const pathWithNoQuery = router.asPath.split('?')[0];
+  const pathWithNoQuery = router?.asPath && router.asPath.split('?')[0];
   return (
     <Wrapper>
       <Row>
         <H3 data-cy="faqs">Top Questions</H3>
         <Link href="/faqs" data-cy="faqs-link">
-          <a>
+          <a data-cy="faqs-see-link">
             <SeeFaq>See FAQ</SeeFaq>
           </a>
         </Link>

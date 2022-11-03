@@ -79,50 +79,61 @@ function LeaderboardWrapper({
   leaderboard,
   crewPreview,
   crewCount,
+  isTest = false
 }) {
+  const Content = () => (
+    <MaxWidth style={{ padding: '8px' }}>
+      <br />
+      {/*<ProfileTabs activeTab="Leaderboard" />*/}
+      <ContentWrpper>
+        <H1 data-cy="leaderboard-title">Good Party Leaderboard</H1>
+        <StyledBody19 data-cy="leaderboard-description">
+          Invite Good Party people and move up the leaderboard when they join.
+        </StyledBody19>
+        <br />
+        <SpreadSection user={user} />
+        <Title data-cy="leaderboard-people">
+          Your People <Seperator>|</Seperator>{' '}
+          <Link href="#everyone">
+            <a data-cy="leaderboard-people-link">
+              <Everyone>Everyone</Everyone>
+            </a>
+          </Link>
+        </Title>
+        <LeaderboardPerson you person={user} index={0} />
+        {crew &&
+          crew.map((crewMember, index) => (
+            <LeaderboardPerson person={crewMember} index={index + 1} key={index} />
+          ))}
+
+        <Better data-cy="leaderboard-friend">Good Parties are better with friends!</Better>
+        <div className="text-center">
+          <Link href="?share=true">
+            <a data-cy="leaderboard-invite-link">
+              <Invite>INVITE PEOPLE</Invite>
+            </a>
+          </Link>
+        </div>
+
+        <Title id="everyone" data-cy="leaderboard-everyone">Everyone</Title>
+        {leaderboard &&
+          leaderboard.map((member, index) => (
+            <LeaderboardPerson
+              key={index}
+              you={member.uuid === user.uuid}
+              person={member}
+              index={index}
+            />
+          ))}
+      </ContentWrpper>
+    </MaxWidth>
+  );
+  if(isTest) {
+    return <Content />;
+  }
   return (
     <PageWrapper isFullWidth>
-      <MaxWidth style={{ padding: '8px' }}>
-        <br />
-        {/*<ProfileTabs activeTab="Leaderboard" />*/}
-        <ContentWrpper>
-          <H1>Good Party Leaderboard</H1>
-          <StyledBody19>
-            Invite Good Party people and move up the leaderboard when they join.
-          </StyledBody19>
-          <br />
-          <SpreadSection user={user} />
-          <Title>
-            Your People <Seperator>|</Seperator>{' '}
-            <Link href="#everyone">
-              <Everyone>Everyone</Everyone>
-            </Link>
-          </Title>
-          <LeaderboardPerson you person={user} index={0} />
-          {crew &&
-            crew.map((crewMember, index) => (
-              <LeaderboardPerson person={crewMember} index={index + 1} key={index} />
-            ))}
-
-          <Better>Good Parties are better with friends!</Better>
-          <div className="text-center">
-            <Link href="?share=true">
-              <Invite>INVITE PEOPLE</Invite>
-            </Link>
-          </div>
-
-          <Title id="everyone">Everyone</Title>
-          {leaderboard &&
-            leaderboard.map((member, index) => (
-              <LeaderboardPerson
-                key={index}
-                you={member.uuid === user.uuid}
-                person={member}
-                index={index}
-              />
-            ))}
-        </ContentWrpper>
-      </MaxWidth>
+      <Content />
     </PageWrapper>
   );
 }

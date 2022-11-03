@@ -107,7 +107,7 @@ const fields = [
 
 function RegisterComboWrapper() {
   const { registerCallback, afterRegisterCallback, afterLoginRoute } =
-    useContext(RegisterComboContainerContext);
+    useContext(RegisterComboContainerContext) || {};
   const [isActive, setIsActive] = useState(false);
   const [state, setState] = useState({
     email: '',
@@ -149,7 +149,7 @@ function RegisterComboWrapper() {
             <Inner className={isActive && 'active'}>
               <Grid container spacing={0}>
                 {fields.map((field) => (
-                  <Grid item xs={12} lg={4} key={field.name}>
+                  <Grid item xs={12} lg={4} key={field.name} data-cy="register-combo-field">
                     <input
                       name={field.name}
                       type={field.type}
@@ -161,6 +161,7 @@ function RegisterComboWrapper() {
                       onChange={(e) =>
                         onChangeField(field.name, e.target.value)
                       }
+                      data-cy="register-combo-field-form"
                     />
                   </Grid>
                 ))}
@@ -173,6 +174,7 @@ function RegisterComboWrapper() {
               disabled={!canSubmit()}
               onClick={submitForm}
               className="custom-radius"
+              dataCy="register-combo-join"
             >
               <InnerButton style={{ whiteSpace: 'nowrap' }}>
                 JOIN US

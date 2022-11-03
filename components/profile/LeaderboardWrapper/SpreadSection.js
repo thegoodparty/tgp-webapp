@@ -42,7 +42,7 @@ function SpreadSection({ user }) {
   return (
     <Wrapper>
       <Body>
-        <strong>Spread the word</strong>
+        <strong data-cy="spread-title">Spread the word</strong>
         <br />
         This is your unique link
         <UniqueLink>

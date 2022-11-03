@@ -141,7 +141,7 @@ const Candidates = styled.div`
   font-size: 24px;
 `;
 
-const Hero = () => {
+const Hero = ({ isTest = false }) => {
   const [showRegister, setShowRegister] = useState(true);
   useEffect(() => {
     const user = getUserCookie();
@@ -173,21 +173,22 @@ const Hero = () => {
     <Wrapper>
       <Grid container spacing={0}>
         <Grid item xs={12} lg={8}>
-          <H1>
+          <H1 data-cy="hero-title">
             Declare{' '}
             <span className="relative">
-              <span className="top">Independence</span>{' '}
+              <span className="top" data-cy="hero-top">Independence</span>{' '}
               <span className="yellow" />
             </span>
             <br />
-            from <span className="red">Red</span> and{' '}
-            <span className="blue">Blue</span>
+            from <span className="red" data-cy="hero-red">Red</span> and{' '}
+            <span className="blue" data-cy="hero-blue">Blue</span>
           </H1>
           <SmImageWrapper>
             <Image
               src="/images/homepage/declare-independence.png"
               layout="fill"
               alt="Declare independence"
+              data-cy="hero-independence-img"
             />
           </SmImageWrapper>
           <RegisterWrapper>
@@ -195,7 +196,9 @@ const Hero = () => {
               <SocialSection />
             </LgUpOnly>
             {showRegister ? (
-              <RegisterComboContainer />
+              <>
+                {!isTest && <RegisterComboContainer /> }
+              </>
             ) : (
               <Link href="/candidates" passHref>
                 <a
@@ -211,7 +214,7 @@ const Hero = () => {
           </RegisterWrapper>
           <GrayBg>
             <FullWidthGray />
-            <Inner>
+            <Inner data-cy="hero-inner">
               <MdDownOnly>
                 <SocialSection />
               </MdDownOnly>

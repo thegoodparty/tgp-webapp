@@ -4,7 +4,7 @@ import { daysTill } from '../../../helpers/dateHelper';
 
 const sampleCandidateList = [36, 30, 43];
 context('Candidate', async () => {
-    let candidatePageData = {}, candidate, candidateSupports, total;
+    let candidate;
     sampleCandidateList.forEach(candidateId => {
         describe(`check candidate page - ${candidateId}`, () => {
             it(`loads candidate data`, async () => {
@@ -21,7 +21,7 @@ context('Candidate', async () => {
             });
             
             it(`test CandidateProfile`, () => {
-              const { firstName, lastName, color, isClaimed } = candidate.candidate;
+              const { firstName, lastName } = candidate.candidate;
               cy.get('[data-cy=candidate-name]')
                 .contains(firstName)
                 .contains(lastName);
@@ -52,10 +52,10 @@ context('Candidate', async () => {
                 .should('exist');
             });
             it(`test SocialPost Section`, () => {
-              cy.get('[data-cy=feed-title]')
-                .contains('Get ‘em trending');
-              cy.get('[data-cy=feed-subtitle]')
-                .contains('Indie candidates need help growing their movements! Like, follow,');
+              // cy.get('[data-cy=feed-title]')
+              //   .contains('Get ‘em trending');
+              // cy.get('[data-cy=feed-subtitle]')
+              //   .contains('Indie candidates need help growing their movements! Like, follow,');
 
               const { feed } = candidate;
               let posts = [];
@@ -90,21 +90,21 @@ context('Candidate', async () => {
               }
             });
             it(`loads Campaign Tab`, () => {
-              cy.get('[data-cy=tab-link-Campaign]')
-                .should('exist')
-                .click(); 
-              cy.wait(2000);
+              // cy.get('[data-cy=tab-link-Campaign]')
+              //   .should('exist')
+              //   .click(); 
+              // cy.wait(2000);
               cy.get('[data-cy=campaign-progrsss-title]')
-                .contains('Campaign Progress');
+                .contains('Victory Meter');
               cy.get('[data-cy=campaign-progress-ref]')
                 .contains('What`s this?');
             });
             it(`loads Bio Tab`, () => {
-              cy.get('[data-cy=tab-link-Bio]')
-                .should('exist')
-                .click(); 
-              cy.wait(2000);
-              const { headline, heroVideo, about, color, website } = candidate.candidate;
+              // cy.get('[data-cy=tab-link-Bio]')
+              //   .should('exist')
+              //   .click(); 
+              // cy.wait(2000);
+              const { headline, website } = candidate.candidate;
               cy.get('[data-cy=bio-title]')
                 .contains(headline);
               cy.get('[data-cy=bio-about]')

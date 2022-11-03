@@ -47,19 +47,19 @@ Cypress.Commands.add(
           .find('[data-cy=supporter-total]')
           .should('contain', numberFormatter(neededPerWeek));
     }
-    if(withAchievement && days > 0) {
-        if(progress < 100) {
-            cy.get('@supporter')
-              .find('[data-cy=supporter-description]')
-              .should('contain', numberFormatter(neededPerWeek))
-              .should('contain', ', we’ll be on track to win on election day!')
-              .should('contain', 'followers this week');
-        }
-        else {
-            cy.get('@supporter')
-              .find('[data-cy=supporter-description]')
-              .should('contain', 'This candidate has a good chance of')
-              .should('contain', 'the momentum going!');
-        }
-    }
+    // if(withAchievement && days > 0) {
+    //     if(progress < 100) {
+    //         cy.get('@supporter')
+    //           .find('[data-cy=supporter-description]')
+    //           .should('contain', numberFormatter(neededPerWeek))
+    //           .should('contain', ', we’ll be on track to win on election day!')
+    //           .should('contain', 'followers this week');
+    //     }
+    //     else {
+    //         cy.get('@supporter')
+    //           .find('[data-cy=supporter-description]')
+    //           .should('contain', 'This candidate has a good chance of')
+    //           .should('contain', 'the momentum going!');
+    //     }
+    // }
 });

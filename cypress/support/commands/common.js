@@ -63,11 +63,10 @@ Cypress.Commands.add('testSiteHeader', () => {
           .should('have.attr', 'href', HEADER_LINKS[index].href)
           .contains(HEADER_LINKS[index].label);
       });
-    cy.get('[data-cy=header-login')
-      .should('have.attr', 'href', "/login")
-      .contains('Login');
-    cy.get('[data-cy=header-register')
-      .should('have.attr', 'href', "/register")
+    // cy.get('[data-cy=header-login]')
+    //   .should('have.attr', 'href', "/login")
+    //   .contains('Login');
+    cy.get('[data-cy=header-register]')
       .contains('Join Us');
 });
 Cypress.Commands.add('testSiteFooter', () => {
@@ -148,11 +147,11 @@ Cypress.Commands.add('testSocialPost', ($el, post) => {
       .find('[data-cy=post-comments]')
       .contains(commentsCount);
   }
-  if(engagement !== null && engagement !== 0) {
-    cy.wrap($el)
-      .find('[data-cy=post-engagement]')
-      .contains(engagement);
-  }
+  // if(engagement !== null && engagement !== 0) {
+  //   cy.wrap($el)
+  //     .find('[data-cy=post-engagement]')
+  //     .contains(engagement);
+  // }
   cy.wrap($el)
     .find('[data-cy=post-share]')
     .contains('Share');

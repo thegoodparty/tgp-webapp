@@ -79,10 +79,9 @@ export const USER_SETTING_FIELDS = [
   // { key: 'pronouns', label: 'Preferred Pronouns', initialValue: '' },
 ];
 
-function PersonalSection() {
-  const { user, updateUserCallback } = useContext(ProfileSettingsPageContext);
+function PersonalSection({ testUser }) {
+  const { user, updateUserCallback } = useContext(ProfileSettingsPageContext) || { user: testUser };
   const initialState = {};
-  
   USER_SETTING_FIELDS.forEach((field) => {
     initialState[field.key] = field.initialValue;
   });
@@ -180,10 +179,11 @@ function PersonalSection() {
                   disabled={!canSave()}
                   type="submit"
                   onClick={submit}
+                  dataCy={'settings-save'}
                 >
                   <InnerButton>Save</InnerButton>
                 </BlackButton>
-                <Cancel onClick={cancel}>cancel</Cancel>
+                <Cancel onClick={cancel} data-cy="settings-cancel">cancel</Cancel>
               </Row>
             </Grid>
           </Grid>

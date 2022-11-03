@@ -96,9 +96,10 @@ const UserAvatar = ({ user, size = 'small' }) => (
                 'assets.goodparty.org',
               )})`,
             }}
+            data-cy="avatar-img"
           />
         ) : (
-          <UserInitials className={size}>{getInitials(user.name)}</UserInitials>
+          <UserInitials className={size} data-cy="avatar-initials">{getInitials(user.name)}</UserInitials>
         )}
       </Wrapper>
     )}

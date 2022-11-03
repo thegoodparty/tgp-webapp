@@ -18,7 +18,7 @@ function Hero() {
           <span className={styles.yellow} />
         </span>
       </h1>
-      <div className={styles.content}>
+      <div className={styles.content} data-cy="hero-content">
         Good Party is <strong>not a political party</strong>. We build tools to
         change the rules, and are mobilizing a movement of people to disrupt the
         corrupt two-party system.
