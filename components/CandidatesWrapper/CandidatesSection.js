@@ -10,12 +10,12 @@ import Grid from '@material-ui/core/Grid';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { FaFilter } from 'react-icons/fa';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
-import CandidateCard from '../shared/CandidateCard';
 import { FontH3 } from '../shared/typogrophy';
 import Row from '../shared/Row';
+import LargeCard from '../shared/CandidateCard/LargeCard';
+import { CandidatesWrapperContext } from './index';
 
 const Section = styled.section`
   margin-top: 80px;
@@ -47,6 +47,9 @@ const Icon = styled(Image)`
 
 function CandidatesSection() {
   const { candidates } = useContext(CandidatesContext);
+  const { showOnlyGood, setShowOnlyGood } = useContext(
+    CandidatesWrapperContext,
+  );
   const router = useRouter();
   const { query } = router;
   const { pinned } = query || {};
@@ -75,20 +78,13 @@ function CandidatesSection() {
           </What>
         </Grid>
       </Grid>
-      <Grid container spacing={3} alignItems="stretch">
-        {(candidates || []).map((candidate) => (
-          <Grid
-            item
-            xs={12}
-            md={6}
-            lg={4}
-            key={candidate.id}
-            data-cy="candidate-card"
-          >
-            <CandidateCard candidate={candidate} />
-          </Grid>
-        ))}
-      </Grid>
+      {(candidates || []).map((candidate) => (
+        <React.Fragment key={candidate.id}>
+          {((showOnlyGood && candidate.isClaimed) || !showOnlyGood) && (
+            <LargeCard candidate={candidate} />
+          )}
+        </React.Fragment>
+      ))}
       {(!candidates || candidates.length === 0) && (
         <div className="text-center">
           <FontH3>No Results match your filters</FontH3>

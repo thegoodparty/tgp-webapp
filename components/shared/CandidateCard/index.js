@@ -4,7 +4,7 @@
  *
  */
 
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 import Link from 'next/link';
@@ -12,7 +12,6 @@ import Grid from '@material-ui/core/Grid';
 import dynamic from 'next/dynamic';
 
 import { candidateColor, partyRace } from '/helpers/candidatesHelper';
-import { daysTill } from '/helpers/dateHelper';
 
 import { FontH3 } from '../typogrophy';
 import BlackButton from '../buttons/BlackButton';
@@ -90,15 +89,7 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   if (!candidate) {
     return <></>;
   }
-  const {
-    firstName,
-    lastName,
-    positions,
-    followers,
-    raceDate,
-    votesNeeded,
-    support,
-  } = candidate;
+  const { firstName, lastName, positions, followers, support } = candidate;
 
   const brightColor = candidateColor(candidate);
   let topPositions = positions;
@@ -108,14 +99,9 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   }
 
   let thisWeek = 0;
-  let lastWeek = 0;
   if (followers) {
     thisWeek = followers.thisWeek + (support ? support.thisWeek : 0);
-    lastWeek = followers.lastWeek + (support ? support.lastWeek : 0);
   }
-
-  const days = daysTill(raceDate);
-  const diff = thisWeek - lastWeek;
 
   const WrapperElement = ({ children }) => {
     if (withFollowButton) {
@@ -175,11 +161,8 @@ function CandidateCard({ candidate, withFollowButton = false }) {
 
           <div style={{ margin: '32px 0 4px' }}>
             <CandidateProgressBar
-              votesNeeded={votesNeeded}
+              candidate={candidate}
               peopleSoFar={thisWeek}
-              peopleThisPeriod={diff}
-              color={brightColor}
-              days={days}
               withAnimation={false}
             />
           </div>

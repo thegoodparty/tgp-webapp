@@ -91,6 +91,7 @@
     "react-star-rating-component": "^1.4.1",
     "react-sticky-el": "^2.0.9",
     "react-table": "^6.11.5",
+    "react-timeago": "^7.1.0",
     "react-truncate": "^2.4.0",
     "recharts": "^2.1.8",
     "redux": "^4.1.2",

@@ -37,7 +37,7 @@ module.exports = withPlugins([
       },
       disable: process.env.NODE_ENV === 'development',
       images: {
-        domains: ['assets.goodparty.org'],
+        domains: ['assets.goodparty.org', 'images.ctfassets.net'],
       },
       compiler: {
         styledComponents: true,

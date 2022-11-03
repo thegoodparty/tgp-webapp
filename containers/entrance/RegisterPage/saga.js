@@ -20,13 +20,12 @@ import globalActions from '/containers/App/actions';
 import types from './constants';
 import actions from './actions';
 
-function* register({ name, email, phone, zip, callback, source }) {
+function* register({ name, email, zip, callback, source }) {
   try {
     const api = tgpApi.register;
     const payload = {
       name,
       email,
-      phone,
       zip,
       source,
       uri: window.location.href,

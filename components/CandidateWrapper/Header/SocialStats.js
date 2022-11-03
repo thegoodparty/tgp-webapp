@@ -47,26 +47,16 @@ function SocialStats() {
   const { offsetFollow } = useContext(CandidateWrapperContext);
 
   let thisWeek = offsetFollow;
-  let lastWeek = 0;
   if (followers) {
     thisWeek = followers.thisWeek + offsetFollow;
-    lastWeek = followers.lastWeek;
   }
-  const { raceDate, votesNeeded } = candidate;
-  const brightColor = candidateColor(candidate);
-  const days = daysTill(raceDate);
-
-  const diff = thisWeek - lastWeek || 0;
 
   return (
     <Wrapper>
       <Inner>
         <CandidateProgressBar
-          votesNeeded={votesNeeded}
+          candidate={candidate}
           peopleSoFar={thisWeek || 0}
-          peopleThisPeriod={diff}
-          color={brightColor}
-          days={days}
         />
 
         <ButtonWrapper>

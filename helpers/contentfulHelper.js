@@ -33,7 +33,6 @@ const contentfulHelper = (rawRichTextField) => {
 
 export const CmsContentWrapper = styled.div`
   margin-top: 28px;
-  color: ${({ theme }) => theme.colors.gray2};
   font-size: 14px;
   line-height: 20px;
   letter-spacing: 0.1px;
@@ -44,7 +43,6 @@ export const CmsContentWrapper = styled.div`
   }
 
   h1 {
-    color: ${({ theme }) => theme.colors.gray2};
     font-size: 27px;
     line-height: 35px;
     margin: 0;
@@ -56,7 +54,6 @@ export const CmsContentWrapper = styled.div`
   }
 
   h2 {
-    color: ${({ theme }) => theme.colors.gray2};
     font-size: 23px;
     line-height: 30px;
     margin: 0;
@@ -68,7 +65,6 @@ export const CmsContentWrapper = styled.div`
   }
 
   h3 {
-    color: ${({ theme }) => theme.colors.gray2};
     font-size: 19px;
     line-height: 25px;
     font-weight: 600;
@@ -80,7 +76,6 @@ export const CmsContentWrapper = styled.div`
     }
   }
   p {
-    color: ${({ theme }) => theme.colors.gray4};
     font-size: 14px;
     line-height: 20px;
     letter-spacing: 0.1px;
