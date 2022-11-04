@@ -37,15 +37,7 @@ export function CandidatesPage({
   twitterFollowCallback,
 }) {
   const [candidatesByChannel, setCandidatesByChannel] = useState(channels);
-  const {
-    candidates,
-    positions,
-    states,
-    routePosition,
-    routeState,
-    totalFollowers,
-    totalFromLastWeek,
-  } = ssrState;
+  const { candidates, positions, states, routePosition, routeState } = ssrState;
   const [pinnedCandidates, setPinnedCandidates] = useState(candidates);
   const router = useRouter();
 
@@ -131,8 +123,6 @@ export function CandidatesPage({
     allCandidates: candidates,
     routePosition,
     routeState,
-    totalFollowers,
-    totalFromLastWeek,
     candidatesByChannel,
     twitterFollowCallback,
   };

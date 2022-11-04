@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid';
 import { IoIosCheckmark } from 'react-icons/io';
 
 import { numberFormatter } from '/helpers/numberHelper';
+import { candidateColor } from '../../helpers/candidatesHelper';
+import { daysTill } from '../../helpers/dateHelper';
 
 const ProgressBarWrapper = styled.div`
   display: flex;
@@ -92,56 +94,32 @@ const Dial = styled.div`
 `;
 
 const CandidateProgressBar = ({
+  candidate,
   peopleSoFar,
-  votesNeeded,
-  peopleThisPeriod,
-  days,
-  color = '#000',
   withAchievement = true,
   withAnimation = true,
 }) => {
+  const { raceDate, votesNeeded, firstName, lastName } = candidate;
+  const color = candidateColor(candidate);
+  const days = daysTill(raceDate);
+
   const [barWidth, setBarWidth] = useState(0);
-  const [peopleThisWeek, setPeopleThisWeek] = useState(0);
   const [isRendered, setIsRendered] = useState(false);
   const weeksToElection = Math.ceil(days / 7);
-  let neededToWin = votesNeeded - peopleSoFar;
-  if (neededToWin < 0) {
-    neededToWin = 0;
-  }
-  let neededPerWeek;
-  let neededThisWeek;
+
   let progress = 0;
-  if (days && days > 0) {
-    if (weeksToElection && weeksToElection !== 0) {
-      neededPerWeek = Math.floor(neededToWin / weeksToElection);
-    }
-    neededThisWeek = neededPerWeek - peopleThisPeriod;
-  } else {
-    neededPerWeek = votesNeeded;
-    neededThisWeek = votesNeeded;
-    peopleThisPeriod = peopleSoFar;
+  let realPerc = 0;
+  if (votesNeeded && votesNeeded !== 0) {
+    progress = Math.floor((100 * peopleSoFar) / votesNeeded);
+    realPerc = Math.floor((100 * peopleSoFar) / votesNeeded);
   }
 
-  if (neededThisWeek <= 0) {
-    progress = 100;
-  } else {
-    progress = (peopleThisPeriod * 100) / neededPerWeek;
-  }
-  if (days < 0) {
-    neededPerWeek = votesNeeded;
-    progress = (peopleSoFar * 100) / votesNeeded;
-  }
-
-  if (progress > 100) {
-    progress = 100;
-  }
-
-  progress = progress / 2 + 50;
   if (!progress) {
     progress = 50;
-  }
-  if (progress < 0) {
-    progress = 0;
+  } else if (progress > 100) {
+    progress = 100;
+  } else if (progress < 50) {
+    progress = 50;
   }
 
   useEffect(() => {
@@ -152,49 +130,22 @@ const CandidateProgressBar = ({
 
       setTimeout(() => {
         setBarWidth(progress);
-        if (peopleThisPeriod > 0) {
-          let interval = 1000 / peopleThisPeriod;
-          let increment = 1;
-          if (peopleThisPeriod > 1000) {
-            interval = 10;
-            increment = peopleThisPeriod / 100;
-          }
-          let newValue = 0;
-          const intervalId = setInterval(() => {
-            if (newValue >= peopleThisPeriod) {
-              setPeopleThisWeek(peopleThisPeriod);
-              clearInterval(intervalId);
-            } else {
-              newValue = newValue + increment;
-              setPeopleThisWeek(newValue);
-            }
-          }, interval);
-        } else {
-          setPeopleThisWeek(peopleThisPeriod);
-        }
       }, 2000);
     } else {
       setBarWidth(progress);
-      setPeopleThisWeek(peopleThisPeriod);
     }
     setIsRendered(true);
-  }, [peopleThisPeriod]);
+  }, [votesNeeded]);
 
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={4}>
+        <Grid item xs={6}>
           <Number>{numberFormatter(peopleSoFar)}</Number>
-          total followers
+          likely voters
         </Grid>
-        <Grid item xs={4} className="text-center">
-          <Number className={peopleThisPeriod > 0 && 'positive'}>
-            {peopleThisPeriod > 0 && '+'}
-            {numberFormatter(peopleThisWeek)}
-          </Number>
-          this week
-        </Grid>
-        <Grid item xs={4} className="text-right">
+
+        <Grid item xs={6} className="text-right">
           {weeksToElection > 0 ? (
             <>
               <Number>
@@ -219,24 +170,14 @@ const CandidateProgressBar = ({
             <IoIosCheckmark />
           </Dial>
         </BarBg>
-        {neededPerWeek !== 0 && <Total>{numberFormatter(neededPerWeek)}</Total>}
+        <Total>{numberFormatter(votesNeeded)}</Total>
         {withAchievement && days > 0 && (
           <AchievementWrapper>
             <Icon src="/images/icons/achievement.svg" alt="achievement" />
-            {progress < 100 ? (
-              <div>
-                If we can get to{' '}
-                <strong>
-                  {numberFormatter(neededPerWeek)} followers this week
-                </strong>
-                , we’ll be on track to win on election day!
-              </div>
-            ) : (
-              <div>
-                This candidate has a good chance of <strong>winning</strong>.
-                Keep the momentum going!
-              </div>
-            )}
+            <div>
+              {firstName} {lastName} has {numberFormatter(realPerc)}% of the
+              votes needed to win this race
+            </div>
           </AchievementWrapper>
         )}
       </ProgressBarWrapper>

@@ -21,10 +21,6 @@ export async function getServerSideProps(context) {
 
   let candidates;
   let positions;
-  let totalFollowers = 0;
-  let totalFromLastWeek = 0;
-  let totalSupport = 0;
-  let totalSupportFromLastWeek = 0;
 
   let states;
   try {
@@ -32,17 +28,11 @@ export async function getServerSideProps(context) {
       candidates,
       positions,
       states,
-      totalFollowers,
-      totalFromLastWeek,
-      totalSupport,
-      totalSupportFromLastWeek,
     } = await res.json());
   } catch (e) {
     candidates = [];
     positions = [];
     states = [];
-    totalFollowers = 0;
-    totalFromLastWeek = 0;
   }
 
   return {
@@ -53,8 +43,6 @@ export async function getServerSideProps(context) {
         states: states || [],
         routePosition: position || '',
         routeState: state || '',
-        totalFollowers: totalFollowers + totalSupport,
-        totalFromLastWeek: totalFromLastWeek + totalSupportFromLastWeek,
       },
     },
   };

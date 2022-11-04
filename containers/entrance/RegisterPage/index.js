@@ -67,7 +67,7 @@ export function RegisterPage({
     modalMode,
     verifyRecaptchaCallback,
     score,
-    experimentVariant
+    experimentVariant,
   };
 
   return (
@@ -113,10 +113,8 @@ const mapStateToProps = createStructuredSelector({
 function mapDispatchToProps(dispatch) {
   return {
     dispatch,
-    registerCallback: (name, email, phone, zip) => {
-      dispatch(
-        actions.registerAction(name, email, phone, zip, false, 'registerPage'),
-      );
+    registerCallback: (name, email, zip) => {
+      dispatch(actions.registerAction(name, email, zip, false, 'registerPage'));
     },
     socialRegisterCallback: (socialUser) => {
       dispatch(actions.socialRegisterAction(socialUser));

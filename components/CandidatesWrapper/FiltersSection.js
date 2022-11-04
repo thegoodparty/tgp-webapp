@@ -9,24 +9,13 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
-import dynamic from 'next/dynamic';
+import Checkbox from '@material-ui/core/Checkbox';
 
 import { CandidatesContext } from '/containers/CandidatesPage';
 import BlackButton, { InnerButton } from '../shared/buttons/BlackButton';
 import Modal from '../shared/Modal';
-import LoadingAnimation from '../shared/LoadingAnimation';
 import CheckVoteRegistration from './CheckVoteRegistration';
-
-const VerifyVotePage = dynamic(
-  () => import('/containers/voterize/VerifyVotePage'),
-  {
-    loading: () => (
-      <div style={{ padding: '60px' }}>
-        <LoadingAnimation fullPage={false} />
-      </div>
-    ),
-  },
-);
+import { CandidatesWrapperContext } from './index';
 
 const Wrapper = styled.section``;
 
@@ -36,14 +25,14 @@ const H2 = styled.h2`
   margin: 30px 0 0;
   @media only screen and (min-width: ${({ theme }) =>
       theme.breakpointsPixels.lg}) {
-    margin: 0 0 40px;
+    margin: 0 0 28px;
   }
 `;
 const Pill = styled.div`
   display: inline-block;
   padding: 8px 15px;
   background-color: #f3f3f3;
-  margin: 15px 17px 0 0;
+  margin: 0 17px 15px 0;
   cursor: pointer;
   transition: background-color 0.3s;
   border-radius: 7px;
@@ -58,7 +47,7 @@ const Pill = styled.div`
 `;
 
 const PositionsWrapper = styled.div`
-  height: 110px;
+  height: 45px;
   overflow: hidden;
   margin-bottom: 14px;
   @media only screen and (min-width: ${({ theme }) =>
@@ -83,6 +72,10 @@ function FiltersSection() {
     routePosition,
     routeState,
   } = useContext(CandidatesContext);
+
+  const { showOnlyGood, setShowOnlyGood } = useContext(
+    CandidatesWrapperContext,
+  );
   const [state, setState] = useState({
     position: '',
     state: routeState || '',
@@ -159,7 +152,7 @@ function FiltersSection() {
           </PositionsWrapper>
         </>
       )}
-      <Grid container spacing={3}>
+      <Grid container spacing={3} alignItems="center">
         <Grid item xs={8} lg={3}>
           <Autocomplete
             options={positions}
@@ -205,6 +198,14 @@ function FiltersSection() {
           />
         </Grid>
         <Grid item xs={12} lg={6}>
+          <Checkbox
+            color="primary"
+            checked={showOnlyGood}
+            onChange={(e) => setShowOnlyGood(e.target.checked)}
+          />
+          Show only Good Party Certified Candidates
+        </Grid>
+        <Grid item xs={12}>
           {routeState === 'ME' && (
             <ButtonWrapper>
               <BlackButton onClick={() => setShowVoteModal(true)}>
