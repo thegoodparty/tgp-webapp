@@ -99,7 +99,15 @@ const CandidateProgressBar = ({
   withAchievement = true,
   withAnimation = true,
 }) => {
-  const { raceDate, votesNeeded, firstName, lastName } = candidate;
+  const {
+    raceDate,
+    votesNeeded,
+    firstName,
+    lastName,
+    overrideFollowers,
+    likelyVoters,
+  } = candidate;
+  let people = overrideFollowers ? likelyVoters : peopleSoFar;
   const color = candidateColor(candidate);
   const days = daysTill(raceDate);
 
@@ -110,8 +118,8 @@ const CandidateProgressBar = ({
   let progress = 0;
   let realPerc = 0;
   if (votesNeeded && votesNeeded !== 0) {
-    progress = Math.floor((100 * peopleSoFar) / votesNeeded);
-    realPerc = Math.floor((100 * peopleSoFar) / votesNeeded);
+    progress = Math.floor((100 * people) / votesNeeded);
+    realPerc = Math.floor((100 * people) / votesNeeded);
   }
 
   if (!progress) {
@@ -141,7 +149,7 @@ const CandidateProgressBar = ({
     <div>
       <Grid container spacing={3}>
         <Grid item xs={6}>
-          <Number>{numberFormatter(peopleSoFar)}</Number>
+          <Number>{numberFormatter(people)}</Number>
           likely voters
         </Grid>
 
@@ -185,17 +193,6 @@ const CandidateProgressBar = ({
   );
 };
 
-CandidateProgressBar.propTypes = {
-  peopleSoFar: PropTypes.number,
-  votesNeeded: PropTypes.number,
-  showSupporters: PropTypes.bool,
-  alignLeft: PropTypes.bool,
-  showSuffix: PropTypes.bool,
-  userState: PropTypes.string,
-  prefixText: PropTypes.string,
-  suffixText: PropTypes.string,
-  withAchievement: PropTypes.bool,
-  fullWidth: PropTypes.bool,
-};
+
 
 export default CandidateProgressBar;
