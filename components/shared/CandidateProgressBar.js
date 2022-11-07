@@ -106,6 +106,8 @@ const CandidateProgressBar = ({
     lastName,
     overrideFollowers,
     likelyVoters,
+    didWin,
+    votesReceived,
   } = candidate;
   let people = overrideFollowers ? likelyVoters : peopleSoFar;
   const color = candidateColor(candidate);
@@ -128,6 +130,13 @@ const CandidateProgressBar = ({
     progress = 100;
   } else if (progress < 50) {
     progress = 50;
+  }
+
+  let raceDone = false;
+  if (raceDate) {
+    if (new Date() > new Date(raceDate)) {
+      raceDone = true;
+    }
   }
 
   useEffect(() => {
@@ -154,18 +163,32 @@ const CandidateProgressBar = ({
         </Grid>
 
         <Grid item xs={6} className="text-right">
-          {weeksToElection > 0 ? (
+          {raceDone ? (
+            <>
+              <div>
+                <strong>
+                  {didWin ? (
+                    <span>
+                      Won{' '}
+                      <span role="img" aria-label="Party">
+                        🎉
+                      </span>
+                    </span>
+                  ) : (
+                    'Did not win'
+                  )}
+                </strong>
+                <br />
+                election
+              </div>
+            </>
+          ) : (
             <>
               <Number>
                 {numberFormatter(weeksToElection)} week
                 {weeksToElection !== 1 ? 's' : ''}
               </Number>
               until election
-            </>
-          ) : (
-            <>
-              <br />
-              election ended
             </>
           )}
         </Grid>
@@ -178,7 +201,16 @@ const CandidateProgressBar = ({
             <IoIosCheckmark />
           </Dial>
         </BarBg>
-        <Total>{numberFormatter(votesNeeded)}</Total>
+        {console.log('votesReceived', votesReceived)}
+        <Total>
+          {votesReceived && raceDone ? (
+            <>
+              Votes received <strong>{numberFormatter(votesReceived)}</strong>
+            </>
+          ) : (
+            <>{numberFormatter(votesNeeded)}</>
+          )}
+        </Total>
         {withAchievement && days > 0 && (
           <AchievementWrapper>
             <Icon src="/images/icons/achievement.svg" alt="achievement" />
@@ -192,7 +224,5 @@ const CandidateProgressBar = ({
     </div>
   );
 };
-
-
 
 export default CandidateProgressBar;
