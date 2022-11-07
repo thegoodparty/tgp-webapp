@@ -144,9 +144,29 @@ export const getPartyImage = (partyBadge, party, hideBadge) => {
 };
 
 export const partyRace = (candidate, withLineBreak = true) => {
-  const { party, otherParty, race, office, state, district, counties } =
-    candidate;
+  const {
+    party,
+    otherParty,
+    race,
+    office,
+    state,
+    district,
+    counties,
+    didWin,
+    term,
+    raceDate,
+  } = candidate;
   let resolvedRace = '';
+  let raceDone = false;
+  if (raceDate) {
+    if (new Date() > new Date(raceDate)) {
+      raceDone = true;
+    }
+  }
+  let raceYear;
+  if (raceDone) {
+    raceYear = new Date(raceDate).getFullYear();
+  }
 
   if (office) {
     resolvedRace = `${state ? shortToLongState[state] : ''} ${office} ${
@@ -157,7 +177,15 @@ export const partyRace = (candidate, withLineBreak = true) => {
   }
   return (
     <>
+      {raceDone && (
+        <strong>{didWin ? 'IN OFFICE: ' : `${raceYear} Campaign: `}</strong>
+      )}
       {partyResolver(party, otherParty)} | {resolvedRace}
+      {didWin && term && (
+        <div style={{ marginTop: '7px' }}>
+          <strong>TERM:</strong> {term}
+        </div>
+      )}
       {counties && (
         <div style={{ marginTop: '7px', color: '#868686' }}>
           <strong>Counties Served</strong>: {counties}

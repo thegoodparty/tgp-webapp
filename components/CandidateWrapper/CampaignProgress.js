@@ -51,8 +51,7 @@ const This = styled.div`
 
 function CampaignProgress() {
   const router = useRouter();
-  const { candidate, followers } =
-    useContext(CandidateContext);
+  const { candidate, followers } = useContext(CandidateContext);
   const { likelyVoters, votesNeeded, overrideFollowers } = candidate;
   let voters = likelyVoters;
   if (!overrideFollowers && followers?.thisWeek > likelyVoters) {
@@ -64,7 +63,10 @@ function CampaignProgress() {
     <Wrapper>
       <Row style={{ justifyContent: 'space-between', marginBottom: '48px' }}>
         <Progress data-cy="campaign-progrsss-title">Victory Meter</Progress>
-        <Link href={`${pathWithNoQuery}?article=4KOzae6PB45c9GQY9Xi9UX`} passHref>
+        <Link
+          href={`${pathWithNoQuery}?article=4KOzae6PB45c9GQY9Xi9UX`}
+          passHref
+        >
           <a className="no-underline" data-cy="campaign-progress-ref">
             <This>What`s this?</This>
           </a>

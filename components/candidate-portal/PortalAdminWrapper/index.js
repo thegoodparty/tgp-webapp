@@ -41,6 +41,13 @@ const fields = [
     initialValue: true,
     isCheckbox: true,
   },
+  {
+    label: 'Did Win?',
+    key: 'didWin',
+    initialValue: false,
+    isCheckbox: true,
+  },
+  { label: 'Term (if won)', key: 'term', initialValue: '' },
   { label: 'Followers Offset', key: 'followersOffset', initialValue: 0 },
   { label: 'Votes Needed', key: 'votesNeeded', initialValue: 0 },
   { label: 'Likely Voters', key: 'likelyVoters', initialValue: 0 },
