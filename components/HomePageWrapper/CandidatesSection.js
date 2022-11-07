@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import styled from 'styled-components';
 import Link from 'next/link';
 import Grid from '@material-ui/core/Grid';
+import { useRouter } from 'next/router';
 import { HomePageContext } from '/containers/HomePage';
 
 import CandidateCard from '../shared/CandidateCard';
@@ -40,10 +41,19 @@ const More = styled.div`
 
 const CandidatesSection = () => {
   const { homepageCandidates } = useContext(HomePageContext);
+  const router = useRouter();
+  const pathWithNoQuery = router.asPath.split('?')[0];
   return (
     <Wrapper>
       <H2 data-cy="home-candidates-title">
-        Find <u>Good Party Certified</u> candidates who pledge to be{' '}
+        Find{' '}
+        <Link
+          href={`${pathWithNoQuery}?article=5zIbKVU0wCIAszTOyogGAB`}
+          passHref
+        >
+          <a className="underline">Good Party Certified</a>
+        </Link>{' '}
+        candidates who pledge to be{' '}
         <strong>Independent, People Powered and Anti-Corruption</strong>
       </H2>
 
