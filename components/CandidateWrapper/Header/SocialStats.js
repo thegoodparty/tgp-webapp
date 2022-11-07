@@ -57,6 +57,7 @@ function SocialStats() {
         <CandidateProgressBar
           candidate={candidate}
           peopleSoFar={thisWeek || 0}
+          withAchievement
         />
 
         <ButtonWrapper>

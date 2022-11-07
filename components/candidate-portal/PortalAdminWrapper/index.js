@@ -9,6 +9,10 @@ import styled from 'styled-components';
 import Checkbox from '@material-ui/core/Checkbox';
 import TextField from '@material-ui/core/TextField';
 
+import Radio from '@material-ui/core/Radio';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import RadioGroup from '@material-ui/core/RadioGroup';
+
 import { PortalAdminPageContext } from '/containers/candidate-portal/PortalAdminPage';
 import PortalPageWrapper from '../shared/PortalPageWrapper';
 import { FontH1 } from '../../shared/typogrophy';
@@ -44,8 +48,8 @@ const fields = [
   {
     label: 'Did Win?',
     key: 'didWin',
-    initialValue: false,
-    isCheckbox: true,
+    isRadio: true,
+    options: ['Yes', 'No'],
   },
   { label: 'Term (if won)', key: 'term', initialValue: '' },
   { label: 'Votes Received', key: 'votesReceived', initialValue: 0 },
@@ -121,31 +125,54 @@ function PortalAdminWrapper() {
         {fields.map((field) => (
           <FieldWrapper key={field.key}>
             {field.isCheckbox ? (
-              <>
-                <div>
-                  <Checkbox
-                    checked={state[field.key]}
-                    onChange={(e) => onChangeField(field.key, e.target.checked)}
-                  />
-                  &nbsp; &nbsp; {field.label}
-                </div>
-              </>
+              <div>
+                <Checkbox
+                  checked={state[field.key]}
+                  onChange={(e) => onChangeField(field.key, e.target.checked)}
+                />
+                &nbsp; &nbsp; {field.label}
+              </div>
             ) : (
-              <TextField
-                fullWidth
-                label={field.label}
-                name={field.label}
-                variant="outlined"
-                value={state[field.key]}
-                type={field.initialValue === 0 ? 'number' : 'text'}
-                onChange={(e) =>
-                  onChangeField(
-                    field.key,
-                    e.target.value,
-                    field.initialValue === 0 ? 'number' : 'text',
-                  )
-                }
-              />
+              <>
+                {field.isRadio ? (
+                  <>
+                    <div>{field.label}</div>
+                    <RadioGroup
+                      name={field.label}
+                      label={field.label}
+                      value={state[field.key]}
+                      style={{ flexDirection: 'row' }}
+                      onChange={(e) => onChangeField(field.key, e.target.value)}
+                    >
+                      {field.options.map((op) => (
+                        <FormControlLabel
+                          style={{ display: 'inline-block' }}
+                          value={op}
+                          key={op}
+                          control={<Radio color="primary" />}
+                          label={op}
+                        />
+                      ))}
+                    </RadioGroup>{' '}
+                  </>
+                ) : (
+                  <TextField
+                    fullWidth
+                    label={field.label}
+                    name={field.label}
+                    variant="outlined"
+                    value={state[field.key]}
+                    type={field.initialValue === 0 ? 'number' : 'text'}
+                    onChange={(e) =>
+                      onChangeField(
+                        field.key,
+                        e.target.value,
+                        field.initialValue === 0 ? 'number' : 'text',
+                      )
+                    }
+                  />
+                )}
+              </>
             )}
           </FieldWrapper>
         ))}
