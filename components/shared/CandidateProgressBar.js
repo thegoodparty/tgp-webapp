@@ -132,9 +132,12 @@ const CandidateProgressBar = ({
     progress = 50;
   }
 
+  const daysTillElection = daysTill(raceDate);
+
+
   let raceDone = false;
   if (raceDate) {
-    if (new Date() > new Date(raceDate)) {
+    if (daysTillElection < 0) {
       raceDone = true;
     }
   }
@@ -153,7 +156,6 @@ const CandidateProgressBar = ({
     }
     setIsRendered(true);
   }, [votesNeeded]);
-
   return (
     <div>
       <Grid container spacing={3}>
@@ -184,11 +186,26 @@ const CandidateProgressBar = ({
             </>
           ) : (
             <>
-              <Number>
-                {numberFormatter(weeksToElection)} week
-                {weeksToElection !== 1 ? 's' : ''}
-              </Number>
-              until election
+              {daysTillElection === 0 ? (
+                <Number>ELECTION DAY</Number>
+              ) : (
+                <>
+                  <Number>
+                    {weeksToElection > 1 ? (
+                      <>
+                        {numberFormatter(weeksToElection)} week
+                        {weeksToElection !== 1 ? 's' : ''}
+                      </>
+                    ) : (
+                      <>
+                        {daysTillElection} day
+                        {daysTillElection !== 1 ? 's' : ''}
+                      </>
+                    )}
+                  </Number>
+                  until election
+                </>
+              )}
             </>
           )}
         </Grid>
