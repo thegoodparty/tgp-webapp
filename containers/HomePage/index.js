@@ -41,7 +41,7 @@ export function HomePage({
   subscribeEmailCallback,
 }) {
   const { totalFollowers, feed, homepageCandidates } = ssrState;
-  const {  loading } = homeState;
+  const { loading } = homeState;
   const router = useRouter();
 
   useInjectReducer({ key: 'homePage', reducer });

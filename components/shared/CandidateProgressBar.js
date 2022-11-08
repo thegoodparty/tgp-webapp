@@ -76,6 +76,10 @@ const Number = styled.div`
   }
 `;
 
+const Sm = styled.div`
+  font-size: 14px;
+`;
+
 const Dial = styled.div`
   position: absolute;
   font-size: 36px;
@@ -93,10 +97,15 @@ const Dial = styled.div`
   transition: left 1s;
 `;
 
+const Emoji = styled.span`
+  font-size: 20px;
+  margin-right: 6px;
+`;
+
 const CandidateProgressBar = ({
   candidate,
   peopleSoFar,
-  withAchievement = true,
+  withAchievement,
   withAnimation = true,
 }) => {
   const {
@@ -106,6 +115,8 @@ const CandidateProgressBar = ({
     lastName,
     overrideFollowers,
     likelyVoters,
+    didWin,
+    votesReceived,
   } = candidate;
   let people = overrideFollowers ? likelyVoters : peopleSoFar;
   const color = candidateColor(candidate);
@@ -130,6 +141,22 @@ const CandidateProgressBar = ({
     progress = 50;
   }
 
+  const daysTillElection = daysTill(raceDate);
+
+  let raceDone = false;
+  if (raceDate) {
+    if (daysTillElection < 0) {
+      raceDone = true;
+    }
+  }
+
+  if (raceDone && votesReceived && votesNeeded !== 0) {
+    progress = (votesReceived * 100) / votesNeeded;
+    if (progress > 100) {
+      progress = 100;
+    }
+  }
+
   useEffect(() => {
     if (withAnimation && !isRendered) {
       setTimeout(() => {
@@ -145,29 +172,134 @@ const CandidateProgressBar = ({
     setIsRendered(true);
   }, [votesNeeded]);
 
+  let achievementIcon = (
+    <Icon src="/images/icons/achievement.svg" alt="achievement" />
+  );
+  let achievementText = (
+    <div>
+      {firstName} {lastName} has <strong>{numberFormatter(realPerc)}%</strong>{' '}
+      of the votes needed to win this race
+    </div>
+  );
+  if (raceDone && didWin === 'Yes') {
+    achievementIcon = (
+      <Emoji role="img" aria-label="Party">
+        🎉️
+      </Emoji>
+    );
+    const resultPerc =
+      votesNeeded && votesNeeded !== 0
+        ? (votesReceived * 100) / votesNeeded
+        : 0;
+    achievementText = (
+      <div>
+        {firstName} {lastName} received{' '}
+        <strong>{numberFormatter(resultPerc)}%</strong> of the votes needed and
+        won this election!
+      </div>
+    );
+  } else if (raceDone && didWin === 'No') {
+    achievementIcon = (
+      <Emoji role="img" aria-label="Ballot Box">
+        🗳️
+      </Emoji>
+    );
+    const resultPerc =
+      votesNeeded && votesNeeded !== 0
+        ? (votesReceived * 100) / votesNeeded
+        : 0;
+    achievementText = (
+      <div>
+        {firstName} {lastName} received{' '}
+        <strong>{numberFormatter(resultPerc)}%</strong> of the votes needed and
+        did not win this election
+      </div>
+    );
+  } else if (raceDone) {
+    achievementIcon = (
+      <Emoji role="img" aria-label="Ballot Box">
+        🗳️
+      </Emoji>
+    );
+    achievementText = <div>Election ended, awaiting results...</div>;
+  }
   return (
     <div>
       <Grid container spacing={3}>
-        <Grid item xs={6}>
-          <Number>{numberFormatter(people)}</Number>
-          likely voters
-        </Grid>
-
-        <Grid item xs={6} className="text-right">
-          {weeksToElection > 0 ? (
+        <Grid item xs={4}>
+          {raceDone && (didWin === 'Yes' || didWin === 'No') ? (
             <>
-              <Number>
-                {numberFormatter(weeksToElection)} week
-                {weeksToElection !== 1 ? 's' : ''}
-              </Number>
-              until election
+              <Number>{numberFormatter(votesReceived)}</Number>
+              <Sm>votes received</Sm>
             </>
           ) : (
             <>
-              <br />
-              election ended
+              <Number>{numberFormatter(people)}</Number>
+              <Sm>likely voters</Sm>
             </>
           )}
+        </Grid>
+
+        <Grid item xs={4} className="text-center">
+          {raceDone ? (
+            <>
+              {didWin === 'Yes' && (
+                <div>
+                  <strong>
+                    <div>
+                      Won{' '}
+                      <span role="img" aria-label="Party">
+                        🎉
+                      </span>
+                    </div>{' '}
+                    election
+                  </strong>
+                </div>
+              )}
+              {didWin === 'No' && (
+                <div>
+                  <strong>
+                    <div>Did not win</div> election
+                  </strong>
+                </div>
+              )}
+
+              {didWin !== 'Yes' && didWin !== 'No' && (
+                <div>
+                  <strong>
+                    <div>Awaiting</div> results
+                  </strong>
+                </div>
+              )}
+            </>
+          ) : (
+            <>
+              {daysTillElection === 0 ? (
+                <Number>Election day</Number>
+              ) : (
+                <>
+                  <Number>
+                    {weeksToElection > 1 ? (
+                      <>
+                        {numberFormatter(weeksToElection)} week
+                        {weeksToElection !== 1 ? 's' : ''}
+                      </>
+                    ) : (
+                      <>
+                        {daysTillElection} day
+                        {daysTillElection !== 1 ? 's' : ''}
+                      </>
+                    )}
+                  </Number>
+                  <Sm>until election</Sm>
+                </>
+              )}
+            </>
+          )}
+        </Grid>
+        <Grid item xs={4} className="text-right">
+          <Number>{numberFormatter(votesNeeded)}</Number>
+          <Sm>votes needed</Sm>
         </Grid>
       </Grid>
       <ProgressBarWrapper data-cy="supporter-progress">
@@ -178,21 +310,15 @@ const CandidateProgressBar = ({
             <IoIosCheckmark />
           </Dial>
         </BarBg>
-        <Total>{numberFormatter(votesNeeded)}</Total>
-        {withAchievement && days > 0 && (
+        {withAchievement && (
           <AchievementWrapper>
-            <Icon src="/images/icons/achievement.svg" alt="achievement" />
-            <div>
-              {firstName} {lastName} has {numberFormatter(realPerc)}% of the
-              votes needed to win this race
-            </div>
+            {achievementIcon}
+            {achievementText}
           </AchievementWrapper>
         )}
       </ProgressBarWrapper>
     </div>
   );
 };
-
-
 
 export default CandidateProgressBar;
