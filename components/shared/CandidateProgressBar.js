@@ -152,6 +152,9 @@ const CandidateProgressBar = ({
 
   if (raceDone && votesReceived && votesNeeded !== 0) {
     progress = (votesReceived * 100) / votesNeeded;
+    if (progress > 100) {
+      progress = 100;
+    }
   }
 
   useEffect(() => {
