@@ -150,6 +150,10 @@ const CandidateProgressBar = ({
     }
   }
 
+  if (raceDone && votesReceived && votesNeeded !== 0) {
+    progress = (votesReceived * 100) / votesNeeded;
+  }
+
   useEffect(() => {
     if (withAnimation && !isRendered) {
       setTimeout(() => {
@@ -260,7 +264,7 @@ const CandidateProgressBar = ({
               {didWin !== 'Yes' && didWin !== 'No' && (
                 <div>
                   <strong>
-                    <div>Awaiting</div> Results
+                    <div>Awaiting</div> results
                   </strong>
                 </div>
               )}
@@ -268,7 +272,7 @@ const CandidateProgressBar = ({
           ) : (
             <>
               {daysTillElection === 0 ? (
-                <Number>ELECTION DAY</Number>
+                <Number>Election Day</Number>
               ) : (
                 <>
                   <Number>
@@ -292,7 +296,7 @@ const CandidateProgressBar = ({
         </Grid>
         <Grid item xs={4} className="text-right">
           <Number>{numberFormatter(votesNeeded)}</Number>
-          <Sm>Votes Needed</Sm>
+          <Sm>votes needed</Sm>
         </Grid>
       </Grid>
       <ProgressBarWrapper data-cy="supporter-progress">
@@ -303,7 +307,6 @@ const CandidateProgressBar = ({
             <IoIosCheckmark />
           </Dial>
         </BarBg>
-        <Total>{!raceDone && <>{numberFormatter(votesNeeded)}</>}</Total>
         {withAchievement && (
           <AchievementWrapper>
             {achievementIcon}
