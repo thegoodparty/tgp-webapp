@@ -272,7 +272,7 @@ const CandidateProgressBar = ({
           ) : (
             <>
               {daysTillElection === 0 ? (
-                <Number>Election Day</Number>
+                <Number>Election day</Number>
               ) : (
                 <>
                   <Number>
