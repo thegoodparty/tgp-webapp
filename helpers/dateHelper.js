@@ -57,7 +57,7 @@ export const daysTill = (date) => {
   // const duration = moment.duration(till.diff(now));
   // return parseInt(duration.as('days'), 10);
   const now = new Date();
-  const inputDate = new Date(date);
+  const inputDate = new Date(date.replace(/-/g, '/'));
 
   // To calculate the time difference of two dates
   const timeDiff = inputDate.getTime() - now.getTime();
