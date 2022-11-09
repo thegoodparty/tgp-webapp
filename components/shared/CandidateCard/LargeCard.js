@@ -64,10 +64,10 @@ const Name = styled(FontH3)`
 const ProgressWrapper = styled.div`
   margin-top: 24px;
   @media only screen and (min-width: ${({ theme }) =>
-          theme.breakpointsPixels.lg}) {
+      theme.breakpointsPixels.lg}) {
     margin-top: 60px;
   }
-`
+`;
 
 const Gray = styled.div`
   color: #4d4d4d;
@@ -138,7 +138,10 @@ function LargeCard({ candidate, withFollowButton = false }) {
     experience,
     hometown,
     occupation,
-    funFact,didWin
+    funFact,
+    didWin,
+    followers,
+    support,
   } = candidate;
 
   const brightColor = candidateColor(candidate);
@@ -149,6 +152,12 @@ function LargeCard({ candidate, withFollowButton = false }) {
   }
 
   const showCard = hometown || occupation || funFact;
+
+  let thisWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek + (support ? support.thisWeek : 0);
+  }
+
 
   return (
     <Link href={candidateRoute(candidate)} passHref style={{ height: '100%' }}>
@@ -194,7 +203,10 @@ function LargeCard({ candidate, withFollowButton = false }) {
             </Grid>
             <Grid item xs={12} lg={4}>
               <ProgressWrapper>
-                <CandidateProgressBar candidate={candidate} />
+                <CandidateProgressBar
+                  candidate={candidate}
+                  peopleSoFar={thisWeek}
+                />
                 <BlackButton
                   fullWidth
                   className="view-button-card"
@@ -206,7 +218,11 @@ function LargeCard({ candidate, withFollowButton = false }) {
                   }}
                   data-cy="candidate-view"
                 >
-                  {didWin === 'Yes' ? 'VIEW ISSUES' : didWin==='No' ? 'VIEW 2022 CAMPAIGN' : 'VIEW CAMPAIGN'}
+                  {didWin === 'Yes'
+                    ? 'VIEW ISSUES'
+                    : didWin === 'No'
+                    ? 'VIEW 2022 CAMPAIGN'
+                    : 'VIEW CAMPAIGN'}
                 </BlackButton>
               </ProgressWrapper>
             </Grid>
