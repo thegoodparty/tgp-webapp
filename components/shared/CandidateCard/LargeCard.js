@@ -19,6 +19,7 @@ import CandidateRoundAvatar from '../CandidateRoundAvatar';
 import LoadingAnimation from '../LoadingAnimation';
 import { candidateRoute } from '../../../helpers/electionsHelper';
 import { LgUpOnly, SmOnly } from '../navigation/NavWrapper';
+import CandidateProgressBar from '../CandidateProgressBar';
 const FollowButtonContainer = dynamic(
   () => import('/containers/shared/FollowButtonContainer'),
   {
@@ -60,6 +61,14 @@ const Name = styled(FontH3)`
   }
 `;
 
+const ProgressWrapper = styled.div`
+  margin-top: 24px;
+  @media only screen and (min-width: ${({ theme }) =>
+      theme.breakpointsPixels.lg}) {
+    margin-top: 60px;
+  }
+`;
+
 const Gray = styled.div`
   color: #4d4d4d;
 `;
@@ -78,14 +87,6 @@ const Position = styled.div`
   font-size: 11px;
   background-color: #f3f3f3;
   margin: 5px 5px 0 0;
-`;
-
-const ButtonWrapper = styled.div`
-  width: 100%;
-  @media only screen and (min-width: ${({ theme }) =>
-      theme.breakpointsPixels.lg}) {
-    width: 50%;
-  }
 `;
 
 const ExtraInfo = styled.div`
@@ -112,7 +113,8 @@ const Card = styled.div`
     box-shadow: 2px 2px 15px 2px rgba(0, 0, 0, 0.11);
     border-radius: 6px;
     padding: 26px 19px;
-    margin-top: 30px;
+    margin-top: 0;
+    display: inline-block;
   }
 `;
 
@@ -137,6 +139,9 @@ function LargeCard({ candidate, withFollowButton = false }) {
     hometown,
     occupation,
     funFact,
+    didWin,
+    followers,
+    support,
   } = candidate;
 
   const brightColor = candidateColor(candidate);
@@ -147,6 +152,12 @@ function LargeCard({ candidate, withFollowButton = false }) {
   }
 
   const showCard = hometown || occupation || funFact;
+
+  let thisWeek = 0;
+  if (followers) {
+    thisWeek = followers.thisWeek + (support ? support.thisWeek : 0);
+  }
+
 
   return (
     <Link href={candidateRoute(candidate)} passHref style={{ height: '100%' }}>
@@ -163,9 +174,9 @@ function LargeCard({ candidate, withFollowButton = false }) {
                 <CandidateRoundAvatar candidate={candidate} large largeAll />
               </ImageWrapper>
             </Grid>
-            <Grid item xs={12} lg={9}>
+            <Grid item xs={12} lg={5}>
               <Grid container spacing={3}>
-                <Grid item xs={12} lg={showCard ? 8 : 12}>
+                <Grid item xs={12}>
                   <Content>
                     <Positions>
                       {topPositions && topPositions.length > 0 && (
@@ -187,56 +198,64 @@ function LargeCard({ candidate, withFollowButton = false }) {
                     {firstName} {lastName}
                   </Name>
                   <Gray data-cy="candidate-party">{partyRace(candidate)}</Gray>
-                  <LgUpOnly>
-                    <ButtonWrapper>
-                      <BlackButton
-                        fullWidth
-                        className="view-button-card"
-                        style={{
-                          textTransform: 'none',
-                          marginTop: '32px',
-                          backgroundColor: brightColor,
-                          borderColor: brightColor,
-                        }}
-                        data-cy="candidate-view"
-                      >
-                        VIEW CAMPAIGN
-                      </BlackButton>
-                    </ButtonWrapper>
-                  </LgUpOnly>
                 </Grid>
-                {showCard && (
-                  <Grid item xs={12} lg={4}>
-                    <Card>
-                      {hometown && (
-                        <CardIem>
-                          <strong>Home Town &amp; State:</strong> {hometown}
-                        </CardIem>
-                      )}
-                      {occupation && (
-                        <CardIem>
-                          <strong>Current Occupation:</strong> {occupation}
-                        </CardIem>
-                      )}
-                      {funFact && (
-                        <CardIem>
-                          <strong>Fun Fact:</strong> {funFact}
-                        </CardIem>
-                      )}
-                    </Card>
-                  </Grid>
-                )}
               </Grid>
-
+            </Grid>
+            <Grid item xs={12} lg={4}>
+              <ProgressWrapper>
+                <CandidateProgressBar
+                  candidate={candidate}
+                  peopleSoFar={thisWeek}
+                />
+                <BlackButton
+                  fullWidth
+                  className="view-button-card"
+                  style={{
+                    textTransform: 'none',
+                    marginTop: '32px',
+                    backgroundColor: brightColor,
+                    borderColor: brightColor,
+                  }}
+                  data-cy="candidate-view"
+                >
+                  {didWin === 'Yes'
+                    ? 'VIEW ISSUES'
+                    : didWin === 'No'
+                    ? 'VIEW 2022 CAMPAIGN'
+                    : 'VIEW CAMPAIGN'}
+                </BlackButton>
+              </ProgressWrapper>
+            </Grid>
+            <Grid item xs={12} lg={3}></Grid>
+            <Grid item xs={12} lg={9}>
+              {showCard && (
+                <Card>
+                  {hometown && (
+                    <CardIem>
+                      <strong>Home Town &amp; State:</strong> {hometown}
+                    </CardIem>
+                  )}
+                  {occupation && (
+                    <CardIem>
+                      <strong>Current Occupation:</strong> {occupation}
+                    </CardIem>
+                  )}
+                  {funFact && (
+                    <CardIem>
+                      <strong>Fun Fact:</strong> {funFact}
+                    </CardIem>
+                  )}
+                </Card>
+              )}
               {whyRunning && (
                 <ExtraInfo style={{ marginTop: '34px' }}>
-                  <strong>Why I'm running</strong>: {whyRunning}
+                  <strong>Why I&apos;m running</strong>: {whyRunning}
                 </ExtraInfo>
               )}
 
               {whyIndependent && (
                 <ExtraInfo>
-                  <strong>Why I'm Independent</strong>: {whyIndependent}
+                  <strong>Why I&apos;m Independent</strong>: {whyIndependent}
                 </ExtraInfo>
               )}
 
@@ -245,23 +264,6 @@ function LargeCard({ candidate, withFollowButton = false }) {
                   <strong>Prior Experience</strong>: {experience}
                 </ExtraInfo>
               )}
-              <SmOnly>
-                <ButtonWrapper>
-                  <BlackButton
-                    fullWidth
-                    className="view-button-card"
-                    style={{
-                      textTransform: 'none',
-                      marginTop: '32px',
-                      backgroundColor: brightColor,
-                      borderColor: brightColor,
-                    }}
-                    data-cy="candidate-view"
-                  >
-                    VIEW CAMPAIGN
-                  </BlackButton>
-                </ButtonWrapper>
-              </SmOnly>
             </Grid>
           </Grid>
         </Wrapper>
