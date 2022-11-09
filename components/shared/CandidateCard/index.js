@@ -89,7 +89,8 @@ function CandidateCard({ candidate, withFollowButton = false }) {
   if (!candidate) {
     return <></>;
   }
-  const { firstName, lastName, positions, followers, support } = candidate;
+  const { firstName, lastName, positions, followers, support, didWin } =
+    candidate;
 
   const brightColor = candidateColor(candidate);
   let topPositions = positions;
@@ -184,7 +185,11 @@ function CandidateCard({ candidate, withFollowButton = false }) {
                     }}
                     data-cy="candidate-view"
                   >
-                    VIEW CAMPAIGN
+                    {didWin === 'Yes'
+                      ? 'VIEW ISSUES'
+                      : didWin === 'No'
+                      ? 'VIEW 2022 CAMPAIGN'
+                      : 'VIEW CAMPAIGN'}
                   </BlackButton>
                 )}
               </Grid>
