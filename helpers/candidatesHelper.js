@@ -177,7 +177,7 @@ export const partyRace = (candidate, withLineBreak = true) => {
   }
   return (
     <>
-      {raceDone && didWin === 'Yes' && <strong>IN OFFICE: </strong>}
+      {raceDone && didWin === 'Yes' && <strong>OFFICE: </strong>}
       {raceDone && didWin === 'No' && <strong>{raceYear} Campaign: </strong>}
       {didWin !== 'Yes' && <>{partyResolver(party, otherParty)} | </>}
       {resolvedRace}
